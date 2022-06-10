@@ -1,0 +1,26 @@
+.multiStepForm {
+  width: 60%;
+  margin: 6rem auto;
+  padding: 1.5rem;
+  /* border: 1px solid #999; */
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+    rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+.photoBox {
+  padding: 1em;
+  color: #2a3439;
+  border: 1px solid #848482;
+  border-radius: 5px;
+}
+.photoBox:focus {
+  border: 1px solid blue;
+}
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .multiStepForm {
+    width: 90%;
+    margin: 1rem auto;
+    padding: 1.5rem;
+    border: 0;
+  }
+}
