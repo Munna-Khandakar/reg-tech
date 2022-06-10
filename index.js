@@ -29,23 +29,23 @@ app.use("/api", require("./routes/verificationRoutes"));
 
 // TODO: SERVER AND DATABASE
 
-app.use(express.static(path.join(__dirname, "./frontend/build")));
-app.get("*", function (_, res) {
-  res.sendFile(
-    path.join(__dirname, "./frontend/build/index.html"),
-    function (err) {
-      if (err) {
-        res.status(500).send(err);
-      }
-    }
-  );
-});
+// app.use(express.static(path.join(__dirname, "./frontend/build")));
+// app.get("*", function (_, res) {
+//   res.sendFile(
+//     path.join(__dirname, "./frontend/build/index.html"),
+//     function (err) {
+//       if (err) {
+//         res.status(500).send(err);
+//       }
+//     }
+//   );
+// });
 
-// const root = require('path').join(__dirname, 'frontend', 'build')
-// app.use(express.static(root));
-// app.get("*", (req, res) => {
-//     res.sendFile('index.html', { root });
-// })
+const root = require("path").join(__dirname, "frontend", "build");
+app.use(express.static(root));
+app.get("*", (req, res) => {
+  res.sendFile("index.html", { root });
+});
 
 const PORT = process.env.PORT || 5000;
 mongoose
