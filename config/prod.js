@@ -1,7 +1,7 @@
 module.exports = {
   MONGO_URI:
-    "ongodb+srv://myplate-production:R308VTibdsdfbJ9u@cluster0.uuxwh.mongodb.net/myplate?retryWrites=true&w=majority",
-  SECRET_KEY: "shjuhguyjgfjghsf",
+    "mongodb+srv://munna:Shisad807577@cluster0.nxkrhrb.mongodb.net/REGISTRATIONFORM?retryWrites=true&w=majority",
+  SECRET_KEY: "techsimpict-munna",
 };
 
-//myplatexyz@gmail.com
+//munnashisad@gmail.com
