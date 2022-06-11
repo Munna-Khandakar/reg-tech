@@ -2,11 +2,16 @@ const mongoose = require("mongoose");
 
 const mySchema = mongoose.Schema(
   {
+    // batch: {
+    //   type: String,
+    // },
     batch: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Batch",
     },
     dept: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Department",
     },
     mobile: {
       type: String,

@@ -95,6 +95,7 @@ function StepTwo({
           value={fullName}
           onChange={(e) => setFullName(e.target.value)}
           variant="outlined"
+          required
         />
         <TextField
           style={{ width: "100%", margin: "1rem 0" }}
@@ -103,6 +104,7 @@ function StepTwo({
           value={nickName}
           onChange={(e) => setNickName(e.target.value)}
           variant="outlined"
+          required
         />
         <div className="photoBox">
           PHOTO

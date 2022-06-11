@@ -58,8 +58,7 @@ function StepOne({
   }, []);
   //verification handlers
   const verficationAlert = () => {
-    alert("Oops.!Verify your phone number first");
-    setVarified(true);
+    swal("", "Oops.!Verify your phone number first", "error");
   };
   //count down timer for verficiation code resend...
   const wait3min = () => {
