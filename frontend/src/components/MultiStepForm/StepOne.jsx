@@ -213,11 +213,11 @@ function StepOne({
                     edge="end"
                     color="primary"
                     //  disabled={sendOTPButtonDisable}
-                    onClick={sendVerficationCode}
                   >
                     <LoadingButton
                       disabled={sendOTPButtonDisable}
                       loading={verificationLoading}
+                      onClick={sendVerficationCode}
                       loadingPosition="end"
                       variant="contained"
                       endIcon={<SendIcon />}
@@ -239,10 +239,11 @@ function StepOne({
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
-                <IconButton edge="end" color="primary" onClick={verifyOTP}>
+                <IconButton edge="end" color="primary">
                   <LoadingButton
                     loading={varifyButtonLoading}
                     disabled={verifyButtonDisable}
+                    onClick={verifyOTP}
                     loadingPosition="end"
                     variant="contained"
                     endIcon={<HowToRegIcon />}
