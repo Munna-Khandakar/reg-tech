@@ -1,5 +1,6 @@
 import React from "react";
 import "./MultiStepForm.css";
+import swal from "sweetalert";
 import {
   Typography,
   TextField,
@@ -14,6 +15,10 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 const bloodGroups = [
+  {
+    value: "SELECT YOUR BLOOD GROUP",
+    label: "SELECT YOUR BLOOD GROUP",
+  },
   {
     value: "O+",
     label: "O+",
@@ -117,6 +122,7 @@ function StepTwo({
             variant="outlined"
             accept="image/*"
             type="file"
+            required
           />
         </div>
 
@@ -124,6 +130,7 @@ function StepTwo({
           style={{ width: "100%", margin: "1rem 0" }}
           placeholder="AS PER NID"
           label="FATHER'S NAME"
+          required
           value={fatherName}
           onChange={(e) => setFatherName(e.target.value)}
           variant="outlined"
@@ -132,6 +139,7 @@ function StepTwo({
           style={{ width: "100%", margin: "1rem 0" }}
           placeholder="AS PER NID"
           label="MOTHER'S NAME"
+          required
           value={motherName}
           onChange={(e) => setMotherName(e.target.value)}
           variant="outlined"
@@ -139,7 +147,8 @@ function StepTwo({
         <TextField
           style={{ width: "100%", margin: "1rem 0" }}
           placeholder="YOUR PRESENT ADDRESS"
-          label="PRESENT ADDRESS"
+          required
+          label="ADDRESS"
           value={address}
           onChange={(e) => setAddress(e.target.value)}
           variant="outlined"
@@ -192,6 +201,7 @@ function StepTwo({
         <TextField
           style={{ width: "100%", margin: "1rem 0" }}
           select
+          required
           label="BLOOD GROUP"
           value={bloodGroup}
           onChange={(e) => setBloodGroup(e.target.value)}
@@ -229,7 +239,33 @@ function StepTwo({
         <Button
           variant="contained"
           endIcon={<ArrowForwardIosIcon />}
-          onClick={() => handleNext()}
+          onClick={() => {
+            // checking the requred fields
+            if (fullName === "") {
+              return swal("", "Full Name can't be empty ", "error");
+            }
+            if (nickName === "") {
+              return swal("", "Nick Name can't be empty ", "error");
+            }
+            if (photo === "") {
+              return swal("", "You must upload your photo ", "error");
+            }
+            if (fatherName === "") {
+              return swal("", "Father's Name can't be empty ", "error");
+            }
+            if (motherName === "") {
+              return swal("", "Mother's Name can't be empty ", "error");
+            }
+            if (address === "") {
+              return swal("", "Address can't be empty ", "error");
+            }
+
+            if (bloodGroup === "SELECT YOUR BLOOD GROUP") {
+              return swal("", "Please select blood group ", "error");
+            }
+
+            handleNext();
+          }}
         >
           Next
         </Button>

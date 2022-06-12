@@ -6,50 +6,56 @@ const { send_verification_sms } = require("../config/smsModule");
 // POST: api/sendOTP
 // CREATE OTP
 module.exports.sendOTP = async (req, res, next) => {
+  console.log("sendOTP activated...");
   const { phoneNo } = req.body;
-  console.log(phoneNo);
+  console.log("phone number : " + phoneNo);
   if (!phoneNo) {
-    console.log(1);
     return res.status(401).json({ error: "Please provide your phone number" });
   }
+
   const otp_code = otpGenerator.generate(6, {
     upperCase: false,
     specialChars: false,
   });
-  console.log(otp_code);
+  console.log("OTP Generated");
   // if the phone number is already registerd
   try {
     const existUser = await UserModel.findOne({ mobile: phoneNo });
-    console.log(2);
     if (existUser) {
+      console.log("User found in User Model");
       return res
         .status(201)
         .json({ error: `This phone is already registerd, try with a new one` });
     }
   } catch (error) {
     console.log(error);
+    return res.status(500).json({ error: `Somwthing went wrong` });
   }
 
   // if otp is sent to the phone number
 
   try {
     const existOTP = await OTPVerificationModel.findOne({ mobile: phoneNo });
-    if (existOTP.status === "varified") {
-      console.log(4);
-      return res.status(202).json({
-        varified: `Phone number is already verified`,
-      });
-    }
-    if (existOTP.status === "notVarified") {
-      const oldOTP = await OTPVerificationModel.findOne({ mobile: phoneNo });
-      await oldOTP.updateOne({ $set: { otp: otp_code } });
-      send_verification_sms(phoneNo, otp_code);
-      return res.status(200).json({
-        success: `A verification code sent in this ${phoneNo} phone number`,
-      });
+    if (existOTP) {
+      if (existOTP.status === "varified") {
+        console.log("Req user is already verified...");
+        return res.status(202).json({
+          varified: `Phone number is already verified`,
+        });
+      }
+      if (existOTP.status === "notVarified") {
+        const oldOTP = await OTPVerificationModel.findOne({ mobile: phoneNo });
+        await oldOTP.updateOne({ $set: { otp: otp_code } });
+        send_verification_sms(phoneNo, otp_code);
+        console.log("otp send to the user...");
+        return res.status(200).json({
+          success: `A verification code sent in this ${phoneNo} phone number`,
+        });
+      }
     }
   } catch (error) {
     console.log(error);
+    return res.status(500).json({ error: `Somwthing went wrong` });
   }
 
   const data = {
@@ -62,8 +68,8 @@ module.exports.sendOTP = async (req, res, next) => {
     const newData = new OTPVerificationModel(data);
     const savedData = await newData.save();
     send_verification_sms(phoneNo, otp_code);
-    console.log(5);
-    // console.log(savedData);
+    console.log("1st time otp send to user");
+    console.log(savedData);
     return res.status(200).json({
       success: `A verification code sent in this ${phoneNo} phone number`,
     });
@@ -97,6 +103,6 @@ module.exports.verifyOTP = async (req, res, next) => {
       });
     }
   } catch (error) {
-    console.log(error);
+    return res.status(500).json({ error: `Somwthing went wrong` });
   }
 };

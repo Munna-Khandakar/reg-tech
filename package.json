@@ -9,6 +9,8 @@
   "author": "munna khondoker",
   "license": "ISC",
   "dependencies": {
+    "@cloudinary/react": "^1.4.1",
+    "@cloudinary/url-gen": "^1.8.0",
     "@sendgrid/mail": "^7.6.1",
     "@vonage/server-sdk": "^2.10.10",
     "bcryptjs": "^2.4.3",

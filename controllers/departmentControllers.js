@@ -22,3 +22,12 @@ module.exports.postDepartment = async (req, res, next) => {
     res.status(500).json(error);
   }
 };
+
+module.exports.getDepartmentValue = async (req, res, next) => {
+  try {
+    const data = await DepartmentModel.findById(req.params.id);
+    return res.status(200).json(data);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};

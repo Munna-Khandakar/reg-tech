@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import swal from "sweetalert";
 const marital = [
   {
     value: "MARRIED",
@@ -51,6 +52,7 @@ function StepThree({
           placeholder="YOUR CURRENT OCCUPATION"
           label="OCCUPATION"
           value={occupation}
+          required
           onChange={(e) => setOccupation(e.target.value)}
           variant="outlined"
         />
@@ -99,6 +101,7 @@ function StepThree({
           style={{ width: "100%", margin: "1rem 0" }}
           placeholder="Wish for Hall/University/Event"
           label="WISH BOX"
+          required
           value={wishBox}
           onChange={(e) => setWishBox(e.target.value)}
           variant="outlined"
@@ -121,7 +124,16 @@ function StepThree({
         <Button
           variant="contained"
           endIcon={<ArrowForwardIosIcon />}
-          onClick={() => handleNext()}
+          onClick={() => {
+            if (occupation === "") {
+              return swal("", "Occupation can't be empty ", "error");
+            }
+
+            if (wishBox === "") {
+              return swal("", "Wish box can't be empty ", "error");
+            }
+            handleNext();
+          }}
         >
           Next
         </Button>

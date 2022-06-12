@@ -6,6 +6,7 @@ import StepOne from "./StepOne";
 import StepTwo from "./StepTwo";
 import StepThree from "./StepThree";
 import "./MultiStepForm.css";
+import swal from "sweetalert";
 import ConfirmStep from "./ConfirmStep";
 const useStyles = makeStyles({
   root: {
@@ -16,6 +17,22 @@ const useStyles = makeStyles({
   },
 });
 
+const show = () => {
+  swal({
+    title: "Are you sure?",
+    text: "Congratulations, your form saved successfully..!",
+    icon: "success",
+    buttons: true,
+    dangerMode: false,
+  }).then((willDelete) => {
+    if (willDelete) {
+      window.location.reload();
+    } else {
+      window.location.reload();
+    }
+  });
+};
+
 function getSteps() {
   return ["GENERAL INFORMATION", "PERSONAL INFORMATION", "OTHER INFORMATION"];
 }
@@ -25,11 +42,12 @@ const MultiStepForm = () => {
   //step 1
   const [activeState, setActiveState] = useState(0);
   const [session, setSession] = useState("629f55ace83ec7fb1d7cdec4");
-  const [batch, setBatch] = useState("629f57014ec05218c79a9cb7");
-  const [department, setDepartment] = useState("629ed250309c4cade48d35b4");
+  const [batch, setBatch] = useState("62a566ff9f9bd138865816a7");
+  const [department, setDepartment] = useState("62a567659f9bd138865816b7");
   const [fullName, setFullName] = useState("");
   const [nickName, setNickName] = useState("");
   const [mobile, setMobile] = useState("");
+  const [varified, setVarified] = useState(false);
 
   //step 2
   const [fatherName, setFatherName] = useState("");
@@ -41,17 +59,20 @@ const MultiStepForm = () => {
   const [fbId, setFbId] = useState("");
   const [dob, setDob] = useState("");
   const [nationality, setNationality] = useState("");
-  const [bloodGroup, setBloodGroup] = useState("O+");
+  const [bloodGroup, setBloodGroup] = useState("SELECT YOUR BLOOD GROUP");
   const [religion, setReligion] = useState("");
 
   //step 3
   const [occupation, setOccupation] = useState("");
   const [designation, setDesignation] = useState("");
   const [companyName, setCompanyName] = useState("");
-  const [maritalStatus, setMaritalStatus] = useState("UNMARRIED");
-  const [hallRoomNumer, setHallRoomNumber] = useState("");
+  const [maritalStatus, setMaritalStatus] = useState("MARRIED");
+  const [hallRoomNumber, setHallRoomNumber] = useState("");
   const [wishBox, setWishBox] = useState("");
 
+  // confirm step
+  const [submitButtonLoading, setSubmitButtonLoading] = React.useState(false);
+  const [submitButtonDisable, setSubmitButtonDisable] = React.useState(false);
   const handleNext = () => {
     setActiveState((previousState) => previousState + 1);
   };
@@ -65,6 +86,8 @@ const MultiStepForm = () => {
       case 0:
         return (
           <StepOne
+            varified={varified}
+            setVarified={setVarified}
             session={session}
             setSession={setSession}
             batch={batch}
@@ -121,7 +144,7 @@ const MultiStepForm = () => {
             setCompanyName={setCompanyName}
             maritalStatus={maritalStatus}
             setMaritalStatus={setMaritalStatus}
-            hallRoomNumer={hallRoomNumer}
+            hallRoomNumber={hallRoomNumber}
             setHallRoomNumber={setHallRoomNumber}
             wishBox={wishBox}
             setWishBox={setWishBox}
@@ -142,8 +165,7 @@ const MultiStepForm = () => {
   }
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("first");
-    console.log(photo);
+    setSubmitButtonLoading(true);
     const formData = new FormData();
     //step 1
     formData.append("batch", batch);
@@ -170,14 +192,28 @@ const MultiStepForm = () => {
     formData.append("designation", designation);
     formData.append("companyName", companyName);
     formData.append("maritalStatus", maritalStatus);
-    formData.append("hallRoomNumer", hallRoomNumer);
+    formData.append("hallRoomNumber", hallRoomNumber);
     formData.append("wishBox", wishBox);
 
     //submit form
     axios
       .post("/api/registration", formData)
       .then((res) => {
-        console.log(res);
+        setSubmitButtonLoading(false);
+        setSubmitButtonDisable(true);
+        swal({
+          title: "Congratulations",
+          text: "Your form saved successfully..!",
+          icon: "success",
+          buttons: true,
+          dangerMode: false,
+        }).then((willDelete) => {
+          if (willDelete) {
+            window.location.reload();
+          } else {
+            window.location.reload();
+          }
+        });
       })
       .catch((err) => {
         console.log(err);
@@ -216,9 +252,13 @@ const MultiStepForm = () => {
             designation={designation}
             companyName={companyName}
             maritalStatus={maritalStatus}
-            hallRoomNumer={hallRoomNumer}
+            hallRoomNumber={hallRoomNumber}
             wishBox={wishBox}
             handlePrev={handlePrev}
+            submitButtonDisable={submitButtonDisable}
+            setSubmitButtonDisable={setSubmitButtonDisable}
+            submitButtonLoading={submitButtonLoading}
+            setSubmitButtonLoading={setSubmitButtonLoading}
           />
         ) : (
           <>{getStepContent(activeState)}</>

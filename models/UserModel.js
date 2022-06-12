@@ -64,7 +64,7 @@ const mySchema = mongoose.Schema(
     maritalStatus: {
       type: String,
     },
-    hallRoomNumer: {
+    hallRoomNumber: {
       type: String,
     },
     wishBox: {

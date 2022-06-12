@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Typography, TextField, Box, Button, Stack } from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
@@ -26,18 +26,31 @@ function ConfirmStep({
   hallRoomNumber,
   wishBox,
   handlePrev,
+  submitButtonDisable,
+  submitButtonLoading,
 }) {
-  const [loading, setLoading] = React.useState(false);
-  const off = () => {
-    setLoading(false);
-    alert("store to DB");
-  };
-  function handleClick() {
-    setLoading(true);
-    setTimeout(function () {
-      off();
-    }, 1000);
-  }
+  const [batchValue, setBatchValue] = useState("");
+  const [deptValue, setDeptValue] = useState("");
+  //getting the batch value from batch id
+  useEffect(() => {
+    const getBatchValue = async () => {
+      const res = await fetch(`/api/batchValue/${batch}`);
+      const data = await res.json();
+      //console.log(data.label);
+      setBatchValue(data.label);
+    };
+    getBatchValue();
+  }, []);
+
+  //getting the department value from department id
+  useEffect(() => {
+    const getDeptValue = async () => {
+      const res = await fetch(`/api/departmentValue/${department}`);
+      const data = await res.json();
+      setDeptValue(data.label);
+    };
+    getDeptValue();
+  }, []);
 
   return (
     <>
@@ -59,7 +72,7 @@ function ConfirmStep({
           <TextField
             style={{ width: "100%", marginTop: "1rem" }}
             label="Batch"
-            value={batch}
+            value={batchValue}
             variant="filled"
             disabled
           />
@@ -67,7 +80,7 @@ function ConfirmStep({
             style={{ width: "100%", marginTop: "1rem" }}
             label="Department"
             variant="filled"
-            value={department}
+            value={deptValue}
             disabled
           />
           <TextField
@@ -239,7 +252,8 @@ function ConfirmStep({
           <LoadingButton
             // onClick={handleClick}
             type="submit"
-            loading={loading}
+            loading={submitButtonLoading}
+            disabled={submitButtonDisable}
             loadingPosition="end"
             variant="contained"
             endIcon={<FileUploadIcon />}

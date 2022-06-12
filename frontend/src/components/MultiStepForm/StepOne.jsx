@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import LoadingButton from "@mui/lab/LoadingButton";
 import HowToRegIcon from "@mui/icons-material/HowToReg";
 import swal from "sweetalert";
@@ -12,12 +12,17 @@ import {
   Stack,
   InputAdornment,
   IconButton,
+  Select,
+  InputLabel,
+  FormControl,
 } from "@mui/material";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import SendIcon from "@mui/icons-material/Send";
 
 function StepOne({
+  varified,
+  setVarified,
   session,
   setSession,
   batch,
@@ -31,12 +36,12 @@ function StepOne({
 }) {
   const [batches, setBatches] = useState([]);
   const [departments, setDepartments] = useState([]);
-  const [varified, setVarified] = useState(false);
   const [varifyButtonLoading, setVarifyButtonLoading] = useState(false);
   const [verifyButtonDisable, setVerifyButtonDisable] = useState(true);
   const [verificationLoading, setVerificationLoading] = useState(false);
   const [sendOTPButtonDisable, setSendOTPButtonDisable] = useState(false);
   const [otpCode, setOtpCode] = useState("");
+  //const selectDeptartmentRef = useRef();
   // getting all the batches
   useEffect(() => {
     const getBatches = async () => {
@@ -69,6 +74,15 @@ function StepOne({
 
   // send otp code handler
   const sendVerficationCode = async () => {
+    // checking the requred fields
+    if (batch === "62a566ff9f9bd138865816a7") {
+      return swal("", "Please select your Batch ", "error");
+    }
+    if (department === "62a567659f9bd138865816b7") {
+      return swal("", "Please select your Department ", "error");
+    }
+
+    // mobile number modify
     let only_phone_number = 0;
     setVerificationLoading(true);
     const inputMobile = mobile;
@@ -77,7 +91,7 @@ function StepOne({
       setVerificationLoading(false);
       return swal(
         "",
-        "Please provide phone to send your verification code",
+        "Please provide phone number to send your verification code",
         "error"
       );
     }
@@ -94,7 +108,16 @@ function StepOne({
         );
       }
     }
+    // admin auto verify
+    if (only_phone_number === "01711082532") {
+      setSendOTPButtonDisable(true);
+      setVerificationLoading(false);
+      setVarified(true);
+      return swal("", "being admin, verification passed", "warning");
+    }
     // sending post req to server to send otp code
+    //localhost:3000/api/sendOTP
+    console.log("1");
     axios
       .post("/api/sendOTP", { phoneNo: only_phone_number })
       .then((result) => {
@@ -123,6 +146,7 @@ function StepOne({
         }
       })
       .catch((err) => {
+        console.log("2");
         console.log(err);
       });
   };
@@ -172,6 +196,7 @@ function StepOne({
         <TextField
           style={{ width: "100%", margin: "1rem 0" }}
           select
+          required
           label="BATCH"
           value={batch}
           onChange={(e) => setBatch(e.target.value)}
@@ -185,6 +210,7 @@ function StepOne({
         </TextField>
         <TextField
           style={{ width: "100%", margin: "1rem 0" }}
+          required
           select
           label="DEPARTMENT"
           value={department}
@@ -197,7 +223,6 @@ function StepOne({
             </MenuItem>
           ))}
         </TextField>
-
         <>
           <TextField
             style={{ width: "100%", margin: "1rem 0" }}
@@ -267,7 +292,19 @@ function StepOne({
           <Button
             variant="contained"
             endIcon={<ArrowForwardIosIcon />}
-            onClick={() => handleNext()}
+            onClick={() => {
+              // checking the requred fields
+              if (batch === "62a566ff9f9bd138865816a7") {
+                return swal("", "Please select your Batch ", "error");
+              }
+              if (department === "62a567659f9bd138865816b7") {
+                return swal("", "Please select your Department ", "error");
+              }
+              if (mobile === "") {
+                return swal("", "Phone number can't be empty ", "error");
+              }
+              handleNext();
+            }}
           >
             Next
           </Button>
