@@ -75,10 +75,10 @@ function StepOne({
   // send otp code handler
   const sendVerficationCode = async () => {
     // checking the requred fields
-    if (batch === "62a566ff9f9bd138865816a7") {
+    if (batch === "SELECT YOUR BATCH") {
       return swal("", "Please select your Batch ", "error");
     }
-    if (department === "62a567659f9bd138865816b7") {
+    if (department === "SELECT YOUR DEPARTMENT") {
       return swal("", "Please select your Department ", "error");
     }
 
@@ -202,6 +202,9 @@ function StepOne({
           onChange={(e) => setBatch(e.target.value)}
           helperText="Please select your batch"
         >
+          <MenuItem key="SELECT YOUR BATCH" value="SELECT YOUR BATCH">
+            SELECT YOUR BATCH
+          </MenuItem>
           {batches.map((option) => (
             <MenuItem key={option._id} value={option._id}>
               {option.label}
@@ -217,6 +220,9 @@ function StepOne({
           onChange={(e) => setDepartment(e.target.value)}
           helperText="Please select your department"
         >
+          <MenuItem key="SELECT YOUR DEPARTMENT" value="SELECT YOUR DEPARTMENT">
+            SELECT YOUR DEPARTMENT
+          </MenuItem>
           {departments.map((option) => (
             <MenuItem key={option._id} value={option._id}>
               {option.label}
@@ -295,10 +301,10 @@ function StepOne({
             endIcon={<ArrowForwardIosIcon />}
             onClick={() => {
               // checking the requred fields
-              if (batch === "62a566ff9f9bd138865816a7") {
+              if (batch === "SELECT YOUR BATCH") {
                 return swal("", "Please select your Batch ", "error");
               }
-              if (department === "62a567659f9bd138865816b7") {
+              if (department === "SELECT YOUR DEPARTMENT") {
                 return swal("", "Please select your Department ", "error");
               }
               if (mobile === "") {
