@@ -257,6 +257,7 @@ function StepOne({
         </>
         <TextField
           style={{ width: "100%", margin: "1rem 0" }}
+          type="number"
           value={otpCode}
           onChange={(e) => setOtpCode(e.target.value)}
           placeholder="YOUR OTP CODE"

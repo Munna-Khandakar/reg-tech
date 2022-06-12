@@ -13,10 +13,15 @@ module.exports.sendOTP = async (req, res, next) => {
     return res.status(401).json({ error: "Please provide your phone number" });
   }
 
-  const otp_code = otpGenerator.generate(6, {
-    upperCase: false,
-    specialChars: false,
-  });
+  // const otp_code = otpGenerator.generate(6, {
+  //   digits: true,
+  //   upperCase: false,
+  //   specialChars: false,
+  //   lowerCaseAlphabets: false,
+  //   upperCaseAlphabets: false,
+  // });
+
+  const otp_code = Math.floor(100000 + Math.random() * 9000);
   console.log("OTP Generated");
   // if the phone number is already registerd
   try {
@@ -69,7 +74,7 @@ module.exports.sendOTP = async (req, res, next) => {
     const savedData = await newData.save();
     send_verification_sms(phoneNo, otp_code);
     console.log("1st time otp send to user");
-    console.log(savedData);
+    //  console.log(savedData);
     return res.status(200).json({
       success: `A verification code sent in this ${phoneNo} phone number`,
     });
