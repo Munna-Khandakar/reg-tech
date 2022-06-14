@@ -44,6 +44,7 @@ const MultiStepForm = () => {
   const [session, setSession] = useState("629f55ace83ec7fb1d7cdec4");
   const [batch, setBatch] = useState("SELECT YOUR BATCH");
   const [department, setDepartment] = useState("SELECT YOUR DEPARTMENT");
+  const [faculty, setFaculty] = useState("SELECT YOUR FACULTY");
   const [fullName, setFullName] = useState("");
   const [nickName, setNickName] = useState("");
   const [mobile, setMobile] = useState("");
@@ -95,6 +96,8 @@ const MultiStepForm = () => {
             department={department}
             setDepartment={setDepartment}
             mobile={mobile}
+            faculty={faculty}
+            setFaculty={setFaculty}
             setMobile={setMobile}
             handleNext={handleNext}
             handlePrev={handlePrev}

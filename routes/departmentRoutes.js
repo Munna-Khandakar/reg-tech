@@ -6,7 +6,7 @@ const {
 
 const router = require("express").Router();
 
-router.get("/departments", getAllDepartments);
+router.get("/departments/:id", getAllDepartments);
 
 router.post("/department", postDepartment);
 

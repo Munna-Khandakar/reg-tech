@@ -6,6 +6,7 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 require("dotenv").config();
 const { MONGO_URI } = require("./config/keys");
+const { api } = require("./middleware/cloudinary");
 //const requestIp = require("request-ip");
 
 //TODO: MIDDLEWARE
@@ -21,6 +22,7 @@ app.use("/api", require("./routes/departmentRoutes"));
 app.use("/api", require("./routes/sessionRoutes"));
 app.use("/api", require("./routes/registrationRoute"));
 app.use("/api", require("./routes/verificationRoutes"));
+app.use("/api", require("./routes/facultyRoutes"));
 // app.use("/api", require("./routes/myPlatesRoutes"));
 // app.use("/api", require("./routes/deliveryManRoutes"));
 // app.use("/admin/api", require("./routes/adminRoutes"));

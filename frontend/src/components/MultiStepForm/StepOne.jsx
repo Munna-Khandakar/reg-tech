@@ -25,6 +25,8 @@ function StepOne({
   setVarified,
   session,
   setSession,
+  faculty,
+  setFaculty,
   batch,
   setBatch,
   department,
@@ -36,6 +38,7 @@ function StepOne({
 }) {
   const [batches, setBatches] = useState([]);
   const [departments, setDepartments] = useState([]);
+  const [faculties, setfaculties] = useState([]);
   const [varifyButtonLoading, setVarifyButtonLoading] = useState(false);
   const [verifyButtonDisable, setVerifyButtonDisable] = useState(true);
   const [verificationLoading, setVerificationLoading] = useState(false);
@@ -52,14 +55,30 @@ function StepOne({
     getBatches();
   }, []);
 
+  // useEffect(() => {
+  //   console.log(departments);
+  // }, [departments]);
+
   //getting all the departments
   useEffect(() => {
     const getDepartments = async () => {
-      const res = await fetch(`/api/departments`);
+      const res = await fetch(`/api/departments/${faculty}`);
       const data = await res.json();
-      setDepartments(data);
+      //  console.log(departments);
+      // setMovies(prevMovies => ([...prevMovies, ...result]));
+      setDepartments((p) => [...data]);
+      //console.log(departments);
     };
     getDepartments();
+  }, [faculty]);
+  // getting faculty names
+  useEffect(() => {
+    const getFaculties = async () => {
+      const res = await fetch(`/api/faculties`);
+      const data = await res.json();
+      setfaculties(data);
+    };
+    getFaculties();
   }, []);
   //verification handlers
   const verficationAlert = () => {
@@ -192,7 +211,6 @@ function StepOne({
           {" "}
           General Information
         </Typography>
-
         <TextField
           style={{ width: "100%", margin: "1rem 0" }}
           select
@@ -213,6 +231,25 @@ function StepOne({
         </TextField>
         <TextField
           style={{ width: "100%", margin: "1rem 0" }}
+          select
+          required
+          label="FACULTY"
+          value={faculty}
+          onChange={(e) => setFaculty(e.target.value)}
+          helperText="Please select your faculty"
+        >
+          <MenuItem key="SELECT YOUR FACULTY" value="SELECT YOUR FACULTY">
+            SELECT YOUR FACULTY
+          </MenuItem>
+          {faculties.map((option) => (
+            <MenuItem key={option._id} value={option._id}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </TextField>
+
+        <TextField
+          style={{ width: "100%", margin: "1rem 0" }}
           required
           select
           label="DEPARTMENT"
@@ -230,7 +267,7 @@ function StepOne({
           ))}
         </TextField>
         <>
-          <TextField
+          {/* <TextField
             style={{ width: "100%", margin: "1rem 0" }}
             placeholder="YOUR ACTIVE PHONE NUMBER"
             label="PHONE"
@@ -259,9 +296,9 @@ function StepOne({
                 </InputAdornment>
               ),
             }}
-          />
+          /> */}
         </>
-        <TextField
+        {/* <TextField
           style={{ width: "100%", margin: "1rem 0" }}
           type="number"
           value={otpCode}
@@ -286,7 +323,7 @@ function StepOne({
               </InputAdornment>
             ),
           }}
-        />
+        /> */}
       </Box>
       <Stack
         direction="row"
@@ -301,15 +338,15 @@ function StepOne({
             endIcon={<ArrowForwardIosIcon />}
             onClick={() => {
               // checking the requred fields
-              if (batch === "SELECT YOUR BATCH") {
-                return swal("", "Please select your Batch ", "error");
-              }
-              if (department === "SELECT YOUR DEPARTMENT") {
-                return swal("", "Please select your Department ", "error");
-              }
-              if (mobile === "") {
-                return swal("", "Phone number can't be empty ", "error");
-              }
+              // if (batch === "SELECT YOUR BATCH") {
+              //   return swal("", "Please select your Batch ", "error");
+              // }
+              // if (department === "SELECT YOUR DEPARTMENT") {
+              //   return swal("", "Please select your Department ", "error");
+              // }
+              // if (mobile === "") {
+              //   return swal("", "Phone number can't be empty ", "error");
+              // }
               handleNext();
             }}
           >

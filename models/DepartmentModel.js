@@ -5,11 +5,17 @@ const mySchema = mongoose.Schema(
     label: {
       type: String,
       required: true,
+      unique: true,
+    },
+    code: {
+      type: String,
+      unique: true,
     },
 
-    created_at: {
+    faculty: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "user",
+      ref: "Faculty",
+      required: true,
     },
   },
   { timestamps: true }

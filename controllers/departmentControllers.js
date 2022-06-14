@@ -4,7 +4,10 @@ const DepartmentModel = require("../models/DepartmentModel");
 // sends all the department name and id
 module.exports.getAllDepartments = async (req, res, next) => {
   try {
-    const departments = await DepartmentModel.find();
+    if (req.params.id === "SELECT YOUR FACULTY") {
+      return res.status(200).json([]);
+    }
+    const departments = await DepartmentModel.find({ faculty: req.params.id });
     return res.status(200).json(departments);
   } catch (error) {
     res.status(500).json(error);
