@@ -9,11 +9,18 @@ const mySchema = mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Batch",
     },
+    faculty: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Faculty",
+    },
     dept: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Department",
     },
     mobile: {
+      type: String,
+    },
+    secondaryMobile: {
       type: String,
     },
     fullName: {
@@ -28,7 +35,22 @@ const mySchema = mongoose.Schema(
     motherName: {
       type: String,
     },
-    address: {
+    streetAddress: {
+      type: String,
+    },
+    streetAddressLine2: {
+      type: String,
+    },
+    city: {
+      type: String,
+    },
+    zipCode: {
+      type: String,
+    },
+    state: {
+      type: String,
+    },
+    country: {
       type: String,
     },
     email: {

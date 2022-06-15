@@ -15,11 +15,14 @@ import {
   Select,
   InputLabel,
   FormControl,
+  Input,
 } from "@mui/material";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import SendIcon from "@mui/icons-material/Send";
-
+import "react-phone-number-input/style.css";
+import PhoneInput from "react-phone-number-input";
+import MuiPhoneNumber from "material-ui-phone-number";
 function StepOne({
   varified,
   setVarified,
@@ -33,6 +36,18 @@ function StepOne({
   setDepartment,
   mobile,
   setMobile,
+  secondaryMobile,
+  setSecondaryMobile,
+  nickName,
+  fullName,
+  setNickName,
+  setFullName,
+  photo,
+  setPhoto,
+  email,
+  setEmail,
+  fbId,
+  setFbId,
   handleNext,
   handlePrev,
 }) {
@@ -266,38 +281,89 @@ function StepOne({
             </MenuItem>
           ))}
         </TextField>
-        <>
-          {/* <TextField
-            style={{ width: "100%", margin: "1rem 0" }}
-            placeholder="YOUR ACTIVE PHONE NUMBER"
-            label="PHONE"
-            value={mobile}
-            onChange={(e) => setMobile(e.target.value)}
+        <TextField
+          style={{ width: "100%", margin: "1rem 0" }}
+          placeholder="AS PER NID"
+          label="FULL NAME"
+          value={fullName}
+          onChange={(e) => setFullName(e.target.value)}
+          variant="outlined"
+          required
+        />
+        <TextField
+          style={{ width: "100%", margin: "1rem 0" }}
+          placeholder="KNOWN NAME IN CAMPUS"
+          label="NICK NAME"
+          value={nickName}
+          onChange={(e) => setNickName(e.target.value)}
+          variant="outlined"
+          required
+        />
+        <div className="photoBox">
+          PHOTO
+          <Input
+            style={{ width: "100%", margin: "1rem 0", border: "1 solid black" }}
+            name="photo"
+            label="PHOTO"
+            // value={photo}
+            onChange={(e) => setPhoto(e.target.files[0])}
             variant="outlined"
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton
-                    edge="end"
-                    color="primary"
-                    //  disabled={sendOTPButtonDisable}
-                  >
-                    <LoadingButton
-                      disabled={sendOTPButtonDisable}
-                      loading={verificationLoading}
-                      onClick={sendVerficationCode}
-                      loadingPosition="end"
-                      variant="contained"
-                      endIcon={<SendIcon />}
-                    >
-                      Send OTP
-                    </LoadingButton>
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-          /> */}
-        </>
+            accept="image/*"
+            type="file"
+            required
+          />
+        </div>
+
+        <PhoneInput
+          className="phoneInputBox"
+          placeholder="YOUR ACTIVE PHONE NUMBER"
+          defaultCountry="BD"
+          value={mobile}
+          onChange={setMobile}
+        />
+
+        {/* <TextField
+          style={{ width: "100%", margin: "1rem 0" }}
+          placeholder="YOUR ACTIVE PHONE NUMBER"
+          label="PHONE"
+          value={mobile}
+          onChange={(e) => setMobile(e.target.value)}
+          variant="outlined"
+          required
+        /> */}
+        <PhoneInput
+          className="phoneInputBox"
+          placeholder="SECONDARY PHONE NUMBER"
+          defaultCountry="BD"
+          value={secondaryMobile}
+          onChange={setSecondaryMobile}
+        />
+
+        {/* <TextField
+          style={{ width: "100%", margin: "1rem 0" }}
+          placeholder=" SECONDARY PHONE NUMBER"
+          label="SECONDARY PHONE"
+          value={secondaryMobile}
+          onChange={(e) => setSecondaryMobile(e.target.value)}
+          variant="outlined"
+        /> */}
+        <TextField
+          style={{ width: "100%", margin: "1rem 0" }}
+          placeholder="YOUR ACTIVE EMAIL"
+          label="EMAIL"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          variant="outlined"
+        />
+        <TextField
+          style={{ width: "100%", margin: "1rem 0" }}
+          placeholder="IF ANY"
+          label="FB ID"
+          value={fbId}
+          onChange={(e) => setFbId(e.target.value)}
+          variant="outlined"
+        />
+
         {/* <TextField
           style={{ width: "100%", margin: "1rem 0" }}
           type="number"
@@ -338,15 +404,24 @@ function StepOne({
             endIcon={<ArrowForwardIosIcon />}
             onClick={() => {
               // checking the requred fields
-              // if (batch === "SELECT YOUR BATCH") {
-              //   return swal("", "Please select your Batch ", "error");
-              // }
-              // if (department === "SELECT YOUR DEPARTMENT") {
-              //   return swal("", "Please select your Department ", "error");
-              // }
-              // if (mobile === "") {
-              //   return swal("", "Phone number can't be empty ", "error");
-              // }
+              if (batch === "SELECT YOUR BATCH") {
+                return swal("", "Please select your Batch ", "error");
+              }
+              if (department === "SELECT YOUR DEPARTMENT") {
+                return swal("", "Please select your Department ", "error");
+              }
+              if (mobile === "") {
+                return swal("", "Phone number can't be empty ", "error");
+              }
+              if (fullName === "") {
+                return swal("", "Full Name can't be empty ", "error");
+              }
+              if (nickName === "") {
+                return swal("", "Nick Name can't be empty ", "error");
+              }
+              if (photo === "") {
+                return swal("", "You must upload your photo ", "error");
+              }
               handleNext();
             }}
           >

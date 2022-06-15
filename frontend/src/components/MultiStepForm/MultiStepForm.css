@@ -15,6 +15,24 @@
 .photoBox:focus {
   border: 1px solid blue;
 }
+
+.PhoneInputInput {
+  height: 2rem;
+  width: 1rem;
+  border-radius: 5px;
+  border: 1px solid #848482;
+  margin-top: 1rem;
+}
+.phoneInputBox {
+  height: 100px;
+  line-height: 140%;
+  --PhoneInputCountryFlag-height: 1.5rem;
+}
+
+.addressTwoCol {
+  display: flex;
+  flex-direction: row;
+}
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
   .multiStepForm {

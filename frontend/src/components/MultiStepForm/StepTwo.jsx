@@ -8,11 +8,13 @@ import {
   MenuItem,
   Stack,
   Button,
+  FormControl,
   Input,
   InputAdornment,
 } from "@mui/material";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import e from "cors";
 
 const bloodGroups = [
   {
@@ -53,24 +55,34 @@ const bloodGroups = [
   },
 ];
 function StepTwo({
-  nickName,
-  fullName,
-  setNickName,
-  setFullName,
-  photo,
-  setPhoto,
+  // nickName,
+  // fullName,
+  // setNickName,
+  // setFullName,
+  // photo,
+  // setPhoto,
   fatherName,
   setFatherName,
   motherName,
   setMotherName,
   address,
   setAddress,
-  email,
-  setEmail,
+  city,
+  setCity,
+  streetAddress,
+  streetAddressLine2,
+  setStreetAddress,
+  setStreetAddressLine2,
+  zipCode,
+  setZipCode,
+  state,
+  setState,
+  setCountry,
+  country,
+
   emergencyContact,
   setEmergencyContact,
-  fbId,
-  setFbId,
+
   dob,
   setDob,
   bloodGroup,
@@ -96,39 +108,6 @@ function StepTwo({
         <TextField
           style={{ width: "100%", margin: "1rem 0" }}
           placeholder="AS PER NID"
-          label="FULL NAME"
-          value={fullName}
-          onChange={(e) => setFullName(e.target.value)}
-          variant="outlined"
-          required
-        />
-        <TextField
-          style={{ width: "100%", margin: "1rem 0" }}
-          placeholder="KNOWN NAME IN CAMPUS"
-          label="NICK NAME"
-          value={nickName}
-          onChange={(e) => setNickName(e.target.value)}
-          variant="outlined"
-          required
-        />
-        <div className="photoBox">
-          PHOTO
-          <Input
-            style={{ width: "100%", margin: "1rem 0", border: "1 solid black" }}
-            name="photo"
-            label="PHOTO"
-            // value={photo}
-            onChange={(e) => setPhoto(e.target.files[0])}
-            variant="outlined"
-            accept="image/*"
-            type="file"
-            required
-          />
-        </div>
-
-        <TextField
-          style={{ width: "100%", margin: "1rem 0" }}
-          placeholder="AS PER NID"
           label="FATHER'S NAME"
           required
           value={fatherName}
@@ -144,7 +123,68 @@ function StepTwo({
           onChange={(e) => setMotherName(e.target.value)}
           variant="outlined"
         />
+        {/* address */}
         <TextField
+          style={{ width: "100%", margin: "1rem 0" }}
+          placeholder="STREET ADDRESS"
+          label="STREET ADDRESS"
+          required
+          value={streetAddress}
+          onChange={(e) => setStreetAddress(e.target.value)}
+          variant="outlined"
+        />
+
+        <TextField
+          style={{ width: "100%", margin: "1rem 0" }}
+          placeholder="STREET ADDRESS LINE 2"
+          label="STREET ADDRESS LINE 2"
+          required
+          value={streetAddressLine2}
+          onChange={(e) => setStreetAddressLine2(e.target.value)}
+          variant="outlined"
+        />
+        <Stack direction="row" spacing={2}>
+          <TextField
+            style={{ width: "100%", margin: "1rem 0" }}
+            placeholder="CITY"
+            required
+            label="CITY"
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+            variant="outlined"
+          />
+          <TextField
+            style={{ width: "100%", margin: "1rem 0" }}
+            placeholder="STATE/PROVINCE"
+            required
+            label="STATE/PROVINCE"
+            value={state}
+            onChange={(e) => setState(e.target.value)}
+            variant="outlined"
+          />
+        </Stack>
+        <Stack direction="row" spacing={2}>
+          <TextField
+            style={{ width: "100%", margin: "1rem 0" }}
+            placeholder="POSTAL/ZIP CODE"
+            required
+            label="POSTAL/ZIP CODE"
+            value={zipCode}
+            onChange={(e) => setZipCode(e.target.value)}
+            variant="outlined"
+          />
+          <TextField
+            style={{ width: "100%", margin: "1rem 0" }}
+            placeholder="COUNTRY"
+            required
+            label="COUNTRY"
+            value={country}
+            onChange={(e) => setCountry(e.target.value)}
+            variant="outlined"
+          />
+        </Stack>
+
+        {/* <TextField
           style={{ width: "100%", margin: "1rem 0" }}
           placeholder="YOUR PRESENT ADDRESS"
           required
@@ -152,30 +192,14 @@ function StepTwo({
           value={address}
           onChange={(e) => setAddress(e.target.value)}
           variant="outlined"
-        />
+        /> */}
 
-        <TextField
-          style={{ width: "100%", margin: "1rem 0" }}
-          placeholder="YOUR ACTIVE EMAIL"
-          label="EMAIL"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          variant="outlined"
-        />
         <TextField
           style={{ width: "100%", margin: "1rem 0" }}
           placeholder="IN CASE OF EMERGENCY"
           label="EMERGENCY CONTACT"
           value={emergencyContact}
           onChange={(e) => setEmergencyContact(e.target.value)}
-          variant="outlined"
-        />
-        <TextField
-          style={{ width: "100%", margin: "1rem 0" }}
-          placeholder="IF ANY"
-          label="FB ID"
-          value={fbId}
-          onChange={(e) => setFbId(e.target.value)}
           variant="outlined"
         />
         <TextField
@@ -241,24 +265,16 @@ function StepTwo({
           endIcon={<ArrowForwardIosIcon />}
           onClick={() => {
             // checking the requred fields
-            if (fullName === "") {
-              return swal("", "Full Name can't be empty ", "error");
-            }
-            if (nickName === "") {
-              return swal("", "Nick Name can't be empty ", "error");
-            }
-            if (photo === "") {
-              return swal("", "You must upload your photo ", "error");
-            }
+
             if (fatherName === "") {
               return swal("", "Father's Name can't be empty ", "error");
             }
             if (motherName === "") {
               return swal("", "Mother's Name can't be empty ", "error");
             }
-            if (address === "") {
-              return swal("", "Address can't be empty ", "error");
-            }
+            // if (address === "") {
+            //   return swal("", "Address can't be empty ", "error");
+            // }
 
             if (bloodGroup === "SELECT YOUR BLOOD GROUP") {
               return swal("", "Please select blood group ", "error");

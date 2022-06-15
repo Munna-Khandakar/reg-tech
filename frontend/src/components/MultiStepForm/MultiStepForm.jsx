@@ -48,13 +48,20 @@ const MultiStepForm = () => {
   const [fullName, setFullName] = useState("");
   const [nickName, setNickName] = useState("");
   const [mobile, setMobile] = useState("");
-  const [varified, setVarified] = useState(false);
+  const [secondaryMobile, setSecondaryMobile] = useState("");
+  const [varified, setVarified] = useState(true);
 
   //step 2
   const [fatherName, setFatherName] = useState("");
   const [photo, setPhoto] = useState("");
   const [motherName, setMotherName] = useState("");
-  const [address, setAddress] = useState("");
+  const [address, setAddress] = useState();
+  const [streetAddress, setStreetAddress] = useState("");
+  const [streetAddressLine2, setStreetAddressLine2] = useState("");
+  const [zipCode, setZipCode] = useState("");
+  const [state, setState] = useState("");
+  const [country, setCountry] = useState("");
+  const [city, setCity] = useState("");
   const [email, setEmail] = useState("");
   const [emergencyContact, setEmergencyContact] = useState("");
   const [fbId, setFbId] = useState("");
@@ -99,6 +106,18 @@ const MultiStepForm = () => {
             faculty={faculty}
             setFaculty={setFaculty}
             setMobile={setMobile}
+            secondaryMobile={secondaryMobile}
+            setSecondaryMobile={setSecondaryMobile}
+            fullName={fullName}
+            setFullName={setFullName}
+            nickName={nickName}
+            setNickName={setNickName}
+            photo={photo}
+            setPhoto={setPhoto}
+            email={email}
+            setEmail={setEmail}
+            fbId={fbId}
+            setFbId={setFbId}
             handleNext={handleNext}
             handlePrev={handlePrev}
           />
@@ -106,24 +125,26 @@ const MultiStepForm = () => {
       case 1:
         return (
           <StepTwo
-            fullName={fullName}
-            setFullName={setFullName}
-            nickName={nickName}
-            setNickName={setNickName}
-            photo={photo}
-            setPhoto={setPhoto}
             fatherName={fatherName}
             setFatherName={setFatherName}
             motherName={motherName}
             setMotherName={setMotherName}
             address={address}
             setAddress={setAddress}
-            email={email}
-            setEmail={setEmail}
+            city={city}
+            setCity={setCity}
+            streetAddress={streetAddress}
+            streetAddressLine2={streetAddressLine2}
+            setStreetAddress={setStreetAddress}
+            setStreetAddressLine2={setStreetAddressLine2}
+            zipCode={zipCode}
+            setZipCode={setZipCode}
+            state={state}
+            setState={setState}
+            setCountry={setCountry}
+            country={country}
             emergencyContact={emergencyContact}
             setEmergencyContact={setEmergencyContact}
-            fbId={fbId}
-            setFbId={setFbId}
             dob={dob}
             setDob={setDob}
             nationality={nationality}
@@ -155,13 +176,6 @@ const MultiStepForm = () => {
             handlePrev={handlePrev}
           />
         );
-      // case 3:
-      //   return (
-      //     <>
-      //       {dob}
-      //       {fbId}
-      //     </>
-      //   );
       default:
         return "Finish";
     }
@@ -173,18 +187,27 @@ const MultiStepForm = () => {
     //step 1
     formData.append("batch", batch);
     formData.append("department", department);
+    formData.append("faculty", faculty);
     formData.append("mobile", mobile);
-
-    //step 2
+    formData.append("secondaryMobile", secondaryMobile);
     formData.append("fullName", fullName);
     formData.append("nickName", nickName);
     formData.append("photo", photo);
+    formData.append("email", email);
+    formData.append("fbId", fbId);
+    //step 2
+
     formData.append("fatherName", fatherName);
     formData.append("motherName", motherName);
-    formData.append("address", address);
-    formData.append("email", email);
+    formData.append("streetAddress", streetAddress);
+    formData.append("streetAddressLine2", streetAddressLine2);
+    formData.append("city", city);
+    formData.append("zipCode", zipCode);
+    formData.append("state", state);
+    formData.append("country", country);
+
     formData.append("emergencyContact", emergencyContact);
-    formData.append("fbId", fbId);
+
     formData.append("dob", dob);
     formData.append("nationality", nationality);
     formData.append("bloodGroup", bloodGroup);
@@ -239,11 +262,25 @@ const MultiStepForm = () => {
             batch={batch}
             department={department}
             mobile={mobile}
+            secondaryMobile={secondaryMobile}
             fullName={fullName}
             nickName={nickName}
+            photo={photo}
             fatherName={fatherName}
             motherName={motherName}
             address={address}
+            city={city}
+            setCity={setCity}
+            streetAddress={streetAddress}
+            streetAddressLine2={streetAddressLine2}
+            setStreetAddress={setStreetAddress}
+            setStreetAddressLine2={setStreetAddressLine2}
+            zipCode={zipCode}
+            setZipCode={setZipCode}
+            state={state}
+            setState={setState}
+            setCountry={setCountry}
+            country={country}
             email={email}
             emergencyContact={emergencyContact}
             fbId={fbId}

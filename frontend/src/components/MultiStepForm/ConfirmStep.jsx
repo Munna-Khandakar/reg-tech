@@ -9,9 +9,25 @@ function ConfirmStep({
   nickName,
   fullName,
   mobile,
+  secondaryMobile,
   fatherName,
   motherName,
   address,
+
+  setAddress,
+  city,
+  setCity,
+  streetAddress,
+  streetAddressLine2,
+  setStreetAddress,
+  setStreetAddressLine2,
+  zipCode,
+  setZipCode,
+  state,
+  setState,
+  setCountry,
+  country,
+
   email,
   emergencyContact,
   fbId,
@@ -104,6 +120,27 @@ function ConfirmStep({
             value={mobile}
             disabled
           />
+          <TextField
+            style={{ width: "100%", marginTop: "1rem" }}
+            label="Secondary Mobile"
+            variant="filled"
+            value={secondaryMobile}
+            disabled
+          />
+          <TextField
+            style={{ width: "100%", marginTop: "1rem" }}
+            label="Email"
+            variant="filled"
+            value={email}
+            disabled
+          />
+          <TextField
+            style={{ width: "100%", marginTop: "1rem" }}
+            label="FB ID"
+            variant="filled"
+            value={fbId}
+            disabled
+          />
         </Box>
         <Box autoComplete="off">
           <Typography
@@ -128,18 +165,59 @@ function ConfirmStep({
           />
           <TextField
             style={{ width: "100%", marginTop: "1rem" }}
-            label="Address"
+            label="Street Address"
             variant="filled"
-            value={address}
+            value={streetAddress}
             disabled
           />
           <TextField
             style={{ width: "100%", marginTop: "1rem" }}
-            label="Email"
+            label="Street Address Line 2"
             variant="filled"
-            value={email}
+            value={streetAddressLine2}
             disabled
           />
+
+          <TextField
+            style={{ width: "100%", marginTop: "1rem" }}
+            label="City"
+            variant="filled"
+            value={city}
+            disabled
+          />
+
+          <TextField
+            style={{ width: "100%", marginTop: "1rem" }}
+            label="State"
+            variant="filled"
+            value={state}
+            disabled
+          />
+
+          <TextField
+            style={{ width: "100%", marginTop: "1rem" }}
+            label="ZIp Code"
+            variant="filled"
+            value={zipCode}
+            disabled
+          />
+
+          <TextField
+            style={{ width: "100%", marginTop: "1rem" }}
+            label="Country"
+            variant="filled"
+            value={country}
+            disabled
+          />
+
+          {/* <TextField
+            style={{ width: "100%", marginTop: "1rem" }}
+            label="Address"
+            variant="filled"
+            value={address}
+            disabled
+          /> */}
+
           <TextField
             style={{ width: "100%", marginTop: "1rem" }}
             label="Emergency Contact"
@@ -147,13 +225,7 @@ function ConfirmStep({
             value={emergencyContact}
             disabled
           />
-          <TextField
-            style={{ width: "100%", marginTop: "1rem" }}
-            label="FB ID"
-            variant="filled"
-            value={fbId}
-            disabled
-          />
+
           <TextField
             style={{ width: "100%", marginTop: "1rem" }}
             label="Date of Birth"
