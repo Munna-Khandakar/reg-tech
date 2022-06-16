@@ -8,7 +8,8 @@ import StepThree from "./StepThree";
 import "./MultiStepForm.css";
 import swal from "sweetalert";
 import ConfirmStep from "./ConfirmStep";
-import AddressForm from "./AddressForm";
+import StartPage from "./StartPage";
+
 const useStyles = makeStyles({
   root: {
     width: "60%",
@@ -41,7 +42,7 @@ const steps = getSteps();
 
 const MultiStepForm = () => {
   //step 1
-  const [activeState, setActiveState] = useState(0);
+  const [activeState, setActiveState] = useState(-1);
   const [session, setSession] = useState("629f55ace83ec7fb1d7cdec4");
   const [batch, setBatch] = useState("SELECT YOUR BATCH");
   const [department, setDepartment] = useState("SELECT YOUR DEPARTMENT");
@@ -92,6 +93,8 @@ const MultiStepForm = () => {
   // forms
   function getStepContent(stepIndex) {
     switch (stepIndex) {
+      case -1:
+        return <StartPage handleNext={handleNext} />;
       case 0:
         return (
           <StepOne
