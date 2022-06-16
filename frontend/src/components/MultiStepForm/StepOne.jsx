@@ -105,7 +105,7 @@ function StepOne({
       setSendOTPButtonDisable(false);
     }, 180000);
   };
-
+  // console.log(mobile);
   // send otp code handler
   const sendVerficationCode = async () => {
     // checking the requred fields
@@ -300,7 +300,7 @@ function StepOne({
           required
         />
         <div className="photoBox">
-          PHOTO
+          PHOTO *
           <Input
             style={{ width: "100%", margin: "1rem 0", border: "1 solid black" }}
             name="photo"
@@ -407,11 +407,11 @@ function StepOne({
               if (batch === "SELECT YOUR BATCH") {
                 return swal("", "Please select your Batch ", "error");
               }
+              if (faculty === "SELECT YOUR FACULTY") {
+                return swal("", "Please select your faculty ", "error");
+              }
               if (department === "SELECT YOUR DEPARTMENT") {
                 return swal("", "Please select your Department ", "error");
-              }
-              if (mobile === "") {
-                return swal("", "Phone number can't be empty ", "error");
               }
               if (fullName === "") {
                 return swal("", "Full Name can't be empty ", "error");
@@ -421,6 +421,9 @@ function StepOne({
               }
               if (photo === "") {
                 return swal("", "You must upload your photo ", "error");
+              }
+              if (mobile === "") {
+                return swal("", "Phone number can't be empty ", "error");
               }
               handleNext();
             }}

@@ -3,6 +3,8 @@ import { Typography, TextField, Box, Button, Stack } from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import ImageList from "@mui/material/ImageList";
+import ImageListItem from "@mui/material/ImageListItem";
 function ConfirmStep({
   department,
   batch,
@@ -27,7 +29,7 @@ function ConfirmStep({
   setState,
   setCountry,
   country,
-
+  photo,
   email,
   emergencyContact,
   fbId,
@@ -78,6 +80,14 @@ function ConfirmStep({
           {" "}
           Check Before Submit
         </Typography>
+
+        <img
+          className="photoPreview"
+          src={URL.createObjectURL(photo)}
+          alt={"User Image"}
+          loading="lazy"
+        />
+
         <Box autoComplete="off">
           <Typography
             variant="h6"
@@ -301,6 +311,7 @@ function ConfirmStep({
           <TextField
             style={{ width: "100%", marginTop: "1rem" }}
             label="Wish Box"
+            multiline
             variant="filled"
             value={wishBox}
             disabled

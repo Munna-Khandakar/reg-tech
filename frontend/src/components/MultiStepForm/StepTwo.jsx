@@ -123,66 +123,6 @@ function StepTwo({
           onChange={(e) => setMotherName(e.target.value)}
           variant="outlined"
         />
-        {/* address */}
-        <TextField
-          style={{ width: "100%", margin: "1rem 0" }}
-          placeholder="STREET ADDRESS"
-          label="STREET ADDRESS"
-          required
-          value={streetAddress}
-          onChange={(e) => setStreetAddress(e.target.value)}
-          variant="outlined"
-        />
-
-        <TextField
-          style={{ width: "100%", margin: "1rem 0" }}
-          placeholder="STREET ADDRESS LINE 2"
-          label="STREET ADDRESS LINE 2"
-          required
-          value={streetAddressLine2}
-          onChange={(e) => setStreetAddressLine2(e.target.value)}
-          variant="outlined"
-        />
-        <Stack direction="row" spacing={2}>
-          <TextField
-            style={{ width: "100%", margin: "1rem 0" }}
-            placeholder="CITY"
-            required
-            label="CITY"
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
-            variant="outlined"
-          />
-          <TextField
-            style={{ width: "100%", margin: "1rem 0" }}
-            placeholder="STATE/PROVINCE"
-            required
-            label="STATE/PROVINCE"
-            value={state}
-            onChange={(e) => setState(e.target.value)}
-            variant="outlined"
-          />
-        </Stack>
-        <Stack direction="row" spacing={2}>
-          <TextField
-            style={{ width: "100%", margin: "1rem 0" }}
-            placeholder="POSTAL/ZIP CODE"
-            required
-            label="POSTAL/ZIP CODE"
-            value={zipCode}
-            onChange={(e) => setZipCode(e.target.value)}
-            variant="outlined"
-          />
-          <TextField
-            style={{ width: "100%", margin: "1rem 0" }}
-            placeholder="COUNTRY"
-            required
-            label="COUNTRY"
-            value={country}
-            onChange={(e) => setCountry(e.target.value)}
-            variant="outlined"
-          />
-        </Stack>
 
         {/* <TextField
           style={{ width: "100%", margin: "1rem 0" }}
@@ -214,14 +154,7 @@ function StepTwo({
             shrink: true,
           }}
         />
-        <TextField
-          style={{ width: "100%", margin: "1rem 0" }}
-          placeholder="AS PER NID"
-          label="NATIONALITY"
-          value={nationality}
-          onChange={(e) => setNationality(e.target.value)}
-          variant="outlined"
-        />
+
         <TextField
           style={{ width: "100%", margin: "1rem 0" }}
           select
@@ -237,14 +170,97 @@ function StepTwo({
             </MenuItem>
           ))}
         </TextField>
+        <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
+          <TextField
+            style={{ width: "100%" }}
+            placeholder="AS PER NID"
+            label="NATIONALITY"
+            value={nationality}
+            onChange={(e) => setNationality(e.target.value)}
+            variant="outlined"
+          />
+          <TextField
+            style={{ width: "100%" }}
+            placeholder="Religion"
+            label="RELIGION"
+            value={religion}
+            onChange={(e) => setReligion(e.target.value)}
+            variant="outlined"
+          />
+        </Stack>
+      </Box>
+      {/* address */}
+      <Box autoComplete="off">
+        <Typography
+          variant="h5"
+          style={{ color: "#999", textAlign: "center", marginTop: "1rem" }}
+        >
+          {" "}
+          Address
+        </Typography>
+        {/* address */}
         <TextField
           style={{ width: "100%", margin: "1rem 0" }}
-          placeholder="KNOWN NAME IN CAMPUS"
-          label="RELIGION"
-          value={religion}
-          onChange={(e) => setReligion(e.target.value)}
+          placeholder="STREET ADDRESS"
+          label="STREET ADDRESS"
+          required
+          value={streetAddress}
+          onChange={(e) => setStreetAddress(e.target.value)}
           variant="outlined"
         />
+
+        <TextField
+          style={{ width: "100%", margin: "1rem 0" }}
+          placeholder="STREET ADDRESS LINE 2"
+          label="STREET ADDRESS LINE 2"
+          required
+          value={streetAddressLine2}
+          onChange={(e) => setStreetAddressLine2(e.target.value)}
+          variant="outlined"
+        />
+        <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
+          <TextField
+            style={{ width: "100%" }}
+            placeholder="CITY/UPZILLA"
+            required
+            label="CITY/UPZILLA"
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+            variant="outlined"
+          />
+          <TextField
+            style={{ width: "100%" }}
+            placeholder="STATE/PROVINCE/ZILLA"
+            label="STATE/PROVINCE/ZILLA"
+            value={state}
+            onChange={(e) => setState(e.target.value)}
+            variant="outlined"
+          />
+        </Stack>
+        <Stack
+          direction={{ xs: "column", md: "row" }}
+          spacing={2}
+          marginTop="1rem"
+        >
+          <TextField
+            style={{ width: "100%" }}
+            placeholder="POSTAL/ZIP CODE"
+            required
+            label="POSTAL/ZIP CODE"
+            value={zipCode}
+            onChange={(e) => setZipCode(e.target.value)}
+            variant="outlined"
+          />
+          <TextField
+            style={{ width: "100%" }}
+            placeholder="COUNTRY"
+            required
+            label="COUNTRY"
+            value={country}
+            onChange={(e) => setCountry(e.target.value)}
+            variant="outlined"
+          />
+        </Stack>
       </Box>
       <Stack
         direction="row"
@@ -265,19 +281,29 @@ function StepTwo({
           endIcon={<ArrowForwardIosIcon />}
           onClick={() => {
             // checking the requred fields
-
             if (fatherName === "") {
               return swal("", "Father's Name can't be empty ", "error");
             }
             if (motherName === "") {
               return swal("", "Mother's Name can't be empty ", "error");
             }
-            // if (address === "") {
-            //   return swal("", "Address can't be empty ", "error");
-            // }
-
             if (bloodGroup === "SELECT YOUR BLOOD GROUP") {
               return swal("", "Please select blood group ", "error");
+            }
+            if (streetAddress === "") {
+              return swal("", "Street Address can't be empty ", "error");
+            }
+            if (city === "") {
+              return swal("", "City/Upzilla can't be empty ", "error");
+            }
+            if (state === "") {
+              return swal("", "STATE/PROVINCE/ZILLA can't be empty ", "error");
+            }
+            if (zipCode === "") {
+              return swal("", "Zip Code can't be empty ", "error");
+            }
+            if (country === "") {
+              return swal("", "Country con't be empty ", "error");
             }
 
             handleNext();

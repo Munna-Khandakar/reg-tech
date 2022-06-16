@@ -39,13 +39,13 @@ function StepThree({
   return (
     <div>
       <Box autoComplete="off">
-        <Typography
+        {/* <Typography
           variant="h5"
           style={{ color: "#999", textAlign: "center", marginTop: "1rem" }}
         >
           {" "}
           Personal Information
-        </Typography>
+        </Typography> */}
 
         <TextField
           style={{ width: "100%", margin: "1rem 0" }}
@@ -101,6 +101,8 @@ function StepThree({
           style={{ width: "100%", margin: "1rem 0" }}
           placeholder="Wish for Hall/University/Event"
           label="WISH BOX"
+          multiline
+          rows={4}
           required
           value={wishBox}
           onChange={(e) => setWishBox(e.target.value)}

@@ -2,7 +2,10 @@ const router = require("express").Router();
 // const multer = require("multer");
 // const { v4: uuidv4 } = require("uuid");
 // let path = require("path");
-const { createUser } = require("../controllers/registrationController");
+const {
+  createUser,
+  getAllUser,
+} = require("../controllers/registrationController");
 const upload = require("../middleware/multer");
 // const storage = multer.diskStorage({
 //   destination: function (req, file, cb) {
@@ -25,5 +28,6 @@ const upload = require("../middleware/multer");
 // let upload = multer({ storage, fileFilter });
 
 router.post("/registration", upload.single("photo"), createUser);
+router.get("/", getAllUser);
 
 module.exports = router;
