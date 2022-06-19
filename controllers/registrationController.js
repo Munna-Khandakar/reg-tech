@@ -3,6 +3,30 @@ const cloudinary = require("../middleware/cloudinary");
 // POST: api/registration
 // CREATE department
 module.exports.createUser = async (req, res, next) => {
+  try {
+    const existMobile = await UserModel.findOne({ mobile: req.body.mobile });
+    if (existMobile) {
+      console.log("User found in User Model by Phone");
+      return res
+        .status(201)
+        .json({ error: `This phone is already registerd, try with a new one` });
+    }
+  } catch (error) {
+    res.status(500).json(error);
+  }
+  try {
+    const existEmail = await UserModel.findOne({ email: req.body.email });
+    if (existEmail) {
+      console.log("User found in User Model by Email");
+      return res
+        .status(201)
+        .json({ error: `This Email is already registerd, try with a new one` });
+    }
+  } catch (error) {
+    res.status(500).json(error);
+  }
+
+  // submit the form
   const photo = await cloudinary.uploader.upload(req.file.path);
   //const photo = req.file.filename;
   req.body.photo = photo.url;

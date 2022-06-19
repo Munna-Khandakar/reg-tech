@@ -184,6 +184,28 @@ const MultiStepForm = () => {
         return "Finish";
     }
   }
+  const successMessageHandler = () => {
+    setSubmitButtonLoading(false);
+    setSubmitButtonDisable(true);
+    swal({
+      title: "Congratulations",
+      text: "Your form saved successfully..!",
+      icon: "success",
+      buttons: true,
+      dangerMode: false,
+    }).then((willDelete) => {
+      if (willDelete) {
+        window.location.reload();
+      } else {
+        window.location.reload();
+      }
+    });
+  };
+  const errorMessageHandle = (msg) => {
+    setSubmitButtonLoading(false);
+    setSubmitButtonDisable(false);
+    return swal("", msg, "error");
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     setSubmitButtonLoading(true);
@@ -229,21 +251,11 @@ const MultiStepForm = () => {
     axios
       .post("/api/registration", formData)
       .then((res) => {
-        setSubmitButtonLoading(false);
-        setSubmitButtonDisable(true);
-        swal({
-          title: "Congratulations",
-          text: "Your form saved successfully..!",
-          icon: "success",
-          buttons: true,
-          dangerMode: false,
-        }).then((willDelete) => {
-          if (willDelete) {
-            window.location.reload();
-          } else {
-            window.location.reload();
-          }
-        });
+        if (res.data.error) {
+          errorMessageHandle(res.data.error);
+        } else {
+          successMessageHandler();
+        }
       })
       .catch((err) => {
         console.log(err);
