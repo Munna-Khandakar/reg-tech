@@ -42,7 +42,7 @@ const steps = getSteps();
 
 const MultiStepForm = () => {
   //step 1
-  const [activeState, setActiveState] = useState(2);
+  const [activeState, setActiveState] = useState(-1);
   const [session, setSession] = useState("629f55ace83ec7fb1d7cdec4");
   const [batch, setBatch] = useState("SELECT YOUR BATCH");
   const [department, setDepartment] = useState("SELECT YOUR DEPARTMENT");
