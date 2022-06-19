@@ -42,7 +42,7 @@ const steps = getSteps();
 
 const MultiStepForm = () => {
   //step 1
-  const [activeState, setActiveState] = useState(-1);
+  const [activeState, setActiveState] = useState(2);
   const [session, setSession] = useState("629f55ace83ec7fb1d7cdec4");
   const [batch, setBatch] = useState("SELECT YOUR BATCH");
   const [department, setDepartment] = useState("SELECT YOUR DEPARTMENT");
@@ -251,64 +251,73 @@ const MultiStepForm = () => {
   };
 
   return (
-    <div className="multiStepForm">
-      <form onSubmit={handleSubmit} encType="multipart/form-data">
-        <Stepper alternativeLabel activeStep={activeState}>
-          {steps.map((label) => (
-            <Step key={label}>
-              <StepLabel>{label}</StepLabel>
-            </Step>
-          ))}
-        </Stepper>
-        {activeState == steps.length ? (
-          <ConfirmStep
-            session={session}
-            batch={batch}
-            department={department}
-            mobile={mobile}
-            secondaryMobile={secondaryMobile}
-            fullName={fullName}
-            nickName={nickName}
-            photo={photo}
-            fatherName={fatherName}
-            motherName={motherName}
-            address={address}
-            city={city}
-            setCity={setCity}
-            streetAddress={streetAddress}
-            streetAddressLine2={streetAddressLine2}
-            setStreetAddress={setStreetAddress}
-            setStreetAddressLine2={setStreetAddressLine2}
-            zipCode={zipCode}
-            setZipCode={setZipCode}
-            state={state}
-            setState={setState}
-            setCountry={setCountry}
-            country={country}
-            email={email}
-            emergencyContact={emergencyContact}
-            fbId={fbId}
-            dob={dob}
-            nationality={nationality}
-            bloodGroup={bloodGroup}
-            religion={religion}
-            occupation={occupation}
-            designation={designation}
-            companyName={companyName}
-            maritalStatus={maritalStatus}
-            hallRoomNumber={hallRoomNumber}
-            wishBox={wishBox}
-            handlePrev={handlePrev}
-            submitButtonDisable={submitButtonDisable}
-            setSubmitButtonDisable={setSubmitButtonDisable}
-            submitButtonLoading={submitButtonLoading}
-            setSubmitButtonLoading={setSubmitButtonLoading}
-          />
-        ) : (
-          <>{getStepContent(activeState)}</>
-        )}
-      </form>
-    </div>
+    <>
+      <div className="cover-bg">
+        {/* <img
+          src="https://eng.campuslive24.com/uploads/shares/2021/JU-2022-02-20-19-22-56.jpg"
+          alt="JU"
+        /> */}
+
+        <div className="multiStepForm">
+          <form onSubmit={handleSubmit} encType="multipart/form-data">
+            <Stepper alternativeLabel activeStep={activeState}>
+              {steps.map((label) => (
+                <Step key={label}>
+                  <StepLabel>{label}</StepLabel>
+                </Step>
+              ))}
+            </Stepper>
+            {activeState == steps.length ? (
+              <ConfirmStep
+                session={session}
+                batch={batch}
+                department={department}
+                mobile={mobile}
+                secondaryMobile={secondaryMobile}
+                fullName={fullName}
+                nickName={nickName}
+                photo={photo}
+                fatherName={fatherName}
+                motherName={motherName}
+                address={address}
+                city={city}
+                setCity={setCity}
+                streetAddress={streetAddress}
+                streetAddressLine2={streetAddressLine2}
+                setStreetAddress={setStreetAddress}
+                setStreetAddressLine2={setStreetAddressLine2}
+                zipCode={zipCode}
+                setZipCode={setZipCode}
+                state={state}
+                setState={setState}
+                setCountry={setCountry}
+                country={country}
+                email={email}
+                emergencyContact={emergencyContact}
+                fbId={fbId}
+                dob={dob}
+                nationality={nationality}
+                bloodGroup={bloodGroup}
+                religion={religion}
+                occupation={occupation}
+                designation={designation}
+                companyName={companyName}
+                maritalStatus={maritalStatus}
+                hallRoomNumber={hallRoomNumber}
+                wishBox={wishBox}
+                handlePrev={handlePrev}
+                submitButtonDisable={submitButtonDisable}
+                setSubmitButtonDisable={setSubmitButtonDisable}
+                submitButtonLoading={submitButtonLoading}
+                setSubmitButtonLoading={setSubmitButtonLoading}
+              />
+            ) : (
+              <>{getStepContent(activeState)}</>
+            )}
+          </form>
+        </div>
+      </div>
+    </>
   );
 };
 

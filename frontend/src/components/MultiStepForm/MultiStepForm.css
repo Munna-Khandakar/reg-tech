@@ -1,10 +1,16 @@
 .multiStepForm {
-  width: 60%;
+  width: 80%;
   margin: 6rem auto;
   padding: 1.5rem;
+  background-color: white;
+  border-radius: 5px;
   /* border: 1px solid #999; */
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
     rgba(0, 0, 0, 0.22) 0px 15px 12px;
+
+  /* background: url("https://www.juniv.edu/images/logo-ju-small.png"); */
+  /* background-repeat: no-repeat; */
+  /* background-size: contain; */
 }
 .photoBox {
   padding: 1em;
@@ -42,12 +48,37 @@
   width: 200px;
   border-radius: 50%;
 }
+.cover-bg {
+  background: url("https://images.thedailystar.net/sites/default/files/feature/images/2021/02/17/ju-main-gate-wb_0_0.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 45%;
+
+  padding-top: 100px;
+  /* padding-bottom: 300px; */
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+}
+/* .side-img {
+ 
+} */
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
   .multiStepForm {
-    width: 90%;
-    margin: 1rem auto;
-    padding: 1.5rem;
-    border: 0;
+    width: fit-content;
+    background-color: white;
+    border-radius: 5px;
+    margin: 0;
+    padding: 1.5rem 1rem;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+      rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  }
+  .cover-bg {
+    padding-top: 100px;
+    background-size: 100% auto;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+  }
+  .side-img {
+    display: none;
   }
 }

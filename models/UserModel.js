@@ -8,17 +8,22 @@ const mySchema = mongoose.Schema(
     batch: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Batch",
+      required: true,
     },
     faculty: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Faculty",
+      required: true,
     },
     dept: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Department",
+      required: true,
     },
     mobile: {
       type: String,
+      unique: true,
+      required: true,
     },
     secondaryMobile: {
       type: String,
@@ -55,6 +60,8 @@ const mySchema = mongoose.Schema(
     },
     email: {
       type: String,
+      unique: true,
+      required: true,
     },
     emergencyContact: {
       type: String,

@@ -217,112 +217,129 @@ function StepOne({
   };
 
   return (
-    <div>
-      <Box autoComplete="off">
-        <Typography
-          variant="h5"
-          style={{ color: "#999", textAlign: "center", marginTop: "1rem" }}
-        >
-          {" "}
-          General Information
-        </Typography>
-        <TextField
-          style={{ width: "100%", margin: "1rem 0" }}
-          select
-          required
-          label="BATCH"
-          value={batch}
-          onChange={(e) => setBatch(e.target.value)}
-          helperText="Please select your batch"
-        >
-          <MenuItem key="SELECT YOUR BATCH" value="SELECT YOUR BATCH">
-            SELECT YOUR BATCH
-          </MenuItem>
-          {batches.map((option) => (
-            <MenuItem key={option._id} value={option._id}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
-        <TextField
-          style={{ width: "100%", margin: "1rem 0" }}
-          select
-          required
-          label="FACULTY"
-          value={faculty}
-          onChange={(e) => setFaculty(e.target.value)}
-          helperText="Please select your faculty"
-        >
-          <MenuItem key="SELECT YOUR FACULTY" value="SELECT YOUR FACULTY">
-            SELECT YOUR FACULTY
-          </MenuItem>
-          {faculties.map((option) => (
-            <MenuItem key={option._id} value={option._id}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
+    <Stack direction="row">
+      <div className="side-img">
+        <img
+          src="https://images.squarespace-cdn.com/content/v1/58e37e5d414fb535a41970bd/1492049376666-0BJN899MUFN63HNSBXEW/ke17ZwdGBToddI8pDm48kI1dxkzCdoaQDevnVA9R4g1Zw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpyKi-oUoBVevRLtXFipgGDcIiZgSYdrptGW3-0WE_JDnWAg8j-9wbE7_h7uxkrF2Ds/Comm_1.gif"
+          alt=""
+          width="500"
+          height="500"
+        />
+      </div>
 
-        <TextField
-          style={{ width: "100%", margin: "1rem 0" }}
-          required
-          select
-          label="DEPARTMENT"
-          value={department}
-          onChange={(e) => setDepartment(e.target.value)}
-          helperText="Please select your department"
-        >
-          <MenuItem key="SELECT YOUR DEPARTMENT" value="SELECT YOUR DEPARTMENT">
-            SELECT YOUR DEPARTMENT
-          </MenuItem>
-          {departments.map((option) => (
-            <MenuItem key={option._id} value={option._id}>
-              {option.label}
+      <div>
+        <Box autoComplete="off">
+          <Typography
+            variant="h5"
+            style={{ color: "#999", textAlign: "center", marginTop: "1rem" }}
+          >
+            {" "}
+            General Information
+          </Typography>
+          <TextField
+            style={{ width: "100%", margin: "1rem 0" }}
+            select
+            required
+            label="BATCH"
+            value={batch}
+            onChange={(e) => setBatch(e.target.value)}
+            helperText="Please select your batch"
+          >
+            <MenuItem key="SELECT YOUR BATCH" value="SELECT YOUR BATCH">
+              SELECT YOUR BATCH
             </MenuItem>
-          ))}
-        </TextField>
-        <TextField
-          style={{ width: "100%", margin: "1rem 0" }}
-          placeholder="AS PER NID"
-          label="FULL NAME"
-          value={fullName}
-          onChange={(e) => setFullName(e.target.value)}
-          variant="outlined"
-          required
-        />
-        <TextField
-          style={{ width: "100%", margin: "1rem 0" }}
-          placeholder="KNOWN NAME IN CAMPUS"
-          label="NICK NAME"
-          value={nickName}
-          onChange={(e) => setNickName(e.target.value)}
-          variant="outlined"
-          required
-        />
-        <div className="photoBox">
-          PHOTO *
-          <Input
-            style={{ width: "100%", margin: "1rem 0", border: "1 solid black" }}
-            name="photo"
-            label="PHOTO"
-            // value={photo}
-            onChange={(e) => setPhoto(e.target.files[0])}
+            {batches.map((option) => (
+              <MenuItem key={option._id} value={option._id}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </TextField>
+          <TextField
+            style={{ width: "100%", margin: "1rem 0" }}
+            select
+            required
+            label="FACULTY"
+            value={faculty}
+            onChange={(e) => setFaculty(e.target.value)}
+            helperText="Please select your faculty"
+          >
+            <MenuItem key="SELECT YOUR FACULTY" value="SELECT YOUR FACULTY">
+              SELECT YOUR FACULTY
+            </MenuItem>
+            {faculties.map((option) => (
+              <MenuItem key={option._id} value={option._id}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </TextField>
+
+          <TextField
+            style={{ width: "100%", margin: "1rem 0" }}
+            required
+            select
+            label="DEPARTMENT"
+            value={department}
+            onChange={(e) => setDepartment(e.target.value)}
+            helperText="Please select your department"
+          >
+            <MenuItem
+              key="SELECT YOUR DEPARTMENT"
+              value="SELECT YOUR DEPARTMENT"
+            >
+              SELECT YOUR DEPARTMENT
+            </MenuItem>
+            {departments.map((option) => (
+              <MenuItem key={option._id} value={option._id}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </TextField>
+          <TextField
+            style={{ width: "100%", margin: "1rem 0" }}
+            placeholder="AS PER NID"
+            label="FULL NAME"
+            value={fullName}
+            onChange={(e) => setFullName(e.target.value)}
             variant="outlined"
-            accept="image/*"
-            type="file"
             required
           />
-        </div>
+          <TextField
+            style={{ width: "100%", margin: "1rem 0" }}
+            placeholder="KNOWN NAME IN CAMPUS"
+            label="NICK NAME"
+            value={nickName}
+            onChange={(e) => setNickName(e.target.value)}
+            variant="outlined"
+            required
+          />
+          <div className="photoBox">
+            PHOTO *
+            <Input
+              style={{
+                width: "100%",
+                margin: "1rem 0",
+                border: "1 solid black",
+              }}
+              name="photo"
+              label="PHOTO"
+              // value={photo}
+              onChange={(e) => setPhoto(e.target.files[0])}
+              variant="outlined"
+              accept="image/*"
+              type="file"
+              required
+            />
+          </div>
 
-        <PhoneInput
-          className="phoneInputBox"
-          placeholder="YOUR ACTIVE PHONE NUMBER"
-          defaultCountry="BD"
-          value={mobile}
-          onChange={setMobile}
-        />
+          <PhoneInput
+            className="phoneInputBox"
+            placeholder="YOUR ACTIVE PHONE NUMBER"
+            defaultCountry="BD"
+            value={mobile}
+            onChange={setMobile}
+          />
 
-        {/* <TextField
+          {/* <TextField
           style={{ width: "100%", margin: "1rem 0" }}
           placeholder="YOUR ACTIVE PHONE NUMBER"
           label="PHONE"
@@ -331,15 +348,15 @@ function StepOne({
           variant="outlined"
           required
         /> */}
-        <PhoneInput
-          className="phoneInputBox"
-          placeholder="SECONDARY PHONE NUMBER"
-          defaultCountry="BD"
-          value={secondaryMobile}
-          onChange={setSecondaryMobile}
-        />
+          <PhoneInput
+            className="phoneInputBox"
+            placeholder="SECONDARY PHONE NUMBER"
+            defaultCountry="BD"
+            value={secondaryMobile}
+            onChange={setSecondaryMobile}
+          />
 
-        {/* <TextField
+          {/* <TextField
           style={{ width: "100%", margin: "1rem 0" }}
           placeholder=" SECONDARY PHONE NUMBER"
           label="SECONDARY PHONE"
@@ -347,24 +364,24 @@ function StepOne({
           onChange={(e) => setSecondaryMobile(e.target.value)}
           variant="outlined"
         /> */}
-        <TextField
-          style={{ width: "100%", margin: "1rem 0" }}
-          placeholder="YOUR ACTIVE EMAIL"
-          label="EMAIL"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          variant="outlined"
-        />
-        <TextField
-          style={{ width: "100%", margin: "1rem 0" }}
-          placeholder="IF ANY"
-          label="FB ID"
-          value={fbId}
-          onChange={(e) => setFbId(e.target.value)}
-          variant="outlined"
-        />
+          <TextField
+            style={{ width: "100%", margin: "1rem 0" }}
+            placeholder="YOUR ACTIVE EMAIL"
+            label="EMAIL"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            variant="outlined"
+          />
+          <TextField
+            style={{ width: "100%", margin: "1rem 0" }}
+            placeholder="IF ANY"
+            label="FB ID"
+            value={fbId}
+            onChange={(e) => setFbId(e.target.value)}
+            variant="outlined"
+          />
 
-        {/* <TextField
+          {/* <TextField
           style={{ width: "100%", margin: "1rem 0" }}
           type="number"
           value={otpCode}
@@ -390,57 +407,58 @@ function StepOne({
             ),
           }}
         /> */}
-      </Box>
-      <Stack
-        direction="row"
-        justifyContent="center"
-        alignItems="center"
-        spacing={3}
-        m={2}
-      >
-        {varified ? (
-          <Button
-            variant="contained"
-            endIcon={<ArrowForwardIosIcon />}
-            onClick={() => {
-              // checking the requred fields
-              if (batch === "SELECT YOUR BATCH") {
-                return swal("", "Please select your Batch ", "error");
-              }
-              if (faculty === "SELECT YOUR FACULTY") {
-                return swal("", "Please select your faculty ", "error");
-              }
-              if (department === "SELECT YOUR DEPARTMENT") {
-                return swal("", "Please select your Department ", "error");
-              }
-              if (fullName === "") {
-                return swal("", "Full Name can't be empty ", "error");
-              }
-              if (nickName === "") {
-                return swal("", "Nick Name can't be empty ", "error");
-              }
-              if (photo === "") {
-                return swal("", "You must upload your photo ", "error");
-              }
-              if (mobile === "") {
-                return swal("", "Phone number can't be empty ", "error");
-              }
-              handleNext();
-            }}
-          >
-            Next
-          </Button>
-        ) : (
-          <Button
-            variant="outlined"
-            endIcon={<ArrowForwardIosIcon />}
-            onClick={() => verficationAlert()}
-          >
-            Next
-          </Button>
-        )}
-      </Stack>
-    </div>
+        </Box>
+        <Stack
+          direction="row"
+          justifyContent="center"
+          alignItems="center"
+          spacing={3}
+          m={2}
+        >
+          {varified ? (
+            <Button
+              variant="contained"
+              endIcon={<ArrowForwardIosIcon />}
+              onClick={() => {
+                // checking the requred fields
+                if (batch === "SELECT YOUR BATCH") {
+                  return swal("", "Please select your Batch ", "error");
+                }
+                if (faculty === "SELECT YOUR FACULTY") {
+                  return swal("", "Please select your faculty ", "error");
+                }
+                if (department === "SELECT YOUR DEPARTMENT") {
+                  return swal("", "Please select your Department ", "error");
+                }
+                if (fullName === "") {
+                  return swal("", "Full Name can't be empty ", "error");
+                }
+                if (nickName === "") {
+                  return swal("", "Nick Name can't be empty ", "error");
+                }
+                if (photo === "") {
+                  return swal("", "You must upload your photo ", "error");
+                }
+                if (mobile === "") {
+                  return swal("", "Phone number can't be empty ", "error");
+                }
+                handleNext();
+              }}
+            >
+              Next
+            </Button>
+          ) : (
+            <Button
+              variant="outlined"
+              endIcon={<ArrowForwardIosIcon />}
+              onClick={() => verficationAlert()}
+            >
+              Next
+            </Button>
+          )}
+        </Stack>
+      </div>
+    </Stack>
   );
 }
 
