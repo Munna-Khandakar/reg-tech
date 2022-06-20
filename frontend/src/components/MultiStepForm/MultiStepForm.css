@@ -59,12 +59,14 @@
   border-top-right-radius: 25px;
 }
 .hero {
-  background: url("https://images.thedailystar.net/sites/default/files/feature/images/2021/02/17/ju-main-gate-wb_0_0.jpg");
+  background-color: #908787;
+  background-image: url("https://images.thedailystar.net/sites/default/files/feature/images/2021/02/17/ju-main-gate-wb_0_0.jpg");
   background-repeat: no-repeat;
-  background-size: 100% 90%;
-
-  padding-top: 100px;
-  padding-bottom: 300px;
+  background-size: cover;
+  background-blend-mode: multiply;
+  color: white;
+  padding-top: 250px;
+  padding-bottom: 250px;
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
 }
@@ -77,6 +79,12 @@
   /* border: 1px solid #999; */
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
     rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+.red-text {
+  color: red;
+}
+.green-text {
+  color: green;
 }
 /* .side-img {
  
@@ -100,5 +108,9 @@
   }
   .side-img {
     display: none;
+  }
+  .hero {
+    padding-top: 100px;
+    padding-bottom: 100px;
   }
 }

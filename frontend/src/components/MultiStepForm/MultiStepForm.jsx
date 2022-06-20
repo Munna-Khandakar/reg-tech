@@ -7,7 +7,7 @@ import StepTwo from "./StepTwo";
 import StepThree from "./StepThree";
 import "./MultiStepForm.css";
 import swal from "sweetalert";
-import ConfirmStep from "./ConfirmStep";
+import ConfirmStep2 from "./ConfirmStep2";
 import StartPage from "./StartPage";
 
 const useStyles = makeStyles({
@@ -280,7 +280,7 @@ const MultiStepForm = () => {
               ))}
             </Stepper>
             {activeState == steps.length ? (
-              <ConfirmStep
+              <ConfirmStep2
                 session={session}
                 batch={batch}
                 department={department}
