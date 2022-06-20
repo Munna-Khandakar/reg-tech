@@ -90,7 +90,7 @@
  
 } */
 /* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 1000px) {
   .multiStepForm {
     width: fit-content;
     background-color: white;

@@ -44,7 +44,7 @@ const steps = getSteps();
 
 const MultiStepForm = () => {
   //step 1
-  const [activeState, setActiveState] = useState(-1);
+  const [activeState, setActiveState] = useState(0);
   const [session, setSession] = useState("629f55ace83ec7fb1d7cdec4");
   const [batch, setBatch] = useState("SELECT YOUR BATCH");
   const [department, setDepartment] = useState("SELECT YOUR DEPARTMENT");
@@ -248,14 +248,16 @@ const MultiStepForm = () => {
     formData.append("maritalStatus", maritalStatus);
     formData.append("hallRoomNumber", hallRoomNumber);
     formData.append("wishBox", wishBox);
-
+    console.log(formData);
     //submit form
     axios
       .post("/api/registration", formData)
       .then((res) => {
+        console.log(res);
         if (res.data.error) {
           errorMessageHandle(res.data.error);
         } else {
+          console.log("succcess");
           successMessageHandler();
         }
       })

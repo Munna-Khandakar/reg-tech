@@ -39,6 +39,7 @@ module.exports.createUser = async (req, res, next) => {
     console.log("check 2");
     res.status(200).json(savedData);
   } catch (error) {
+    console.log(error);
     res.status(500).json(error);
   }
 };

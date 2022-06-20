@@ -15,7 +15,7 @@ const mySchema = mongoose.Schema(
       ref: "Faculty",
       required: true,
     },
-    dept: {
+    department: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Department",
       required: true,

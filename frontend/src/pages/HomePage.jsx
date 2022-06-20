@@ -7,17 +7,13 @@ import {
   Typography,
   TextField,
   Stack,
+  List,
+  ListItem,
 } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import { CardActionArea } from "@mui/material";
-
-import FormGroup from "@mui/material/FormGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Looks3Icon from "@mui/icons-material/Looks3";
-import LooksTwoIcon from "@mui/icons-material/LooksTwo";
-import LooksOneIcon from "@mui/icons-material/LooksOne";
 import ReceiptIcon from "@mui/icons-material/Receipt";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
@@ -189,6 +185,99 @@ const HomePage = () => {
             </CardActionArea>
           </Card>
         </Stack>
+        <Typography
+          variant="h2"
+          color={"primary"}
+          textAlign={"center"}
+          paddingTop={"2rem"}
+        >
+          তথ্য উপাত্ত সংগ্রহের নিয়মাবলী
+        </Typography>
+        <Typography variant="h5" textAlign={"center"}>
+          আপনাকে 3টি ধাপে তথ্য প্রদান করতে হবে:
+        </Typography>
+        <Stack
+          direction={{ xs: "column", md: "row" }}
+          spacing={3}
+          marginTop={3}
+          alignItems={"center"}
+          justifyContent={"center"}
+          sx={{ flexWrap: "wrap" }}
+        >
+          <Card sx={{ maxWidth: 345, mt: 3 }}>
+            <CardActionArea>
+              <CardMedia
+                component="img"
+                width="140"
+                height="140"
+                image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTa1tpaKCl1MohjoGpxHh_8rb9kWgIUkNvYn0ONnGQS6OQHg_c8rhUYigE9kOGr-sptUbw&usqp=CAU"
+                alt="green iguana"
+              />
+
+              <CardContent>
+                <Typography gutterBottom variant="h5" textAlign={"center"}>
+                  General Information
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+          <Card sx={{ maxWidth: 345, mt: 3 }}>
+            <CardActionArea>
+              <CardMedia
+                component="img"
+                width="140"
+                height="140"
+                image="https://www.clipartmax.com/png/middle/456-4569453_step-one-clipart-usmle-step-1-usmle-step-3-logo-step-1.png"
+                alt="green iguana"
+              />
+
+              <CardContent>
+                <Typography gutterBottom variant="h5" textAlign={"center"}>
+                  Personal Information
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+
+          <Card sx={{ maxWidth: 345, mt: 3 }}>
+            <CardActionArea>
+              <CardMedia
+                component="img"
+                width="140"
+                height="140"
+                image="https://w7.pngwing.com/pngs/723/583/png-transparent-usmle-step-1-computer-icons-usmle-step-3-symbol-symbol-miscellaneous-blue-text-thumbnail.png"
+                alt="green iguana"
+              />
+
+              <CardContent>
+                <Typography gutterBottom variant="h5" textAlign={"center"}>
+                  Other Information
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+        </Stack>
+        <Box padding={"1rem"}>
+          <Typography variant="h6" padding={"1rem"}>
+            আপনাকে তারকা চিহ্নিত (*) ঘর গুলোতে অবশ্যই তথ্য প্রদান করতে হবে |
+            যেমন, FULL NAME * , NICK NAME *, MOBILE NUMBER *, WhatsApp NUMBER *
+            etc.
+          </Typography>
+          <Typography variant="h6" padding={"1rem"}>
+            সকল তথ্য প্রদান করার পরে, You can CHECK YOUR INFORMATION before
+            SUBMIT | যদি কোন ভুল থাকে, তবে BACK করে সংশোধন করা যাবে | সকল
+            ইনফরমেশন সঠিক থাকলে SUBMIT করা যাবে
+          </Typography>
+          <Typography variant="h6" padding={"1rem"}>
+            MOBILE NUMBER * খুবই গুরুত্বপূর্ণ তথ্য। পরবর্তী সকল যোগাযোগ হবে
+            মোবাইল এসএমএসের মাধ্যমে। সুতরাং, Active এবং Current MOBILE NUMBER
+            সঠিকভাবে প্রদান করুন।
+          </Typography>
+          <Typography variant="h6" padding={"1rem"}>
+            EMAIL * খুবই গুরুত্বপূর্ণ তথ্য। সুতরাং, Active এবং Current EMAIL
+            Address সঠিকভাবে প্রদান করুন।
+          </Typography>
+        </Box>
 
         <Box
           sx={{
