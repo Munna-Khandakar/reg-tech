@@ -28,7 +28,7 @@ function StartPage({ handleNext, handlePrev }) {
         </Typography>
         <Typography variant="h2">Attenntation</Typography> */}
         <img src={Attention} alt="loading..." height={250} width={250} />
-        <Typography variant="h2">ATTENTION</Typography>
+        <Typography variant="h4">তথ্য প্রদানের নিয়মাবলী </Typography>
       </Box>
       <Box
         autoComplete="off"
@@ -42,13 +42,13 @@ function StartPage({ handleNext, handlePrev }) {
             value={check1}
             onChange={(e) => setCheck1(e.target.checked)}
             control={<Checkbox color="secondary" />}
-            label="Phone Number Needs To Be Accurate"
+            label="Phone Number and Email Needs To Be Accurate"
           />
           <FormControlLabel
             value={check2}
             onChange={(e) => setCheck2(e.target.checked)}
             control={<Checkbox color="success" />}
-            label="All Required Filed Needs To Be Complated"
+            label="All Required Filed (*) Needs To Be Complated"
           />
         </FormGroup>
       </Box>

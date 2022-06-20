@@ -96,7 +96,7 @@ const HomePage = () => {
           textAlign={"center"}
           paddingTop={"2rem"}
         >
-          আবেদনের নির্দেশনাবলী
+          তথ্য উপাত্ত সংগ্রহের উদ্দেশ্য
         </Typography>
 
         <Stack
@@ -105,8 +105,9 @@ const HomePage = () => {
           marginTop={3}
           alignItems={"center"}
           justifyContent={"center"}
+          sx={{ flexWrap: "wrap" }}
         >
-          <Card sx={{ maxWidth: 345 }}>
+          <Card sx={{ maxWidth: 345, mt: 3 }}>
             <CardActionArea>
               <CardMedia
                 component="img"
@@ -117,16 +118,21 @@ const HomePage = () => {
               />
               <CardContent>
                 <Typography gutterBottom variant="h5" textAlign={"center"}>
-                  Primary Information
+                  প্রাথমিক তথ্য সংগ্রহ
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
                   হলের সকল ছাত্রদের প্রাথমিক তথ্য-উপাত্ত (Primary Information)
                   প্রদান করার জন্য বিনীত অনুরোধ করা হল
                 </Typography>
+                <br />
+                <Typography variant="body2" color="text.secondary">
+                  এই ফর্মে তথ্য-উপাত্ত প্রদানের মাধ্যমে আপনি পুনর্মিলনীর আয়োজন
+                  এর সকল কার্যক্রমের সঙ্গে নিজেকে যুক্ত করতে পারবেন
+                </Typography>
               </CardContent>
             </CardActionArea>
           </Card>
-          <Card sx={{ maxWidth: 345 }}>
+          <Card sx={{ maxWidth: 345, mt: 3 }}>
             <CardActionArea>
               <CardMedia
                 component="img"
@@ -138,16 +144,30 @@ const HomePage = () => {
 
               <CardContent>
                 <Typography gutterBottom variant="h5" textAlign={"center"}>
-                  Future Connection
+                  সহজ যোগাযোগ
                 </Typography>
+
                 <Typography variant="body2" color="text.secondary">
-                  এই ফর্মে তথ্য-উপাত্ত প্রদানের মাধ্যমে আপনি পুনর্মিলনীর আয়োজন
-                  এর সকল কার্যক্রমের সঙ্গে নিজেকে যুক্ত করতে পারবেন
+                  পুনর্মিলনীর আয়োজন এর বিভিন্ন অগ্রগতি এবং সিদ্ধান্তগুলো আপনাকে{" "}
+                  <span className="red-text">মোবাইল এসএমএস</span> অথবা{" "}
+                  <span className="green-text">ইমেইলের</span> মাধ্যমে অবহিত করা
+                  হবে
+                </Typography>
+                <br />
+                <Typography variant="body2" color="text.secondary">
+                  তাই ফরমটি পূরণ করার সময়{" "}
+                  <span className="red-text">
+                    মোবাইল নাম্বার (Mobile Number)
+                  </span>
+                  , হোয়াটসঅ্যাপ নাম্বার (WhatsApp Number) এবং{" "}
+                  <span className="green-text">ইমেইল অ্যাড্রেস (EMail)</span>{" "}
+                  সঠিকভাবে প্রদানের জন্য বিনীত অনুরোধ করা হচ্ছে
                 </Typography>
               </CardContent>
             </CardActionArea>
           </Card>
-          <Card sx={{ maxWidth: 345 }}>
+
+          <Card sx={{ maxWidth: 345, mt: 3 }}>
             <CardActionArea>
               <CardMedia
                 component="img"
@@ -159,44 +179,17 @@ const HomePage = () => {
 
               <CardContent>
                 <Typography gutterBottom variant="h5" textAlign={"center"}>
-                  Future Connection
+                  তথ্য সুরক্ষা
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  পুনর্মিলনীর আয়োজন এর বিভিন্ন অগ্রগতি এবং সিদ্ধান্তগুলো আপনাকে{" "}
-                  <span className="red-text">মোবাইল এসএমএস</span> অথবা{" "}
-                  <span className="green-text">ইমেইলের</span> মাধ্যমে অবহিত করা
-                  হবে
+                  আপনার তথ্য উপাত্ত আমরা যথোপযুক্ত নিরাপত্তা বজায় রেখে সংরক্ষণ
+                  করব এবং আপনার অনুমতি ব্যতীত অন্য কোন কাজে ব্যবহার করা হবে না
                 </Typography>
               </CardContent>
             </CardActionArea>
           </Card>
         </Stack>
 
-        {/* <Typography variant="h6" textAlign={"justify"} padding={" 1rem 3rem"}>
-          <LooksOneIcon color="primary" sx={{ m: 2, pt: 3 }} />
-          হলের সকল ছাত্রদের প্রাথমিক তথ্য-উপাত্ত (Primary Information) প্রদান
-          করার জন্য বিনীত অনুরোধ করা হল
-        </Typography> */}
-        {/* <Typography variant="h6" textAlign={"justify"} padding={"1rem 3rem"}>
-          <LooksTwoIcon color="primary" sx={{ m: 2, pt: 3 }} />
-          এই ফর্মে তথ্য-উপাত্ত প্রদানের মাধ্যমে আপনি পুনর্মিলনীর আয়োজন এর সকল
-          কার্যক্রমের সঙ্গে নিজেকে যুক্ত করতে পারবেন
-        </Typography> */}
-        {/* <Typography variant="h6" textAlign={"justify"} padding={"1rem 3rem"}>
-          <Looks3Icon color="primary" sx={{ m: 2, pt: 3 }} />
-          পুনর্মিলনীর আয়োজন এর বিভিন্ন অগ্রগতি এবং সিদ্ধান্তগুলো আপনাকে{" "}
-          <span className="red-text">মোবাইল এসএমএস</span> অথবা{" "}
-          <span className="green-text">ইমেইলের</span> মাধ্যমে অবহিত করা হবে
-        </Typography> */}
-        {/* <FormGroup>
-          <FormControlLabel
-            value={check1}
-            sx={{ ml: 5, mb: 5 }}
-            onChange={(e) => setCheck1(e.target.checked)}
-            control={<Checkbox color="primary" />}
-            label="আমি রাজি আছি "
-          />
-        </FormGroup> */}
         <Box
           sx={{
             display: "flex",
@@ -212,7 +205,7 @@ const HomePage = () => {
             endIcon={<ReceiptIcon />}
             onClick={handleClick}
           >
-            Open Form
+            তথ্য প্রদান করুন
           </Button>
         </Box>
       </Paper>

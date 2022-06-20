@@ -351,7 +351,7 @@ function StepOne({
         /> */}
             <PhoneInput
               className="phoneInputBox"
-              placeholder="What's PHONE NUMBER"
+              placeholder="What's APP PHONE NUMBER"
               defaultCountry="BD"
               value={secondaryMobile}
               onChange={setSecondaryMobile}
