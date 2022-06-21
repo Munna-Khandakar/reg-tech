@@ -10,6 +10,8 @@ import {
   List,
   ListItem,
 } from "@mui/material";
+import Alert from "@mui/material/Alert";
+import AlertTitle from "@mui/material/AlertTitle";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -133,7 +135,7 @@ const HomePage = () => {
                     textJustify: "interWord",
                   }}
                 >
-                  <RadioButtonCheckedIcon fontSize="small" />
+                  {/* <RadioButtonCheckedIcon fontSize="small" /> */}
                   হলের সকল ছাত্রদের প্রাথমিক তথ্য-উপাত্ত (Primary Information)
                   প্রদান করার জন্য বিনীত অনুরোধ করা হল
                 </Typography>
@@ -146,9 +148,11 @@ const HomePage = () => {
                     textJustify: "interWord",
                   }}
                 >
-                  <RadioButtonCheckedIcon fontSize="small" />
+                  {/* <RadioButtonCheckedIcon fontSize="small" /> */}
                   এই ফর্মে তথ্য-উপাত্ত প্রদানের মাধ্যমে আপনি পুনর্মিলনীর আয়োজন
-                  এর সকল কার্যক্রমের সঙ্গে নিজেকে যুক্ত করতে পারবেন |{" "}
+                  এর সকল কার্যক্রমের সম্পর্কে{" "}
+                  <span className="red-text">অবগত হওয়ার</span> জন্য নিজেকে
+                  যুক্ত করতে পারবেন |{" "}
                   <span className="green-text">
                     {" "}
                     রি-ইউনিয়নের রেজিস্ট্রেশন{" "}
@@ -239,100 +243,39 @@ const HomePage = () => {
             </CardActionArea>
           </Card>
         </Stack>
+        <Stack
+          sx={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+          marginTop="2rem"
+        >
+          <Alert
+            severity="info"
+            sx={{ padding: { md: "2rem 25rem", xs: "1rem" } }}
+          >
+            <AlertTitle sx={{ fontSize: "1rem" }}>বিশেষ দ্রষ্টব্য</AlertTitle>
+            <strong> রি-ইউনিয়নের রেজিস্ট্রেশন </strong>— পরবর্তীতে করা হবে
+          </Alert>
+          {/* <Alert
+            severity="info"
+            variant="outlined"
+            sx={{ padding: { md: "2rem 15rem", xs: "1rem" } }}
+          >
+            <AlertTitle>বিশেষ দ্রষ্টব্য</AlertTitle>
+            <strong> রি-ইউনিয়নের রেজিস্ট্রেশন </strong>— পরবর্তীতে করা হবে
+          </Alert> */}
+        </Stack>
         <Typography
           variant="h2"
           color={"primary"}
           textAlign={"center"}
-          padding={"4rem 0"}
+          paddingTop={"4rem"}
         >
           তথ্য উপাত্ত প্রদানের নিয়মাবলী জেনে নিন
         </Typography>
-        {/* <Typography variant="h5" textAlign={"center"}>
-          আপনাকে 3টি ধাপে তথ্য প্রদান করতে হবে:
-        </Typography> */}
-        {/* <Stack
-          direction={{ xs: "column", md: "row" }}
-          spacing={3}
-          marginTop={3}
-          alignItems={"center"}
-          justifyContent={"center"}
-          sx={{ flexWrap: "wrap" }}
-        >
-          <Card sx={{ maxWidth: 345, mt: 3 }}>
-            <CardActionArea>
-              <CardMedia
-                component="img"
-                width="140"
-                height="140"
-                image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTa1tpaKCl1MohjoGpxHh_8rb9kWgIUkNvYn0ONnGQS6OQHg_c8rhUYigE9kOGr-sptUbw&usqp=CAU"
-                alt="green iguana"
-              />
-
-              <CardContent>
-                <Typography gutterBottom variant="h5" textAlign={"center"}>
-                  General Information
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-          </Card>
-          <Card sx={{ maxWidth: 345, mt: 3 }}>
-            <CardActionArea>
-              <CardMedia
-                component="img"
-                width="140"
-                height="140"
-                image="https://www.clipartmax.com/png/middle/456-4569453_step-one-clipart-usmle-step-1-usmle-step-3-logo-step-1.png"
-                alt="green iguana"
-              />
-
-              <CardContent>
-                <Typography gutterBottom variant="h5" textAlign={"center"}>
-                  Personal Information
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-          </Card>
-
-          <Card sx={{ maxWidth: 345, mt: 3 }}>
-            <CardActionArea>
-              <CardMedia
-                component="img"
-                width="140"
-                height="140"
-                image="https://w7.pngwing.com/pngs/723/583/png-transparent-usmle-step-1-computer-icons-usmle-step-3-symbol-symbol-miscellaneous-blue-text-thumbnail.png"
-                alt="green iguana"
-              />
-
-              <CardContent>
-                <Typography gutterBottom variant="h5" textAlign={"center"}>
-                  Other Information
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-          </Card>
-        </Stack>
-        <Box padding={"1rem"}>
-          <Typography variant="h6" padding={"1rem"}>
-            আপনাকে তারকা চিহ্নিত (*) ঘর গুলোতে অবশ্যই তথ্য প্রদান করতে হবে |
-            যেমন, FULL NAME * , NICK NAME *, MOBILE NUMBER *, WhatsApp NUMBER *
-            etc.
-          </Typography>
-          <Typography variant="h6" padding={"1rem"}>
-            সকল তথ্য প্রদান করার পরে, You can CHECK YOUR INFORMATION before
-            SUBMIT | যদি কোন ভুল থাকে, তবে BACK করে সংশোধন করা যাবে | সকল
-            ইনফরমেশন সঠিক থাকলে SUBMIT করা যাবে
-          </Typography>
-          <Typography variant="h6" padding={"1rem"}>
-            MOBILE NUMBER * খুবই গুরুত্বপূর্ণ তথ্য। পরবর্তী সকল যোগাযোগ হবে
-            মোবাইল এসএমএসের মাধ্যমে। সুতরাং, Active এবং Current MOBILE NUMBER
-            সঠিকভাবে প্রদান করুন।
-          </Typography>
-          <Typography variant="h6" padding={"1rem"}>
-            EMAIL * খুবই গুরুত্বপূর্ণ তথ্য। সুতরাং, Active এবং Current EMAIL
-            Address সঠিকভাবে প্রদান করুন।
-          </Typography>
-        </Box> */}
-
         <TableContainer component={Paper}>
           <Table>
             <TableBody>
@@ -340,7 +283,7 @@ const HomePage = () => {
                 <TableCell
                   align="center"
                   sx={{
-                    fontSize: "1rem",
+                    // fontSize: "1rem",
                     color: "text.secondary",
                   }}
                 >
@@ -354,59 +297,82 @@ const HomePage = () => {
                 <TableCell
                   align="center"
                   sx={{
-                    fontSize: "1rem",
+                    // fontSize: "1rem",
                     color: "text.secondary",
                     textAlign: { xs: "justify", md: "center" },
                     textJustify: "interWord",
                   }}
                 >
                   আপনাকে তারকা চিহ্নিত (*) ঘর গুলোতে অবশ্যই তথ্য প্রদান করতে হবে
-                  | যেমন, FULL NAME * , NICK NAME *, MOBILE NUMBER *, WhatsApp
-                  NUMBER * etc.
+                  | যেমন,{" "}
+                  <strong>
+                    FULL NAME * , NICK NAME *, MOBILE NUMBER *, WhatsApp NUMBER
+                    *{" "}
+                  </strong>{" "}
+                  etc.
                 </TableCell>
               </TableRow>
               <TableRow>
                 <TableCell
                   align="center"
                   sx={{
-                    fontSize: "1rem",
+                    // fontSize: "1rem",
                     color: "text.secondary",
                     textAlign: { xs: "justify", md: "center" },
                     textJustify: "interWord",
                   }}
                 >
-                  সকল তথ্য প্রদান করার পরে, You can CHECK YOUR INFORMATION
-                  before SUBMIT | যদি কোন ভুল থাকে, তবে BACK করে সংশোধন করা যাবে
-                  | সকল ইনফরমেশন সঠিক থাকলে SUBMIT করা যাবে |
+                  সকল তথ্য প্রদান করার পরে, You can{" "}
+                  <strong>CHECK YOUR INFORMATION</strong>
+                  before <strong>SUBMIT</strong> | যদি কোন ভুল থাকে, তবে BACK
+                  করে সংশোধন করা যাবে | সকল ইনফরমেশন সঠিক থাকলে{" "}
+                  <strong>SUBMIT</strong> করা যাবে |
                 </TableCell>
               </TableRow>
               <TableRow>
                 <TableCell
                   align="center"
                   sx={{
-                    fontSize: "1rem",
+                    // fontSize: "1rem",
                     color: "text.secondary",
                     textAlign: { xs: "justify", md: "center" },
                     textJustify: "interWord",
                   }}
                 >
-                  MOBILE NUMBER * খুবই গুরুত্বপূর্ণ তথ্য। পরবর্তী সকল যোগাযোগ
-                  হবে মোবাইল এসএমএসের মাধ্যমে। সুতরাং, Active এবং Current MOBILE
-                  NUMBER সঠিকভাবে প্রদান করুন।
+                  আপনাকে একটি <strong>পাসপোর্ট সাইজের ছবি আপলোড</strong> করতে
+                  হবে। আপনার যদি কোনো ফটো না থাকে, অনুগ্রহ করে মোবাইল ফোন থেকে
+                  একটি সেলফি তুলুন এবং সেটি আপলোড করুন।
                 </TableCell>
               </TableRow>
               <TableRow>
                 <TableCell
                   align="center"
                   sx={{
-                    fontSize: "1rem",
+                    // fontSize: "1rem",
                     color: "text.secondary",
                     textAlign: { xs: "justify", md: "center" },
                     textJustify: "interWord",
                   }}
                 >
-                  EMAIL * খুবই গুরুত্বপূর্ণ তথ্য। সুতরাং, Active এবং Current
-                  EMAIL Address সঠিকভাবে প্রদান করুন।
+                  <strong> MOBILE NUMBER *</strong> খুবই গুরুত্বপূর্ণ তথ্য।
+                  পরবর্তী সকল যোগাযোগ হবে মোবাইল এসএমএসের মাধ্যমে। সুতরাং,
+                  Active এবং <strong>Current MOBILE NUMBER</strong> সঠিকভাবে
+                  প্রদান করুন।
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell
+                  align="center"
+                  sx={{
+                    // fontSize: "1rem",
+                    color: "text.secondary",
+                    textAlign: { xs: "justify", md: "center" },
+                    textJustify: "interWord",
+                  }}
+                >
+                  <strong> EMAIL * </strong>খুবই গুরুত্বপূর্ণ তথ্য। সুতরাং,
+                  Active এবং Current
+                  <strong>EMAIL Address</strong> সঠিকভাবে প্রদান করুন।
                 </TableCell>
               </TableRow>
             </TableBody>
