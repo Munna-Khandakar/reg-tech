@@ -10,6 +10,13 @@ import {
   List,
   ListItem,
 } from "@mui/material";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import StarIcon from "@mui/icons-material/Star";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -17,6 +24,8 @@ import { CardActionArea } from "@mui/material";
 import ReceiptIcon from "@mui/icons-material/Receipt";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
+import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
+import { margin } from "@mui/system";
 const HomePage = () => {
   let navigate = useNavigate();
   const [check1, setCheck1] = useState(true);
@@ -90,7 +99,7 @@ const HomePage = () => {
           variant="h2"
           color={"primary"}
           textAlign={"center"}
-          paddingTop={"2rem"}
+          padding={"4rem 0"}
         >
           তথ্য উপাত্ত সংগ্রহের উদ্দেশ্য
         </Typography>
@@ -116,14 +125,35 @@ const HomePage = () => {
                 <Typography gutterBottom variant="h5" textAlign={"center"}>
                   প্রাথমিক তথ্য সংগ্রহ
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  sx={{
+                    textAlign: { xs: "justify", md: "justify" },
+                    textJustify: "interWord",
+                  }}
+                >
+                  <RadioButtonCheckedIcon fontSize="small" />
                   হলের সকল ছাত্রদের প্রাথমিক তথ্য-উপাত্ত (Primary Information)
                   প্রদান করার জন্য বিনীত অনুরোধ করা হল
                 </Typography>
                 <br />
-                <Typography variant="body2" color="text.secondary">
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  sx={{
+                    textAlign: { xs: "justify", md: "justify" },
+                    textJustify: "interWord",
+                  }}
+                >
+                  <RadioButtonCheckedIcon fontSize="small" />
                   এই ফর্মে তথ্য-উপাত্ত প্রদানের মাধ্যমে আপনি পুনর্মিলনীর আয়োজন
-                  এর সকল কার্যক্রমের সঙ্গে নিজেকে যুক্ত করতে পারবেন
+                  এর সকল কার্যক্রমের সঙ্গে নিজেকে যুক্ত করতে পারবেন |{" "}
+                  <span className="green-text">
+                    {" "}
+                    রি-ইউনিয়নের রেজিস্ট্রেশন{" "}
+                  </span>
+                  পরবর্তীতে করা হবে |
                 </Typography>
               </CardContent>
             </CardActionArea>
@@ -143,14 +173,28 @@ const HomePage = () => {
                   সহজ যোগাযোগ
                 </Typography>
 
-                <Typography variant="body2" color="text.secondary">
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  sx={{
+                    textAlign: { xs: "justify", md: "justify" },
+                    textJustify: "interWord",
+                  }}
+                >
                   পুনর্মিলনীর আয়োজন এর বিভিন্ন অগ্রগতি এবং সিদ্ধান্তগুলো আপনাকে{" "}
                   <span className="red-text">মোবাইল এসএমএস</span> অথবা{" "}
                   <span className="green-text">ইমেইলের</span> মাধ্যমে অবহিত করা
                   হবে
                 </Typography>
                 <br />
-                <Typography variant="body2" color="text.secondary">
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  sx={{
+                    textAlign: { xs: "justify", md: "justify" },
+                    textJustify: "interWord",
+                  }}
+                >
                   তাই ফরমটি পূরণ করার সময়{" "}
                   <span className="red-text">
                     মোবাইল নাম্বার (Mobile Number)
@@ -177,9 +221,19 @@ const HomePage = () => {
                 <Typography gutterBottom variant="h5" textAlign={"center"}>
                   তথ্য সুরক্ষা
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  আপনার তথ্য উপাত্ত আমরা যথোপযুক্ত নিরাপত্তা বজায় রেখে সংরক্ষণ
-                  করব এবং আপনার অনুমতি ব্যতীত অন্য কোন কাজে ব্যবহার করা হবে না
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  sx={{
+                    textAlign: { xs: "justify", md: "justify" },
+                    textJustify: "interWord",
+                  }}
+                >
+                  আপনার তথ্য উপাত্ত আমরা যথোপযুক্ত{" "}
+                  <span className="green-text">নিরাপত্তা</span> বজায় রেখে
+                  সংরক্ষণ করব এবং আপনার{" "}
+                  <span className="red-text">অনুমতি ব্যতীত</span> অন্য কোন কাজে
+                  ব্যবহার করা হবে না
                 </Typography>
               </CardContent>
             </CardActionArea>
@@ -189,14 +243,14 @@ const HomePage = () => {
           variant="h2"
           color={"primary"}
           textAlign={"center"}
-          paddingTop={"2rem"}
+          padding={"4rem 0"}
         >
-          তথ্য উপাত্ত সংগ্রহের নিয়মাবলী
+          তথ্য উপাত্ত প্রদানের নিয়মাবলী জেনে নিন
         </Typography>
-        <Typography variant="h5" textAlign={"center"}>
+        {/* <Typography variant="h5" textAlign={"center"}>
           আপনাকে 3টি ধাপে তথ্য প্রদান করতে হবে:
-        </Typography>
-        <Stack
+        </Typography> */}
+        {/* <Stack
           direction={{ xs: "column", md: "row" }}
           spacing={3}
           marginTop={3}
@@ -277,8 +331,87 @@ const HomePage = () => {
             EMAIL * খুবই গুরুত্বপূর্ণ তথ্য। সুতরাং, Active এবং Current EMAIL
             Address সঠিকভাবে প্রদান করুন।
           </Typography>
-        </Box>
+        </Box> */}
 
+        <TableContainer component={Paper}>
+          <Table>
+            <TableBody>
+              <TableRow>
+                <TableCell
+                  align="center"
+                  sx={{
+                    fontSize: "1rem",
+                    color: "text.secondary",
+                  }}
+                >
+                  আপনাকে 3টি ধাপে তথ্য প্রদান করতে হবে: <br />
+                  a) General Information
+                  <br /> b) Personal Information <br />
+                  c) Other Information{" "}
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell
+                  align="center"
+                  sx={{
+                    fontSize: "1rem",
+                    color: "text.secondary",
+                    textAlign: { xs: "justify", md: "center" },
+                    textJustify: "interWord",
+                  }}
+                >
+                  আপনাকে তারকা চিহ্নিত (*) ঘর গুলোতে অবশ্যই তথ্য প্রদান করতে হবে
+                  | যেমন, FULL NAME * , NICK NAME *, MOBILE NUMBER *, WhatsApp
+                  NUMBER * etc.
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell
+                  align="center"
+                  sx={{
+                    fontSize: "1rem",
+                    color: "text.secondary",
+                    textAlign: { xs: "justify", md: "center" },
+                    textJustify: "interWord",
+                  }}
+                >
+                  সকল তথ্য প্রদান করার পরে, You can CHECK YOUR INFORMATION
+                  before SUBMIT | যদি কোন ভুল থাকে, তবে BACK করে সংশোধন করা যাবে
+                  | সকল ইনফরমেশন সঠিক থাকলে SUBMIT করা যাবে |
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell
+                  align="center"
+                  sx={{
+                    fontSize: "1rem",
+                    color: "text.secondary",
+                    textAlign: { xs: "justify", md: "center" },
+                    textJustify: "interWord",
+                  }}
+                >
+                  MOBILE NUMBER * খুবই গুরুত্বপূর্ণ তথ্য। পরবর্তী সকল যোগাযোগ
+                  হবে মোবাইল এসএমএসের মাধ্যমে। সুতরাং, Active এবং Current MOBILE
+                  NUMBER সঠিকভাবে প্রদান করুন।
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell
+                  align="center"
+                  sx={{
+                    fontSize: "1rem",
+                    color: "text.secondary",
+                    textAlign: { xs: "justify", md: "center" },
+                    textJustify: "interWord",
+                  }}
+                >
+                  EMAIL * খুবই গুরুত্বপূর্ণ তথ্য। সুতরাং, Active এবং Current
+                  EMAIL Address সঠিকভাবে প্রদান করুন।
+                </TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </TableContainer>
         <Box
           sx={{
             display: "flex",
