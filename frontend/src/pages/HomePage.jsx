@@ -152,12 +152,7 @@ const HomePage = () => {
                   এই ফর্মে তথ্য-উপাত্ত প্রদানের মাধ্যমে আপনি পুনর্মিলনীর আয়োজন
                   এর সকল কার্যক্রমের সম্পর্কে{" "}
                   <span className="red-text">অবগত হওয়ার</span> জন্য নিজেকে
-                  যুক্ত করতে পারবেন |{" "}
-                  <span className="green-text">
-                    {" "}
-                    রি-ইউনিয়নের রেজিস্ট্রেশন{" "}
-                  </span>
-                  পরবর্তীতে করা হবে |
+                  যুক্ত করতে পারবেন |
                 </Typography>
               </CardContent>
             </CardActionArea>
@@ -253,11 +248,19 @@ const HomePage = () => {
           marginTop="2rem"
         >
           <Alert
+            icon={false}
             severity="info"
-            sx={{ padding: { md: "2rem 25rem", xs: "1rem" } }}
+            sx={{
+              padding: { md: "2rem 25rem", xs: "1rem" },
+            }}
           >
-            <AlertTitle sx={{ fontSize: "1rem" }}>বিশেষ দ্রষ্টব্য</AlertTitle>
-            <strong> রি-ইউনিয়নের রেজিস্ট্রেশন </strong>— পরবর্তীতে করা হবে
+            <AlertTitle sx={{ fontSize: "1.5rem", textAlign: "center" }}>
+              বিশেষ দ্রষ্টব্য
+            </AlertTitle>
+            <strong>
+              রিইউনিয়ন রেজিস্ট্রেশন এবং রেজিস্ট্রেশনের জন্য অর্থ সংগ্রহ
+              কার্যক্রম পরবর্তীতে করা হবে
+            </strong>
           </Alert>
           {/* <Alert
             severity="info"

@@ -334,7 +334,7 @@ function StepOne({
 
             <PhoneInput
               className="phoneInputBox"
-              placeholder="YOUR ACTIVE PHONE NUMBER"
+              placeholder="PHONE NUMBER *"
               defaultCountry="BD"
               value={mobile}
               onChange={setMobile}
@@ -351,7 +351,7 @@ function StepOne({
         /> */}
             <PhoneInput
               className="phoneInputBox"
-              placeholder="WhatsApp PHONE NUMBER"
+              placeholder="WhatsApp *"
               defaultCountry="BD"
               value={secondaryMobile}
               onChange={setSecondaryMobile}
