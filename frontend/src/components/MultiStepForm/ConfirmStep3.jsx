@@ -27,6 +27,8 @@ import WorkIcon from "@mui/icons-material/Work";
 import PeopleIcon from "@mui/icons-material/People";
 import BedIcon from "@mui/icons-material/Bed";
 import CardGiftcardIcon from "@mui/icons-material/CardGiftcard";
+import Alert from "@mui/material/Alert";
+import AlertTitle from "@mui/material/AlertTitle";
 const ConfirmStep3 = ({
   department,
   batch,
@@ -95,13 +97,28 @@ const ConfirmStep3 = ({
   return (
     <>
       {" "}
-      <Typography
+      {/* <Typography
         variant="h5"
         style={{ color: "#999", textAlign: "center", margin: "1rem" }}
       >
         {" "}
         Check Before Submit
-      </Typography>
+      </Typography> */}
+      <Alert
+        icon={false}
+        severity="error"
+        sx={{
+          margin: { md: "1rem 1rem", xs: "1rem 0" },
+          padding: { md: "2rem 20rem", xs: "1rem" },
+        }}
+      >
+        <AlertTitle sx={{ fontSize: "1.5rem", textAlign: "center" }}>
+          জমা দেওয়ার আগে চেক করুন
+        </AlertTitle>
+        <strong>
+          কোনো তথ্য ভুল হলে "BACK" বাটন এ ক্লিক করে সংশোধন করে নিতে পারবেন
+        </strong>
+      </Alert>
       <img
         className="photoPreview"
         src={URL.createObjectURL(photo)}
@@ -125,13 +142,13 @@ const ConfirmStep3 = ({
             fontSize: 15,
           }}
         >
-          {" "}
           General Information
         </Typography>
         <Stack direction={{ xs: "row", md: "row" }} spacing={2}>
           <TextField
             style={{ width: "100%", marginTop: "1rem" }}
             size="small"
+            disabled
             label="Batch"
             value={batchValue}
             InputProps={{
@@ -145,6 +162,7 @@ const ConfirmStep3 = ({
           <TextField
             style={{ width: "100%", marginTop: "1rem" }}
             label="Department"
+            disabled
             value={deptValue}
             size="small"
             InputProps={{
@@ -161,6 +179,7 @@ const ConfirmStep3 = ({
             style={{ width: "100%", marginTop: "1rem" }}
             label="Full Name"
             value={fullName}
+            disabled
             size="small"
             InputProps={{
               startAdornment: (
@@ -174,6 +193,7 @@ const ConfirmStep3 = ({
             style={{ width: "100%", marginTop: "1rem" }}
             label="Nick Name"
             value={nickName}
+            disabled
             size="small"
             InputProps={{
               startAdornment: (
@@ -189,6 +209,7 @@ const ConfirmStep3 = ({
             style={{ width: "100%", marginTop: "1rem" }}
             label="Phone Number"
             value={mobile}
+            disabled
             size="small"
             InputProps={{
               startAdornment: (
@@ -202,6 +223,7 @@ const ConfirmStep3 = ({
             style={{ width: "100%", marginTop: "1rem" }}
             label="What's App"
             value={secondaryMobile}
+            disabled
             size="small"
             InputProps={{
               startAdornment: (
@@ -217,6 +239,7 @@ const ConfirmStep3 = ({
             style={{ width: "100%", marginTop: "1rem" }}
             label="Email Address"
             value={email}
+            disabled
             size="small"
             InputProps={{
               startAdornment: (
@@ -230,6 +253,7 @@ const ConfirmStep3 = ({
             style={{ width: "100%", marginTop: "1rem" }}
             label="Facebook ID"
             value={fbId ? fbId : "not given"}
+            disabled
             size="small"
             InputProps={{
               startAdornment: (
@@ -258,7 +282,6 @@ const ConfirmStep3 = ({
             fontSize: 15,
           }}
         >
-          {" "}
           Personal Information
         </Typography>
         <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
@@ -266,6 +289,7 @@ const ConfirmStep3 = ({
             style={{ width: "100%", marginTop: "1rem" }}
             size="small"
             label="Father's Name"
+            disabled
             value={fatherName}
             InputProps={{
               startAdornment: (
@@ -279,6 +303,7 @@ const ConfirmStep3 = ({
             style={{ width: "100%", marginTop: "1rem" }}
             label="Mother's Name"
             value={motherName}
+            disabled
             size="small"
             InputProps={{
               startAdornment: (
@@ -293,6 +318,7 @@ const ConfirmStep3 = ({
           style={{ width: "100%", marginTop: "1rem" }}
           label="Address"
           rows={2}
+          disabled
           multiline
           value={`${streetAddress},${streetAddressLine2},${city},${state},${zipCode},${country}`}
           size="small"
@@ -310,6 +336,7 @@ const ConfirmStep3 = ({
             label="Date of Birth"
             value={dob}
             size="small"
+            disabled
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -322,6 +349,7 @@ const ConfirmStep3 = ({
             style={{ width: "100%", marginTop: "1rem" }}
             label="Blood Group"
             value={bloodGroup}
+            disabled
             size="small"
             InputProps={{
               startAdornment: (
@@ -336,6 +364,7 @@ const ConfirmStep3 = ({
           <TextField
             style={{ width: "100%", marginTop: "1rem" }}
             label="Nationality"
+            disabled
             value={nationality}
             size="small"
             InputProps={{
@@ -350,6 +379,7 @@ const ConfirmStep3 = ({
             style={{ width: "100%", marginTop: "1rem" }}
             label="Religion"
             value={religion}
+            disabled
             size="small"
             InputProps={{
               startAdornment: (
@@ -364,6 +394,7 @@ const ConfirmStep3 = ({
           <TextField
             style={{ width: "100%", marginTop: "1rem" }}
             label="Emergency Contact"
+            disabled
             value={emergencyContact}
             size="small"
             InputProps={{
@@ -393,7 +424,6 @@ const ConfirmStep3 = ({
             fontSize: 15,
           }}
         >
-          {" "}
           Other Information
         </Typography>
 
@@ -401,6 +431,7 @@ const ConfirmStep3 = ({
           style={{ width: "100%", marginTop: "1rem" }}
           size="small"
           label="Occupation"
+          disabled
           value={`${occupation}, ${designation},${companyName}`}
           InputProps={{
             startAdornment: (
@@ -416,6 +447,7 @@ const ConfirmStep3 = ({
             style={{ width: "100%", marginTop: "1rem" }}
             label="Marital Status"
             value={maritalStatus}
+            disabled
             size="small"
             InputProps={{
               startAdornment: (
@@ -429,6 +461,7 @@ const ConfirmStep3 = ({
             style={{ width: "100%", marginTop: "1rem" }}
             label="Hall Room Number"
             value={hallRoomNumber}
+            disabled
             size="small"
             InputProps={{
               startAdornment: (
@@ -444,6 +477,7 @@ const ConfirmStep3 = ({
           style={{ width: "100%", marginTop: "1rem" }}
           label="Wish Box"
           value={wishBox}
+          disabled
           multiline
           rows={3}
           size="small"

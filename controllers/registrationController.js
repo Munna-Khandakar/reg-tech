@@ -52,3 +52,51 @@ module.exports.getAllUser = async (req, res, next) => {
     res.status(500).json(error);
   }
 };
+
+module.exports.exportAllUser = async (req, res, next) => {
+  const exportedData = [];
+  try {
+    const data = await UserModel.find()
+      .populate("batch", { label: 1, _id: 0 })
+      .populate("department", { label: 1, _id: 0 })
+      .populate("faculty", { label: 1, _id: 0 });
+    data.forEach((user) => {
+      exportedData.push({
+        fullName: user.fullName,
+        nickName: user.nickName,
+        department: user.department && user.department.label,
+        batch: user.batch && user.batch.label,
+        faculty: user.faculty && user.faculty.label,
+        mobile: user.mobile && user.mobile,
+        whatsapp: user.secondaryMobile && user.secondaryMobile,
+        email: user.email,
+        fathername: user.fatherName,
+        motherName: user.motherName,
+        streetAddress: user.streetAddress,
+        streetAddressLine2: user.streetAddressLine2,
+        city: user.city,
+        zipCode: user.zipCode,
+        state: user.state,
+        country: user.country,
+        emergencyContact: user.emergencyContact,
+        fbId: user.fbId,
+        dob: user.dob,
+        nationality: user.nationality,
+        bloodGroup: user.bloodGroup,
+        religion: user.religion,
+        occupation: user.occupation,
+        designation: user.designation,
+        companyName: user.companyName,
+        maritalStatus: user.maritalStatus,
+        hallRoomNumber: user.hallRoomNumber,
+        wishBox: user.wishBox,
+        photo: user.photo,
+      });
+    });
+    console.log(exportedData);
+    res.status(200).json(data);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json(error);
+  }
+};
