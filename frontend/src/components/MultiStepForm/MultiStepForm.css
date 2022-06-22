@@ -82,6 +82,8 @@
 }
 .red-text {
   color: red;
+  font-weight: bold;
+  font-style: italic;
 }
 .green-text {
   color: green;

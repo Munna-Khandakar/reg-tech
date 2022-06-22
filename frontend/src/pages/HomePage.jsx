@@ -28,6 +28,7 @@ import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
 import { margin } from "@mui/system";
+import { color } from "@cloudinary/url-gen/qualifiers/background";
 const HomePage = () => {
   let navigate = useNavigate();
   const [check1, setCheck1] = useState(true);
@@ -149,10 +150,11 @@ const HomePage = () => {
                   }}
                 >
                   {/* <RadioButtonCheckedIcon fontSize="small" /> */}
-                  এই ফর্মে তথ্য-উপাত্ত প্রদানের মাধ্যমে আপনি পুনর্মিলনীর আয়োজন
-                  এর সকল কার্যক্রমের সম্পর্কে{" "}
-                  <span className="red-text">অবগত হওয়ার</span> জন্য নিজেকে
-                  যুক্ত করতে পারবেন |
+                  এই ফর্মে তথ্য-উপাত্ত প্রদানের মাধ্যমে আপনি{" "}
+                  <span className="red-text">
+                    পুনর্মিলনীর আয়োজন এর সকল কার্যক্রমের সম্পর্কে অবগত হওয়ার
+                  </span>{" "}
+                  জন্য নিজেকে যুক্ত করতে পারবেন |
                 </Typography>
               </CardContent>
             </CardActionArea>
@@ -181,9 +183,8 @@ const HomePage = () => {
                   }}
                 >
                   পুনর্মিলনীর আয়োজন এর বিভিন্ন অগ্রগতি এবং সিদ্ধান্তগুলো আপনাকে{" "}
-                  <span className="red-text">মোবাইল এসএমএস</span> অথবা{" "}
-                  <span className="green-text">ইমেইলের</span> মাধ্যমে অবহিত করা
-                  হবে
+                  <span className="red-text">মোবাইল এসএমএসঅথবা ইমেইলের</span>{" "}
+                  মাধ্যমে অবহিত করা হবে
                 </Typography>
                 <br />
                 <Typography
@@ -199,7 +200,7 @@ const HomePage = () => {
                     মোবাইল নাম্বার (Mobile Number)
                   </span>
                   , হোয়াটসঅ্যাপ নাম্বার (WhatsApp Number) এবং{" "}
-                  <span className="green-text">ইমেইল অ্যাড্রেস (EMail)</span>{" "}
+                  <span className="red-text">ইমেইল অ্যাড্রেস (EMail)</span>{" "}
                   সঠিকভাবে প্রদানের জন্য বিনীত অনুরোধ করা হচ্ছে
                 </Typography>
               </CardContent>
@@ -229,10 +230,10 @@ const HomePage = () => {
                   }}
                 >
                   আপনার তথ্য উপাত্ত আমরা যথোপযুক্ত{" "}
-                  <span className="green-text">নিরাপত্তা</span> বজায় রেখে
-                  সংরক্ষণ করব এবং আপনার{" "}
-                  <span className="red-text">অনুমতি ব্যতীত</span> অন্য কোন কাজে
-                  ব্যবহার করা হবে না
+                  <span className="red-text">
+                    নিরাপত্তা বজায় রেখে সংরক্ষণ করব এবং আপনার অনুমতি ব্যতীত
+                  </span>{" "}
+                  অন্য কোন কাজে ব্যবহার করা হবে না
                 </Typography>
               </CardContent>
             </CardActionArea>
@@ -254,10 +255,12 @@ const HomePage = () => {
               padding: { md: "2rem 25rem", xs: "1rem" },
             }}
           >
-            <AlertTitle sx={{ fontSize: "1.5rem", textAlign: "center" }}>
+            <AlertTitle
+              sx={{ fontSize: "1.5rem", textAlign: "center", color: "red" }}
+            >
               বিশেষ দ্রষ্টব্য
             </AlertTitle>
-            <strong>
+            <strong className="red-text">
               রিইউনিয়ন রেজিস্ট্রেশন এবং রেজিস্ট্রেশনের জন্য অর্থ সংগ্রহ
               কার্যক্রম পরবর্তীতে করা হবে
             </strong>
