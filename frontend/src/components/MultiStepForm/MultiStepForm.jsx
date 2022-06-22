@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Stepper, Step, StepLabel, Button, Stack } from "@mui/material";
 import axios from "axios";
 import { makeStyles } from "@mui/styles";
@@ -11,6 +11,7 @@ import ConfirmStep3 from "./ConfirmStep3";
 import ConfirmStep2 from "./ConfirmStep2";
 import ConfirmStep from "./ConfirmStep";
 import StartPage from "./StartPage";
+import { useNavigate } from "react-router-dom";
 
 const useStyles = makeStyles({
   root: {
@@ -20,22 +21,6 @@ const useStyles = makeStyles({
     border: "1px solid #999",
   },
 });
-
-const show = () => {
-  swal({
-    title: "Are you sure?",
-    text: "Congratulations, your form saved successfully..!",
-    icon: "success",
-    buttons: true,
-    dangerMode: false,
-  }).then((willDelete) => {
-    if (willDelete) {
-      window.location.reload();
-    } else {
-      window.location.reload();
-    }
-  });
-};
 
 function getSteps() {
   return ["GENERAL INFORMATION", "PERSONAL INFORMATION", "OTHER INFORMATION"];
@@ -85,6 +70,14 @@ const MultiStepForm = () => {
   // confirm step
   const [submitButtonLoading, setSubmitButtonLoading] = React.useState(false);
   const [submitButtonDisable, setSubmitButtonDisable] = React.useState(false);
+
+  // move to top..
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [activeState]);
+
+  // react navigator
+  let navigate = useNavigate();
   const handleNext = () => {
     setActiveState((previousState) => previousState + 1);
   };
@@ -186,20 +179,20 @@ const MultiStepForm = () => {
         return "Finish";
     }
   }
-  const successMessageHandler = () => {
+  const successMessageHandler = (msg) => {
     setSubmitButtonLoading(false);
     setSubmitButtonDisable(true);
     swal({
       title: "Congratulations",
-      text: "Your form saved successfully..!",
+      text: msg,
       icon: "success",
-      buttons: true,
+      // buttons: true,
       dangerMode: false,
-    }).then((willDelete) => {
-      if (willDelete) {
-        window.location.reload();
+    }).then((value) => {
+      if (value) {
+        navigate("/", { replace: true });
       } else {
-        window.location.reload();
+        navigate("/", { replace: true });
       }
     });
   };
@@ -256,10 +249,14 @@ const MultiStepForm = () => {
         console.log(res);
         if (res.data.error) {
           errorMessageHandle(res.data.error);
-        } else {
-          console.log("succcess");
-          successMessageHandler();
         }
+        if (res.data.success) {
+          successMessageHandler(res.data.success);
+        }
+        // else {
+        //   console.log("succcess");
+        //   successMessageHandler();
+        // }
       })
       .catch((err) => {
         console.log(err);

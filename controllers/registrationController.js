@@ -37,7 +37,11 @@ module.exports.createUser = async (req, res, next) => {
     const newData = new UserModel(req.body);
     const savedData = await newData.save();
     console.log("check 2");
-    res.status(200).json(savedData);
+    res
+      .status(200)
+      .json({
+        success: `${req.body.fullName} your data has been submitted..!`,
+      });
   } catch (error) {
     console.log(error);
     res.status(500).json(error);
