@@ -6,7 +6,7 @@ function ExportUsers() {
   const download = (e) => {
     e.preventDefault();
     Axios({
-      url: "http://localhost:5000/api/exportAllUser",
+      url: "/api/exportAllUser",
       method: "GET",
       responseType: "blob",
     }).then((res) => {
