@@ -1,5 +1,6 @@
 const UserModel = require("../models/UserModel");
 const cloudinary = require("../middleware/cloudinary");
+const { exportToExcel } = require("../config/exportToExcel");
 // POST: api/registration
 // CREATE department
 module.exports.createUser = async (req, res, next) => {
@@ -37,11 +38,9 @@ module.exports.createUser = async (req, res, next) => {
     const newData = new UserModel(req.body);
     const savedData = await newData.save();
     console.log("check 2");
-    res
-      .status(200)
-      .json({
-        success: `${req.body.fullName} your data has been submitted..!`,
-      });
+    res.status(200).json({
+      success: `${req.body.fullName} your data has been submitted..!`,
+    });
   } catch (error) {
     console.log(error);
     res.status(500).json(error);
@@ -74,7 +73,7 @@ module.exports.exportAllUser = async (req, res, next) => {
         mobile: user.mobile && user.mobile,
         whatsapp: user.secondaryMobile && user.secondaryMobile,
         email: user.email,
-        fathername: user.fatherName,
+        fatherName: user.fatherName,
         motherName: user.motherName,
         streetAddress: user.streetAddress,
         streetAddressLine2: user.streetAddressLine2,
@@ -97,8 +96,12 @@ module.exports.exportAllUser = async (req, res, next) => {
         photo: user.photo,
       });
     });
-    console.log(exportedData);
-    res.status(200).json(data);
+
+    //exportToExcel(JSON.stringify(exportedData));
+    exportToExcel(exportedData);
+    // console.log(JSON.stringify(exportedData));
+    // res.status(200).json(data);
+    res.download("./users.xlsx");
   } catch (error) {
     console.log(error);
     res.status(500).json(error);
