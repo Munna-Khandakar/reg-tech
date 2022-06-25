@@ -60,9 +60,12 @@ module.exports.exportAllUser = async (req, res, next) => {
   const exportedData = [];
   try {
     const data = await UserModel.find()
+      .sort({ updatedAt: -1 })
       .populate("batch", { label: 1, _id: 0 })
       .populate("department", { label: 1, _id: 0 })
       .populate("faculty", { label: 1, _id: 0 });
+
+    //console.log(data);
     data.forEach((user) => {
       exportedData.push({
         fullName: user.fullName,
