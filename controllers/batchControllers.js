@@ -4,7 +4,7 @@ const BatchModel = require("../models/BatchModel");
 // sends all the batche name and id
 module.exports.getAllBatches = async (req, res, next) => {
   try {
-    const batches = await BatchModel.find();
+    const batches = await BatchModel.find().sort({ label: 1 });
     return res.status(200).json(batches);
   } catch (error) {
     res.status(500).json(error);
