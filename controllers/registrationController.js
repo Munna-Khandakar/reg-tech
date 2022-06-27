@@ -110,3 +110,22 @@ module.exports.exportAllUser = async (req, res, next) => {
     res.status(500).json(error);
   }
 };
+
+module.exports.getUsers = async (req, res, next) => {
+  const { page } = req.params;
+  const limit = process.env.PAGE_LIMIT;
+  // const page = 1;
+  try {
+    const data = await UserModel.find()
+      .sort({ updatedAt: -1 })
+      .populate("batch", { label: 1, _id: 0 })
+      .populate("department", { label: 1, _id: 0 })
+      .populate("faculty", { label: 1, _id: 0 })
+      .limit(limit * 1)
+      .skip((page - 1) * limit);
+
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};

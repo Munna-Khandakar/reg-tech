@@ -6,6 +6,7 @@ const {
   createUser,
   getAllUser,
   exportAllUser,
+  getUsers,
 } = require("../controllers/registrationController");
 const upload = require("../middleware/multer");
 // const storage = multer.diskStorage({
@@ -31,5 +32,6 @@ const upload = require("../middleware/multer");
 router.post("/registration", upload.single("photo"), createUser);
 router.get("/", getAllUser);
 router.get("/exportAllUser", exportAllUser);
+router.get("/users/:page", getUsers);
 
 module.exports = router;
