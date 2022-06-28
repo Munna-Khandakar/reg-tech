@@ -62,9 +62,9 @@ function UsersPage() {
           endMessage={"no posts..."}
         >
           {plateData.map((row) => (
-            <tr style={{ width: "100%" }}>
+            <tr>
               <td>{row.fullName}</td>
-              <td>{row.nickName}</td>
+              <td>{row.fullName}</td>
             </tr>
           ))}
         </InfiniteScroll>
