@@ -252,7 +252,12 @@ const HomePage = () => {
             icon={false}
             severity="info"
             sx={{
-              padding: { md: "2rem 25rem", xs: "1rem" },
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              width: "90%",
+              textAlign: "center",
             }}
           >
             <AlertTitle

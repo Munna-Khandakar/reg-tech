@@ -129,3 +129,19 @@ module.exports.getUsers = async (req, res, next) => {
     res.status(500).json(error);
   }
 };
+
+module.exports.getUser = async (req, res, next) => {
+  const { id } = req.params;
+
+  // const page = 1;
+  try {
+    const data = await UserModel.findById(id)
+      .populate("batch", { label: 1, _id: 0 })
+      .populate("department", { label: 1, _id: 0 })
+      .populate("faculty", { label: 1, _id: 0 });
+
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};

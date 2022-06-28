@@ -109,7 +109,7 @@ function UserPage2() {
                       variant="body2"
                       color="text.primary"
                     >
-                      {`${row.phone}`}
+                      {`${row.mobile}`}
                     </Typography>
                     {`  | Email: `}
                     <Typography

@@ -6,12 +6,13 @@ import ScrollTop from "./utils/ScrollTop";
 import ExportUsers from "./utils/ExportUsers";
 import UsersPage from "./pages/UsersPage";
 import UserPage2 from "./pages/UserPage2";
+import PrintForm from "./pages/PrintForm";
 function App() {
   return (
     <>
       <ScrollTop>
         <Routes>
-          <Route exact path="/" element={<HomePage />} />
+          <Route exact path="/" element={<PrintForm />} />
           <Route exact path="/form" element={<MultiStepForm />} />
           <Route exact path="/export-users" element={<ExportUsers />} />
           <Route exact path="/users" element={<UserPage2 />} />

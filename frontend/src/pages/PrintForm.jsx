@@ -29,105 +29,64 @@ import BedIcon from "@mui/icons-material/Bed";
 import CardGiftcardIcon from "@mui/icons-material/CardGiftcard";
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
-const ConfirmStep3 = ({
-  department,
-  batch,
-  nickName,
-  fullName,
-  mobile,
-  secondaryMobile,
-  fatherName,
-  motherName,
-  address,
+import PrintIcon from "@mui/icons-material/Print";
 
-  setAddress,
-  city,
-  setCity,
-  streetAddress,
-  streetAddressLine2,
-  setStreetAddress,
-  setStreetAddressLine2,
-  zipCode,
-  setZipCode,
-  state,
-  setState,
-  setCountry,
-  country,
-  photo,
-  email,
-  emergencyContact,
-  fbId,
-  dob,
-  bloodGroup,
-  nationality,
-  religion,
-  occupation,
-  designation,
-  companyName,
-  maritalStatus,
-  hallRoomNumber,
-  wishBox,
-  handlePrev,
-  submitButtonDisable,
-  submitButtonLoading,
-}) => {
-  const [batchValue, setBatchValue] = useState("");
-  const [deptValue, setDeptValue] = useState("");
-  //getting the batch value from batch id
+function PrintForm() {
+  const [id, setId] = useState("62b69cd0c0d3a1419b8beb3d");
+  const [user, setUser] = useState("");
+  //getting the user
   useEffect(() => {
-    const getBatchValue = async () => {
-      const res = await fetch(`/api/batchValue/${batch}`);
+    const getUser = async () => {
+      const res = await fetch(`/api/user/${id}`);
       const data = await res.json();
-      //console.log(data.label);
-      setBatchValue(data.label);
+      console.log(data);
+      setUser(data);
     };
-    getBatchValue();
+    getUser();
   }, []);
 
-  //getting the department value from department id
-  useEffect(() => {
-    const getDeptValue = async () => {
-      const res = await fetch(`/api/departmentValue/${department}`);
-      const data = await res.json();
-      setDeptValue(data.label);
-    };
-    getDeptValue();
-  }, []);
+  //   //getting the department value from department id
+  //   useEffect(() => {
+  //     const getDeptValue = async () => {
+  //       const res = await fetch(`/api/departmentValue/${department}`);
+  //       const data = await res.json();
+  //       setDeptValue(data.label);
+  //     };
+  //     getDeptValue();
+  //   }, []);
 
   return (
     <>
       <Alert
         icon={false}
-        severity="error"
+        severity="success"
         sx={{
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          width: "90%",
+          width: "100%",
           textAlign: "center",
         }}
       >
         <AlertTitle sx={{ fontSize: "1.5rem", textAlign: "center" }}>
-          জমা দেওয়ার আগে চেক করুন
+          জমা দেওয়ার জন্য ধন্যবাদ
         </AlertTitle>
-        <strong>
-          কোনো তথ্য ভুল হলে "BACK" বাটন এ ক্লিক করে সংশোধন করে নিতে পারবেন
-        </strong>
+        <strong>প্রয়োজনে প্রিন্ট করে রাখতে পারেন</strong>
       </Alert>
       <img
         className="photoPreview"
-        src={URL.createObjectURL(photo)}
+        src={user.photo}
         alt={"User Image"}
         loading="lazy"
       />
       <Box
         sx={{
           border: 1,
-          padding: 1,
+          padding: 2,
           borderRadius: 2,
           borderColor: "grey.500",
-          m: 1,
+          m: 2,
         }}
       >
         <Typography
@@ -146,7 +105,7 @@ const ConfirmStep3 = ({
             size="small"
             disabled
             label="Batch"
-            value={batchValue}
+            //   value={batchValue}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -159,7 +118,7 @@ const ConfirmStep3 = ({
             style={{ width: "100%", marginTop: "1rem" }}
             label="Department"
             disabled
-            value={deptValue}
+            //   value={deptValue}
             size="small"
             InputProps={{
               startAdornment: (
@@ -174,7 +133,7 @@ const ConfirmStep3 = ({
           <TextField
             style={{ width: "100%", marginTop: "1rem" }}
             label="Full Name"
-            value={fullName}
+            //   value={fullName}
             disabled
             size="small"
             InputProps={{
@@ -188,7 +147,7 @@ const ConfirmStep3 = ({
           <TextField
             style={{ width: "100%", marginTop: "1rem" }}
             label="Nick Name"
-            value={nickName}
+            //   value={nickName}
             disabled
             size="small"
             InputProps={{
@@ -204,7 +163,7 @@ const ConfirmStep3 = ({
           <TextField
             style={{ width: "100%", marginTop: "1rem" }}
             label="Phone Number"
-            value={mobile}
+            //   value={mobile}
             disabled
             size="small"
             InputProps={{
@@ -218,7 +177,7 @@ const ConfirmStep3 = ({
           <TextField
             style={{ width: "100%", marginTop: "1rem" }}
             label="What's App"
-            value={secondaryMobile}
+            //   value={secondaryMobile}
             disabled
             size="small"
             InputProps={{
@@ -234,7 +193,7 @@ const ConfirmStep3 = ({
           <TextField
             style={{ width: "100%", marginTop: "1rem" }}
             label="Email Address"
-            value={email}
+            //   value={email}
             disabled
             size="small"
             InputProps={{
@@ -248,7 +207,7 @@ const ConfirmStep3 = ({
           <TextField
             style={{ width: "100%", marginTop: "1rem" }}
             label="Facebook ID"
-            value={fbId ? fbId : "not given"}
+            //   value={fbId ? fbId : "not given"}
             disabled
             size="small"
             InputProps={{
@@ -286,7 +245,7 @@ const ConfirmStep3 = ({
             size="small"
             label="Father's Name"
             disabled
-            value={fatherName}
+            //   value={fatherName}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -298,7 +257,7 @@ const ConfirmStep3 = ({
           <TextField
             style={{ width: "100%", marginTop: "1rem" }}
             label="Mother's Name"
-            value={motherName}
+            //   value={motherName}
             disabled
             size="small"
             InputProps={{
@@ -316,7 +275,7 @@ const ConfirmStep3 = ({
           rows={2}
           disabled
           multiline
-          value={`${streetAddress},${streetAddressLine2},${city},${state},${zipCode},${country}`}
+          // value={`${streetAddress},${streetAddressLine2},${city},${state},${zipCode},${country}`}
           size="small"
           InputProps={{
             startAdornment: (
@@ -330,7 +289,7 @@ const ConfirmStep3 = ({
           <TextField
             style={{ width: "100%", marginTop: "1rem" }}
             label="Date of Birth"
-            value={dob}
+            //   value={dob}
             size="small"
             disabled
             InputProps={{
@@ -344,7 +303,7 @@ const ConfirmStep3 = ({
           <TextField
             style={{ width: "100%", marginTop: "1rem" }}
             label="Blood Group"
-            value={bloodGroup}
+            //   value={bloodGroup}
             disabled
             size="small"
             InputProps={{
@@ -361,7 +320,7 @@ const ConfirmStep3 = ({
             style={{ width: "100%", marginTop: "1rem" }}
             label="Nationality"
             disabled
-            value={nationality}
+            //   value={nationality}
             size="small"
             InputProps={{
               startAdornment: (
@@ -374,7 +333,7 @@ const ConfirmStep3 = ({
           <TextField
             style={{ width: "100%", marginTop: "1rem" }}
             label="Religion"
-            value={religion}
+            //   value={religion}
             disabled
             size="small"
             InputProps={{
@@ -391,7 +350,7 @@ const ConfirmStep3 = ({
             style={{ width: "100%", marginTop: "1rem" }}
             label="Emergency Contact"
             disabled
-            value={emergencyContact}
+            //   value={emergencyContact}
             size="small"
             InputProps={{
               startAdornment: (
@@ -428,7 +387,7 @@ const ConfirmStep3 = ({
           size="small"
           label="Occupation"
           disabled
-          value={`${occupation}, ${designation},${companyName}`}
+          // value={`${occupation}, ${designation},${companyName}`}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
@@ -442,7 +401,7 @@ const ConfirmStep3 = ({
           <TextField
             style={{ width: "100%", marginTop: "1rem" }}
             label="Marital Status"
-            value={maritalStatus}
+            //   value={maritalStatus}
             disabled
             size="small"
             InputProps={{
@@ -456,7 +415,7 @@ const ConfirmStep3 = ({
           <TextField
             style={{ width: "100%", marginTop: "1rem" }}
             label="Hall Room Number"
-            value={hallRoomNumber}
+            //   value={hallRoomNumber}
             disabled
             size="small"
             InputProps={{
@@ -472,7 +431,7 @@ const ConfirmStep3 = ({
         <TextField
           style={{ width: "100%", marginTop: "1rem" }}
           label="Wish Box"
-          value={wishBox}
+          // value={wishBox}
           disabled
           multiline
           rows={3}
@@ -496,26 +455,26 @@ const ConfirmStep3 = ({
         >
           <Button
             variant="outlined"
-            startIcon={<ArrowBackIosIcon />}
-            onClick={() => handlePrev()}
+            startIcon={<HomeIcon />}
+            //   onClick={() => handlePrev()}
           >
-            Back
+            Home
           </Button>
           <LoadingButton
             // onClick={handleClick}
             type="submit"
-            loading={submitButtonLoading}
-            disabled={submitButtonDisable}
+            //   loading={submitButtonLoading}
+            //   disabled={submitButtonDisable}
             loadingPosition="end"
             variant="contained"
-            endIcon={<FileUploadIcon />}
+            endIcon={<PrintIcon />}
           >
-            Submit
+            Print
           </LoadingButton>
         </Stack>
       </Box>
     </>
   );
-};
+}
 
-export default ConfirmStep3;
+export default PrintForm;

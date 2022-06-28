@@ -82,6 +82,7 @@
 }
 .red-text {
   color: red;
+  text-align: center;
   font-weight: bold;
   font-style: italic;
 }
