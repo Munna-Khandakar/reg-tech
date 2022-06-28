@@ -182,19 +182,20 @@ const MultiStepForm = () => {
   const successMessageHandler = (msg) => {
     setSubmitButtonLoading(false);
     setSubmitButtonDisable(true);
-    swal({
-      title: "Congratulations",
-      text: msg,
-      icon: "success",
-      // buttons: true,
-      dangerMode: false,
-    }).then((value) => {
-      if (value) {
-        navigate("/", { replace: true });
-      } else {
-        navigate("/", { replace: true });
-      }
-    });
+    navigate(`/print/${msg}`);
+    // swal({
+    //   title: "Congratulations",
+    //   text: msg,
+    //   icon: "success",
+    //   // buttons: true,
+    //   dangerMode: false,
+    // }).then((value) => {
+    //   if (value) {
+    //     navigate("/", { replace: true });
+    //   } else {
+    //     navigate("/", { replace: true });
+    //   }
+    // });
   };
   const errorMessageHandle = (msg) => {
     setSubmitButtonLoading(false);

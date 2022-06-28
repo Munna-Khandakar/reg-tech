@@ -256,7 +256,7 @@ const HomePage = () => {
               flexDirection: "column",
               alignItems: "center",
               justifyContent: "center",
-              width: "90%",
+              width: { xs: "90", md: "95%" },
               textAlign: "center",
             }}
           >
@@ -270,14 +270,6 @@ const HomePage = () => {
               কার্যক্রম পরবর্তীতে করা হবে
             </strong>
           </Alert>
-          {/* <Alert
-            severity="info"
-            variant="outlined"
-            sx={{ padding: { md: "2rem 15rem", xs: "1rem" } }}
-          >
-            <AlertTitle>বিশেষ দ্রষ্টব্য</AlertTitle>
-            <strong> রি-ইউনিয়নের রেজিস্ট্রেশন </strong>— পরবর্তীতে করা হবে
-          </Alert> */}
         </Stack>
         <Typography
           variant="h2"

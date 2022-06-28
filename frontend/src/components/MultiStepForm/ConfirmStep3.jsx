@@ -104,7 +104,7 @@ const ConfirmStep3 = ({
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          width: "90%",
+          width: { xs: "90", md: "98%" },
           textAlign: "center",
         }}
       >

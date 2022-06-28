@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Typography, TextField, Box, Button, Stack } from "@mui/material";
 import InputAdornment from "@mui/material/InputAdornment";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
@@ -30,10 +30,14 @@ import CardGiftcardIcon from "@mui/icons-material/CardGiftcard";
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
 import PrintIcon from "@mui/icons-material/Print";
-
+import { useReactToPrint } from "react-to-print";
+import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 function PrintForm() {
-  const [id, setId] = useState("62b69cd0c0d3a1419b8beb3d");
+  //const [id, setId] = useState("62b69cd0c0d3a1419b8beb3d");
   const [user, setUser] = useState("");
+  let { id } = useParams();
+
   //getting the user
   useEffect(() => {
     const getUser = async () => {
@@ -54,7 +58,11 @@ function PrintForm() {
   //     };
   //     getDeptValue();
   //   }, []);
-
+  const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
+  let navigate = useNavigate();
   return (
     <>
       <Alert
@@ -70,381 +78,384 @@ function PrintForm() {
         }}
       >
         <AlertTitle sx={{ fontSize: "1.5rem", textAlign: "center" }}>
-          জমা দেওয়ার জন্য ধন্যবাদ
+          তথ্য জমা দেওয়ার জন্য ধন্যবাদ
         </AlertTitle>
-        <strong>প্রয়োজনে প্রিন্ট করে রাখতে পারেন</strong>
+        <strong>১ম পুনর্মিলনীর জন্য আপনার তথ্য সংরক্ষণ হয়ে গেছে </strong>
+        <>(প্রয়োজনে প্রিন্ট করে রাখতে পারেন)</>
       </Alert>
-      <img
-        className="photoPreview"
-        src={user.photo}
-        alt={"User Image"}
-        loading="lazy"
-      />
-      <Box
-        sx={{
-          border: 1,
-          padding: 2,
-          borderRadius: 2,
-          borderColor: "grey.500",
-          m: 2,
-        }}
-      >
-        <Typography
-          variant="h5"
-          style={{
-            color: "black",
-            textAlign: "Start",
-            fontSize: 15,
+      <div ref={componentRef}>
+        <img
+          className="photoPreview"
+          src={user.photo}
+          alt={"User Image"}
+          loading="lazy"
+        />
+        <Box
+          sx={{
+            border: 1,
+            padding: 2,
+            borderRadius: 2,
+            borderColor: "grey.500",
+            m: 1,
           }}
         >
-          General Information
-        </Typography>
-        <Stack direction={{ xs: "row", md: "row" }} spacing={2}>
-          <TextField
-            style={{ width: "100%", marginTop: "1rem" }}
-            size="small"
-            disabled
-            label="Batch"
-            //   value={batchValue}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <GroupsIcon />
-                </InputAdornment>
-              ),
+          <Typography
+            variant="h5"
+            style={{
+              color: "black",
+              textAlign: "Start",
+              fontSize: 15,
             }}
-          />
-          <TextField
-            style={{ width: "100%", marginTop: "1rem" }}
-            label="Department"
-            disabled
-            //   value={deptValue}
-            size="small"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <SchoolIcon />
-                </InputAdornment>
-              ),
-            }}
-          />
-        </Stack>
-        <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
-          <TextField
-            style={{ width: "100%", marginTop: "1rem" }}
-            label="Full Name"
-            //   value={fullName}
-            disabled
-            size="small"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <BadgeIcon />
-                </InputAdornment>
-              ),
-            }}
-          />
-          <TextField
-            style={{ width: "100%", marginTop: "1rem" }}
-            label="Nick Name"
-            //   value={nickName}
-            disabled
-            size="small"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <DriveFileRenameOutlineIcon />
-                </InputAdornment>
-              ),
-            }}
-          />
-        </Stack>
-        <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
-          <TextField
-            style={{ width: "100%", marginTop: "1rem" }}
-            label="Phone Number"
-            //   value={mobile}
-            disabled
-            size="small"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <PhoneIphoneIcon />
-                </InputAdornment>
-              ),
-            }}
-          />
-          <TextField
-            style={{ width: "100%", marginTop: "1rem" }}
-            label="What's App"
-            //   value={secondaryMobile}
-            disabled
-            size="small"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <WhatsAppIcon />
-                </InputAdornment>
-              ),
-            }}
-          />
-        </Stack>
-        <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
-          <TextField
-            style={{ width: "100%", marginTop: "1rem" }}
-            label="Email Address"
-            //   value={email}
-            disabled
-            size="small"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <EmailIcon />
-                </InputAdornment>
-              ),
-            }}
-          />
-          <TextField
-            style={{ width: "100%", marginTop: "1rem" }}
-            label="Facebook ID"
-            //   value={fbId ? fbId : "not given"}
-            disabled
-            size="small"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <FacebookIcon />
-                </InputAdornment>
-              ),
-            }}
-          />
-        </Stack>
-      </Box>
-      <Box
-        sx={{
-          border: 1,
-          padding: 1,
-          borderRadius: 2,
-          borderColor: "grey.500",
-          m: 1,
-        }}
-      >
-        <Typography
-          variant="h5"
-          style={{
-            color: "black",
-            textAlign: "Start",
-            fontSize: 15,
+          >
+            General Information
+          </Typography>
+          <Stack direction={{ xs: "row", md: "row" }} spacing={2}>
+            <TextField
+              style={{ width: "100%", marginTop: "1rem" }}
+              size="small"
+              disabled
+              label="Batch"
+              value={user.batch && user.batch.label}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <GroupsIcon />
+                  </InputAdornment>
+                ),
+              }}
+            />
+            <TextField
+              style={{ width: "100%", marginTop: "1rem" }}
+              label="Department"
+              disabled
+              value={user.department && user.department.label}
+              size="small"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <SchoolIcon />
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </Stack>
+          <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
+            <TextField
+              style={{ width: "100%", marginTop: "1rem" }}
+              label="Full Name"
+              value={user.fullName}
+              disabled
+              size="small"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <BadgeIcon />
+                  </InputAdornment>
+                ),
+              }}
+            />
+            <TextField
+              style={{ width: "100%", marginTop: "1rem" }}
+              label="Nick Name"
+              value={user.nickName}
+              disabled
+              size="small"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <DriveFileRenameOutlineIcon />
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </Stack>
+          <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
+            <TextField
+              style={{ width: "100%", marginTop: "1rem" }}
+              label="Phone Number"
+              value={user.mobile}
+              disabled
+              size="small"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <PhoneIphoneIcon />
+                  </InputAdornment>
+                ),
+              }}
+            />
+            <TextField
+              style={{ width: "100%", marginTop: "1rem" }}
+              label="What's App"
+              value={user.secondaryMobile}
+              disabled
+              size="small"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <WhatsAppIcon />
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </Stack>
+          <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
+            <TextField
+              style={{ width: "100%", marginTop: "1rem" }}
+              label="Email Address"
+              value={user.email}
+              disabled
+              size="small"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <EmailIcon />
+                  </InputAdornment>
+                ),
+              }}
+            />
+            <TextField
+              style={{ width: "100%", marginTop: "1rem" }}
+              label="Facebook ID"
+              value={user.fbId ? user.fbId : "not given"}
+              disabled
+              size="small"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <FacebookIcon />
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </Stack>
+        </Box>
+        <Box
+          sx={{
+            border: 1,
+            padding: 1,
+            borderRadius: 2,
+            borderColor: "grey.500",
+            m: 1,
           }}
         >
-          Personal Information
-        </Typography>
-        <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
-          <TextField
-            style={{ width: "100%", marginTop: "1rem" }}
-            size="small"
-            label="Father's Name"
-            disabled
-            //   value={fatherName}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <ContactsIcon />
-                </InputAdornment>
-              ),
+          <Typography
+            variant="h5"
+            style={{
+              color: "black",
+              textAlign: "Start",
+              fontSize: 15,
             }}
-          />
+          >
+            Personal Information
+          </Typography>
+          <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
+            <TextField
+              style={{ width: "100%", marginTop: "1rem" }}
+              size="small"
+              label="Father's Name"
+              disabled
+              value={user.fatherName}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <ContactsIcon />
+                  </InputAdornment>
+                ),
+              }}
+            />
+            <TextField
+              style={{ width: "100%", marginTop: "1rem" }}
+              label="Mother's Name"
+              value={user.motherName}
+              disabled
+              size="small"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <ContactsIcon />
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </Stack>
           <TextField
             style={{ width: "100%", marginTop: "1rem" }}
-            label="Mother's Name"
-            //   value={motherName}
+            label="Address"
+            rows={2}
             disabled
-            size="small"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <ContactsIcon />
-                </InputAdornment>
-              ),
-            }}
-          />
-        </Stack>
-        <TextField
-          style={{ width: "100%", marginTop: "1rem" }}
-          label="Address"
-          rows={2}
-          disabled
-          multiline
-          // value={`${streetAddress},${streetAddressLine2},${city},${state},${zipCode},${country}`}
-          size="small"
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <HomeIcon />
-              </InputAdornment>
-            ),
-          }}
-        />
-        <Stack direction={{ xs: "row", md: "row" }} spacing={2}>
-          <TextField
-            style={{ width: "100%", marginTop: "1rem" }}
-            label="Date of Birth"
-            //   value={dob}
-            size="small"
-            disabled
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <CalendarMonthIcon />
-                </InputAdornment>
-              ),
-            }}
-          />
-          <TextField
-            style={{ width: "100%", marginTop: "1rem" }}
-            label="Blood Group"
-            //   value={bloodGroup}
-            disabled
+            multiline
+            value={`${user.streetAddress},${user.streetAddressLine2},${user.city},${user.state},${user.zipCode},${user.country}`}
             size="small"
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
-                  <BloodtypeIcon />
+                  <HomeIcon />
                 </InputAdornment>
               ),
             }}
           />
-        </Stack>
-        <Stack direction={{ xs: "row", md: "row" }} spacing={2}>
-          <TextField
-            style={{ width: "100%", marginTop: "1rem" }}
-            label="Nationality"
-            disabled
-            //   value={nationality}
-            size="small"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <FlagCircleIcon />
-                </InputAdornment>
-              ),
-            }}
-          />
-          <TextField
-            style={{ width: "100%", marginTop: "1rem" }}
-            label="Religion"
-            //   value={religion}
-            disabled
-            size="small"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <MosqueIcon />
-                </InputAdornment>
-              ),
-            }}
-          />
-        </Stack>
-        <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
-          <TextField
-            style={{ width: "100%", marginTop: "1rem" }}
-            label="Emergency Contact"
-            disabled
-            //   value={emergencyContact}
-            size="small"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <ContactPhoneIcon />
-                </InputAdornment>
-              ),
-            }}
-          />
-        </Stack>
-      </Box>
-      <Box
-        sx={{
-          border: 1,
-          padding: 1,
-          borderRadius: 2,
-          borderColor: "grey.500",
-          m: 1,
-        }}
-      >
-        <Typography
-          variant="h5"
-          style={{
-            color: "black",
-            textAlign: "Start",
-            fontSize: 15,
+          <Stack direction={{ xs: "row", md: "row" }} spacing={2}>
+            <TextField
+              style={{ width: "100%", marginTop: "1rem" }}
+              label="Date of Birth"
+              value={user.dob}
+              size="small"
+              disabled
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <CalendarMonthIcon />
+                  </InputAdornment>
+                ),
+              }}
+            />
+            <TextField
+              style={{ width: "100%", marginTop: "1rem" }}
+              label="Blood Group"
+              value={user.bloodGroup}
+              disabled
+              size="small"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <BloodtypeIcon />
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </Stack>
+          <Stack direction={{ xs: "row", md: "row" }} spacing={2}>
+            <TextField
+              style={{ width: "100%", marginTop: "1rem" }}
+              label="Nationality"
+              disabled
+              value={user.nationality}
+              size="small"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <FlagCircleIcon />
+                  </InputAdornment>
+                ),
+              }}
+            />
+            <TextField
+              style={{ width: "100%", marginTop: "1rem" }}
+              label="Religion"
+              value={user.religion}
+              disabled
+              size="small"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <MosqueIcon />
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </Stack>
+          <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
+            <TextField
+              style={{ width: "100%", marginTop: "1rem" }}
+              label="Emergency Contact"
+              disabled
+              value={user.emergencyContact}
+              size="small"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <ContactPhoneIcon />
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </Stack>
+        </Box>
+        <Box
+          sx={{
+            border: 1,
+            padding: 1,
+            borderRadius: 2,
+            borderColor: "grey.500",
+            m: 1,
           }}
         >
-          Other Information
-        </Typography>
+          <Typography
+            variant="h5"
+            style={{
+              color: "black",
+              textAlign: "Start",
+              fontSize: 15,
+            }}
+          >
+            Other Information
+          </Typography>
 
-        <TextField
-          style={{ width: "100%", marginTop: "1rem" }}
-          size="small"
-          label="Occupation"
-          disabled
-          // value={`${occupation}, ${designation},${companyName}`}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <WorkIcon />
-              </InputAdornment>
-            ),
-          }}
-        />
-
-        <Stack direction={{ xs: "row", md: "row" }} spacing={2}>
           <TextField
             style={{ width: "100%", marginTop: "1rem" }}
-            label="Marital Status"
-            //   value={maritalStatus}
-            disabled
             size="small"
+            label="Occupation"
+            disabled
+            value={`${user.occupation}, ${user.designation},${user.companyName}`}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
-                  <PeopleIcon />
+                  <WorkIcon />
                 </InputAdornment>
               ),
             }}
           />
+
+          <Stack direction={{ xs: "row", md: "row" }} spacing={2}>
+            <TextField
+              style={{ width: "100%", marginTop: "1rem" }}
+              label="Marital Status"
+              value={user.maritalStatus}
+              disabled
+              size="small"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <PeopleIcon />
+                  </InputAdornment>
+                ),
+              }}
+            />
+            <TextField
+              style={{ width: "100%", marginTop: "1rem" }}
+              label="Hall Room Number"
+              value={user.hallRoomNumber}
+              disabled
+              size="small"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <BedIcon />
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </Stack>
+
           <TextField
             style={{ width: "100%", marginTop: "1rem" }}
-            label="Hall Room Number"
-            //   value={hallRoomNumber}
+            label="Wish Box"
+            value={user.wishBox}
             disabled
+            multiline
+            rows={3}
             size="small"
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
-                  <BedIcon />
+                  <CardGiftcardIcon />
                 </InputAdornment>
               ),
             }}
           />
-        </Stack>
-
-        <TextField
-          style={{ width: "100%", marginTop: "1rem" }}
-          label="Wish Box"
-          // value={wishBox}
-          disabled
-          multiline
-          rows={3}
-          size="small"
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <CardGiftcardIcon />
-              </InputAdornment>
-            ),
-          }}
-        />
-      </Box>
+        </Box>
+      </div>
       <Box>
         <Stack
           direction="row"
@@ -456,13 +467,13 @@ function PrintForm() {
           <Button
             variant="outlined"
             startIcon={<HomeIcon />}
-            //   onClick={() => handlePrev()}
+            onClick={() => navigate("/")}
           >
             Home
           </Button>
           <LoadingButton
-            // onClick={handleClick}
-            type="submit"
+            onClick={handlePrint}
+            // type="submit"
             //   loading={submitButtonLoading}
             //   disabled={submitButtonDisable}
             loadingPosition="end"
