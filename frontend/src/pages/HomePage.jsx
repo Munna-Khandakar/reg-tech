@@ -375,7 +375,7 @@ const HomePage = () => {
                 >
                   <strong> EMAIL * </strong>খুবই গুরুত্বপূর্ণ তথ্য। সুতরাং,
                   Active এবং Current
-                  <strong>EMAIL Address</strong> সঠিকভাবে প্রদান করুন।
+                  <strong> EMAIL Address</strong> সঠিকভাবে প্রদান করুন।
                 </TableCell>
               </TableRow>
             </TableBody>

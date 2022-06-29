@@ -340,31 +340,14 @@ function StepOne({
               onChange={setMobile}
             />
 
-            {/* <TextField
-          style={{ width: "100%", margin: "1rem 0" }}
-          placeholder="YOUR ACTIVE PHONE NUMBER"
-          label="PHONE"
-          value={mobile}
-          onChange={(e) => setMobile(e.target.value)}
-          variant="outlined"
-          required
-        /> */}
             <PhoneInput
               className="phoneInputBox"
-              placeholder="WhatsApp *"
+              placeholder="WhatsApp "
               defaultCountry="BD"
               value={secondaryMobile}
               onChange={setSecondaryMobile}
             />
 
-            {/* <TextField
-          style={{ width: "100%", margin: "1rem 0" }}
-          placeholder=" SECONDARY PHONE NUMBER"
-          label="SECONDARY PHONE"
-          value={secondaryMobile}
-          onChange={(e) => setSecondaryMobile(e.target.value)}
-          variant="outlined"
-        /> */}
             <TextField
               style={{ width: "100%", margin: "1rem 0" }}
               placeholder="YOUR ACTIVE EMAIL"
@@ -372,6 +355,7 @@ function StepOne({
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               variant="outlined"
+              type="email"
               required
             />
             <TextField

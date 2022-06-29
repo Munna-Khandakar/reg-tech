@@ -136,7 +136,7 @@ function StepTwo({
             />
             <TextField
               style={{ width: "100%", margin: "1rem 0" }}
-              label="DOB"
+              label="Date of Birth"
               variant="outlined"
               type="date"
               value={dob}
@@ -224,6 +224,7 @@ function StepTwo({
                 style={{ width: "100%" }}
                 placeholder="STATE/PROVINCE/ZILLA"
                 label="STATE/PROVINCE/ZILLA"
+                required
                 value={state}
                 onChange={(e) => setState(e.target.value)}
                 variant="outlined"

@@ -71,65 +71,61 @@ function UserPage2() {
               <ListItemText
                 primary={
                   <>
-                    {`Full Name: `}
+                    {row.fullName}
                     <Typography
                       sx={{ display: "inline" }}
                       component="span"
                       variant="body2"
                       color="text.primary"
                     >
-                      {`${row.fullName}`}
+                      {`(${row.nickName}),`}
                     </Typography>
-                    {` | Nick Name: `}
                     <Typography
                       sx={{ display: "inline" }}
                       component="span"
                       variant="body2"
                       color="text.primary"
                     >
-                      {`${row.nickName}`}
+                      {row.batch && `${row.batch.label},`}
                     </Typography>
-                    {` | Department: `}
                     <Typography
                       sx={{ display: "inline" }}
                       component="span"
                       variant="body2"
                       color="text.primary"
                     >
-                      {row.department && `${row.department.label}`}
+                      {row.department && ` Dept. of ${row.department.label}`}
                     </Typography>
                   </>
                 }
                 secondary={
                   <React.Fragment>
-                    {`Phone: `}
                     <Typography
                       sx={{ display: "inline" }}
                       component="span"
                       variant="body2"
                       color="text.primary"
                     >
-                      {`${row.mobile}`}
+                      {`${row.mobile}, `}
                     </Typography>
-                    {`  | Email: `}
+
                     <Typography
                       sx={{ display: "inline" }}
                       component="span"
                       variant="body2"
                       color="text.primary"
                     >
-                      {`${row.email}`}
+                      {`${row.email}, `}
                     </Typography>
-                    {`  | Room: `}
                     <Typography
                       sx={{ display: "inline" }}
                       component="span"
                       variant="body2"
                       color="text.primary"
                     >
-                      {row.hallRoomNumber && `${row.hallRoomNumber}`}
+                      {row.hallRoomNumber && `${row.hallRoomNumber}, `}
                     </Typography>
-                    {`  | Wish: `}
+
                     <Typography
                       sx={{ display: "inline" }}
                       component="span"
