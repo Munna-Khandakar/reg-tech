@@ -49,7 +49,7 @@
   border-radius: 50%;
 }
 .cover-bg {
-  background: url("https://images.thedailystar.net/sites/default/files/feature/images/2021/02/17/ju-main-gate-wb_0_0.jpg");
+  background: url("../../cover2.jpg");
   background-repeat: no-repeat;
   background-size: 100% 45%;
 
@@ -60,13 +60,13 @@
 }
 .hero {
   background-color: #908787;
-  background-image: url("https://images.thedailystar.net/sites/default/files/feature/images/2021/02/17/ju-main-gate-wb_0_0.jpg");
+  background-image: url("../../cover.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-blend-mode: multiply;
   color: white;
-  padding-top: 250px;
-  padding-bottom: 250px;
+  padding-top: 200px;
+  padding-bottom: 200px;
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
 }

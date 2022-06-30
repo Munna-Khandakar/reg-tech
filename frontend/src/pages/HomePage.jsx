@@ -54,14 +54,14 @@ const HomePage = () => {
             textAlign={"center"}
             sx={{
               fontSize: {
-                lg: 50,
-                md: 40,
+                lg: 60,
+                md: 50,
                 sm: 35,
                 xs: 35,
               },
             }}
           >
-            মওলানা ভাসানী হল, জা.বি.
+            মওলানা ভাসানী হল জা. বি.
           </Typography>
           <Typography
             variant="h3"
@@ -77,11 +77,12 @@ const HomePage = () => {
               fontWeight: 500,
             }}
           >
-            ১ম পুনর্মিলনী (SMART Reunion){" "}
+            ১ম পুনর্মিলনী উৎসব (SMART Reunion)
           </Typography>
           <Typography
             variant="h4"
             textAlign={"center"}
+            mt={2}
             sx={{
               fontSize: {
                 lg: 40,
@@ -89,10 +90,41 @@ const HomePage = () => {
                 sm: 25,
                 xs: 15,
               },
+              textDecoration: "underline",
             }}
           >
-            সকল ছাত্রদের ( 20 তম ব্যাচ থেকে শুরু করে বর্তমান 1st ইয়ার ) তথ্য
-            উপাত্ত সংগ্রহ ফর্ম
+            ছাত্রদের মৌলিক তথ্য সংগ্রহ কার্যক্রম
+          </Typography>
+          {/* <Typography
+            variant="h4"
+            textAlign={"center"}
+            sx={{
+              fontSize: {
+                lg: 30,
+                md: 30,
+                sm: 25,
+                xs: 15,
+              },
+              bgcolor: "GrayText",
+            }}
+          >
+            বর্তমান এবং প্রাক্তন সকল ছাত্রদেরকে তথ্য প্রদানের জন্য অনুরোধ করা
+            হলো
+          </Typography> */}
+          <Typography
+            variant="h4"
+            mt={3}
+            textAlign={"center"}
+            sx={{
+              fontSize: {
+                lg: 30,
+                md: 30,
+                sm: 25,
+                xs: 15,
+              },
+            }}
+          >
+            <b>কারিগরি সহযোগিতা</b> : TechSimple ICT
           </Typography>
         </Box>
       </div>
