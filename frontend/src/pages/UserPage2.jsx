@@ -9,10 +9,12 @@ import ListItemText from "@mui/material/ListItemText";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
+import { useNavigate } from "react-router-dom";
 function UserPage2() {
   const [plateData, setPlateData] = useState([]);
   const [page, setPage] = useState(2);
   const [hasMore, setHasMore] = useState(true);
+  let navigate = useNavigate();
   //fetching the paginated data for the first time
   useEffect(() => {
     const getPosts = async () => {
@@ -45,6 +47,9 @@ function UserPage2() {
     setPage(page + 1);
   };
 
+  const showProfile = (id) => {
+    navigate(`/print/${id}`);
+  };
   if (!plateData) {
     return (
       <div>
@@ -65,13 +70,22 @@ function UserPage2() {
         {plateData.map((row) => (
           <>
             <ListItem alignItems="flex-start" key={row._id}>
-              <ListItemAvatar>
+              <ListItemAvatar
+                onClick={() => showProfile(row._id)}
+                sx={{ cursor: "pointer" }}
+              >
                 <Avatar alt={row.fullName} src={row.photo} />
               </ListItemAvatar>
               <ListItemText
                 primary={
                   <>
-                    {row.fullName}
+                    <span
+                      className="cursorPointer"
+                      onClick={() => showProfile(row._id)}
+                    >
+                      {row.fullName}
+                    </span>
+
                     <Typography
                       sx={{ display: "inline" }}
                       component="span"

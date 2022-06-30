@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 import {
   Checkbox,
   Button,
@@ -40,9 +41,19 @@ const HomePage = () => {
       return swal("", "আমাদের নির্দেশনা পড়ুন আগে ", "error");
     }
   };
+  const variants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
+  };
   return (
     <>
-      <div className="hero">
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        transition={{ duration: 1 }}
+        variants={variants}
+        className="hero"
+      >
         <Box
           display="flex"
           flexDirection={"column"}
@@ -127,7 +138,7 @@ const HomePage = () => {
             <b>কারিগরি সহযোগিতা</b> : TechSimple ICT
           </Typography>
         </Box>
-      </div>
+      </motion.div>
 
       <Paper elevation={3}>
         <Typography
