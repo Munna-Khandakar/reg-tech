@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Typography, TextField, Box, Button, Stack } from "@mui/material";
 import InputAdornment from "@mui/material/InputAdornment";
-import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
+
 import LoadingButton from "@mui/lab/LoadingButton";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import ImageList from "@mui/material/ImageList";
-import ImageListItem from "@mui/material/ImageListItem";
 import SchoolIcon from "@mui/icons-material/School";
 import GroupsIcon from "@mui/icons-material/Groups";
 import BadgeIcon from "@mui/icons-material/Badge";
@@ -20,8 +18,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import BloodtypeIcon from "@mui/icons-material/Bloodtype";
 import FlagCircleIcon from "@mui/icons-material/FlagCircle";
-import LanguageIcon from "@mui/icons-material/Language";
-import MosqueIcon from "@mui/icons-material/Mosque";
+import BoyIcon from "@mui/icons-material/Boy";
 import ContactPhoneIcon from "@mui/icons-material/ContactPhone";
 import WorkIcon from "@mui/icons-material/Work";
 import PeopleIcon from "@mui/icons-material/People";
@@ -29,7 +26,7 @@ import BedIcon from "@mui/icons-material/Bed";
 import CardGiftcardIcon from "@mui/icons-material/CardGiftcard";
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
-import WcIcon from "@mui/icons-material/Wc";
+
 const ConfirmStep3 = ({
   department,
   batch,
@@ -382,7 +379,7 @@ const ConfirmStep3 = ({
               startAdornment: (
                 <InputAdornment position="start">
                   {/* <MosqueIcon /> */}
-                  <WcIcon />
+                  <BoyIcon />
                 </InputAdornment>
               ),
             }}

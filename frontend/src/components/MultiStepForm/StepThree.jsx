@@ -49,14 +49,6 @@ function StepThree({
         </div>
         <div>
           <Box autoComplete="off">
-            {/* <Typography
-          variant="h5"
-          style={{ color: "#999", textAlign: "center", marginTop: "1rem" }}
-        >
-          {" "}
-          Personal Information
-        </Typography> */}
-
             <TextField
               style={{ width: "100%", margin: "1rem 0" }}
               placeholder="YOUR CURRENT OCCUPATION"

@@ -104,7 +104,6 @@ function StepTwo({
               variant="h5"
               style={{ color: "#999", textAlign: "center", marginTop: "1rem" }}
             >
-              {" "}
               Personal Information
             </Typography>
             <TextField
@@ -187,7 +186,6 @@ function StepTwo({
               variant="h5"
               style={{ color: "#999", textAlign: "center", marginTop: "1rem" }}
             >
-              {" "}
               Address
             </Typography>
             {/* address */}
@@ -195,7 +193,6 @@ function StepTwo({
               style={{ width: "100%", margin: "1rem 0" }}
               placeholder="STREET ADDRESS"
               label="STREET ADDRESS"
-              required
               value={streetAddress}
               onChange={(e) => setStreetAddress(e.target.value)}
               variant="outlined"
@@ -205,7 +202,6 @@ function StepTwo({
               style={{ width: "100%", margin: "1rem 0" }}
               placeholder="STREET ADDRESS LINE 2"
               label="STREET ADDRESS LINE 2"
-              required
               value={streetAddressLine2}
               onChange={(e) => setStreetAddressLine2(e.target.value)}
               variant="outlined"
@@ -238,7 +234,6 @@ function StepTwo({
               <TextField
                 style={{ width: "100%" }}
                 placeholder="POSTAL/ZIP CODE"
-                required
                 label="POSTAL/ZIP CODE"
                 value={zipCode}
                 onChange={(e) => setZipCode(e.target.value)}
