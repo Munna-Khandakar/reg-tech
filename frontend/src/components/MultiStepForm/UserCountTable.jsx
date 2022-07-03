@@ -79,7 +79,17 @@ function UserCountTable() {
                 sx={{ fontSize: 44, textAlign: "center" }}
                 color="text.main"
               >
-                <CountUp start={0} end={count ? count.total : 0} delay={0} />
+                {count ? (
+                  <CountUp start={0} end={count ? count.total : 0} delay={0} />
+                ) : (
+                  <Typography
+                    sx={{ fontSize: 14, textAlign: "center" }}
+                    color="text.secondary"
+                    gutterBottom
+                  >
+                    calculating...
+                  </Typography>
+                )}
               </Typography>
             </CardContent>
           </Card>
