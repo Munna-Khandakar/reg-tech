@@ -30,6 +30,7 @@ import swal from "sweetalert";
 import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
 import { margin } from "@mui/system";
 import { color } from "@cloudinary/url-gen/qualifiers/background";
+import UserCountTable from "../components/MultiStepForm/UserCountTable";
 const HomePage = () => {
   let navigate = useNavigate();
   const [check1, setCheck1] = useState(true);
@@ -106,22 +107,6 @@ const HomePage = () => {
           >
             ছাত্রদের মৌলিক তথ্য সংগ্রহ কার্যক্রম
           </Typography>
-          {/* <Typography
-            variant="h4"
-            textAlign={"center"}
-            sx={{
-              fontSize: {
-                lg: 30,
-                md: 30,
-                sm: 25,
-                xs: 15,
-              },
-              bgcolor: "GrayText",
-            }}
-          >
-            বর্তমান এবং প্রাক্তন সকল ছাত্রদেরকে তথ্য প্রদানের জন্য অনুরোধ করা
-            হলো
-          </Typography> */}
           <Typography
             variant="h4"
             mt={3}
@@ -282,6 +267,7 @@ const HomePage = () => {
             </CardActionArea>
           </Card>
         </Stack>
+        <UserCountTable />
         <Stack
           sx={{
             width: "100%",

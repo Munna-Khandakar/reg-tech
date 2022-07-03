@@ -29,6 +29,7 @@ import BedIcon from "@mui/icons-material/Bed";
 import CardGiftcardIcon from "@mui/icons-material/CardGiftcard";
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
+import WcIcon from "@mui/icons-material/Wc";
 const ConfirmStep3 = ({
   department,
   batch,
@@ -380,7 +381,8 @@ const ConfirmStep3 = ({
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
-                  <MosqueIcon />
+                  {/* <MosqueIcon /> */}
+                  <WcIcon />
                 </InputAdornment>
               ),
             }}

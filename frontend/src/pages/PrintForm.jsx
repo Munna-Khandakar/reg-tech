@@ -33,6 +33,7 @@ import PrintIcon from "@mui/icons-material/Print";
 import { useReactToPrint } from "react-to-print";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import WcIcon from "@mui/icons-material/Wc";
 function PrintForm() {
   //const [id, setId] = useState("62b69cd0c0d3a1419b8beb3d");
   const [user, setUser] = useState("");
@@ -349,7 +350,8 @@ function PrintForm() {
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
-                    <MosqueIcon />
+                    {/* <MosqueIcon /> */}
+                    <WcIcon />
                   </InputAdornment>
                 ),
               }}

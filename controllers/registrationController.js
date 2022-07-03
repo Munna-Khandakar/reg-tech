@@ -1,6 +1,9 @@
 const UserModel = require("../models/UserModel");
+const DepartmentModel = require("../models/DepartmentModel");
+const BatchModel = require("../models/BatchModel");
 const cloudinary = require("../middleware/cloudinary");
 const { exportToExcel } = require("../config/exportToExcel");
+const { db } = require("../models/UserModel");
 // POST: api/registration
 // CREATE department
 module.exports.createUser = async (req, res, next) => {
@@ -139,6 +142,47 @@ module.exports.getUser = async (req, res, next) => {
       .populate("batch", { label: 1, _id: 0 })
       .populate("department", { label: 1, _id: 0 })
       .populate("faculty", { label: 1, _id: 0 });
+
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
+module.exports.getUserCount = async (req, res, next) => {
+  let data = {
+    total: "",
+    department: [],
+    batch: [],
+  };
+  try {
+    //departmentwise data
+    const department = await DepartmentModel.find();
+    for (let i = 0; i < department.length; i++) {
+      const departmentCount = await UserModel.find({
+        department: department[i]._id,
+      }).count();
+      data.department.push({
+        department: department[i].label,
+        count: departmentCount,
+      });
+    }
+
+    //batchwise data
+    const batch = await BatchModel.find();
+    for (let i = 0; i < batch.length; i++) {
+      const batchCount = await UserModel.find({
+        batch: batch[i]._id,
+      }).count();
+      data.batch.push({
+        batch: batch[i].label,
+        count: batchCount,
+      });
+    }
+
+    // total count
+    const totalCount = await UserModel.find().count();
+    data.total = totalCount;
 
     res.status(200).json(data);
   } catch (error) {
