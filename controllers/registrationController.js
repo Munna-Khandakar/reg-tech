@@ -254,3 +254,27 @@ module.exports.exportFilteredUser = async (req, res, next) => {
     res.status(500).json(error);
   }
 };
+
+module.exports.getFilteredUsers = async (req, res, next) => {
+  const { id, filter, page } = req.params;
+  const limit = process.env.PAGE_LIMIT;
+  let query = {};
+  if (filter === "department") {
+    query = { department: id };
+  } else {
+    query = { batch: id };
+  }
+  try {
+    const data = await UserModel.find(query)
+      .sort({ updatedAt: -1 })
+      .populate("batch", { label: 1, _id: 0 })
+      .populate("department", { label: 1, _id: 0 })
+      .populate("faculty", { label: 1, _id: 0 })
+      .limit(limit * 1)
+      .skip((page - 1) * limit);
+
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};

@@ -20,15 +20,16 @@ import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import Divider from "@mui/material/Divider";
 import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
+import Tooltip from "@mui/material/Tooltip";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import DownloadForOfflineIcon from "@mui/icons-material/DownloadForOffline";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { Stack } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 function UserCountTable() {
   const [value, setValue] = React.useState("0");
-
+  let navigate = useNavigate();
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -45,8 +46,9 @@ function UserCountTable() {
     getUserCount();
   }, []);
 
-  const showFilteredUser = (id, filter) => {
-    console.log(`${id} - ${filter}`);
+  const showFilteredUser = (e, id, filter) => {
+    e.preventDefault();
+    navigate(`/view/${filter}/${id}`);
   };
   const exportFilteredUser = (e, id, filter) => {
     e.preventDefault();
@@ -68,6 +70,10 @@ function UserCountTable() {
     }).then((res) => {
       FileDownload(res.data, "users.xlsx");
     });
+  };
+  const showAlluser = (e) => {
+    e.preventDefault();
+    navigate(`/users`);
   };
 
   return (
@@ -116,14 +122,30 @@ function UserCountTable() {
                       end={count ? count.total : 0}
                       delay={0}
                     />
-                    <IconButton
-                      aria-label="download"
-                      disableRipple
-                      size="large"
-                      onClick={(e) => exportAllUsers(e)}
+                    <Stack
+                      direction="row"
+                      justifyContent="center"
+                      alignItems="center"
+                      spacing={2}
                     >
-                      <DownloadForOfflineIcon fontSize="inherit" />
-                    </IconButton>
+                      <Tooltip title="Download">
+                        <IconButton
+                          aria-label="download"
+                          size="large"
+                          onClick={(e) => exportAllUsers(e)}
+                        >
+                          <DownloadForOfflineIcon fontSize="inherit" />
+                        </IconButton>
+                      </Tooltip>
+                      <Tooltip title="View Users">
+                        <IconButton
+                          aria-label="view"
+                          onClick={(e) => showAlluser(e)}
+                        >
+                          <VisibilityIcon />
+                        </IconButton>
+                      </Tooltip>
+                    </Stack>
                   </Stack>
                 ) : (
                   <Typography
@@ -146,7 +168,7 @@ function UserCountTable() {
                 <TableRow>
                   <TableCell align="left">Department</TableCell>
                   <TableCell align="center">Count</TableCell>
-                  <TableCell align="right">Download</TableCell>
+                  <TableCell align="right">Action</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -163,22 +185,26 @@ function UserCountTable() {
                           spacing={1}
                           justifyContent="flex-end"
                         >
-                          {/* <IconButton
-                            aria-label="view"
-                            onClick={() =>
-                              showFilteredUser(data.id, "department")
-                            }
-                          >
-                            <VisibilityIcon />
-                          </IconButton> */}
-                          <IconButton
-                            aria-label="download"
-                            onClick={(e) =>
-                              exportFilteredUser(e, data.id, "department")
-                            }
-                          >
-                            <DownloadForOfflineIcon />
-                          </IconButton>
+                          <Tooltip title="View">
+                            <IconButton
+                              aria-label="view"
+                              onClick={(e) =>
+                                showFilteredUser(e, data.id, "department")
+                              }
+                            >
+                              <VisibilityIcon />
+                            </IconButton>
+                          </Tooltip>
+                          <Tooltip title="Download">
+                            <IconButton
+                              aria-label="download"
+                              onClick={(e) =>
+                                exportFilteredUser(e, data.id, "department")
+                              }
+                            >
+                              <DownloadForOfflineIcon />
+                            </IconButton>
+                          </Tooltip>
                         </Stack>
                       </TableCell>
                     </TableRow>
@@ -195,7 +221,7 @@ function UserCountTable() {
                 <TableRow>
                   <TableCell>Batch</TableCell>
                   <TableCell align="center">Count</TableCell>
-                  <TableCell align="right">Download</TableCell>
+                  <TableCell align="right">Action</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -212,22 +238,26 @@ function UserCountTable() {
                           spacing={1}
                           justifyContent="flex-end"
                         >
-                          {/* <IconButton
-                            aria-label="view"
-                            onClick={() =>
-                              showFilteredUser(data.id, "department")
-                            }
-                          >
-                            <VisibilityIcon />
-                          </IconButton> */}
-                          <IconButton
-                            aria-label="download"
-                            onClick={(e) =>
-                              exportFilteredUser(e, data.id, "batch")
-                            }
-                          >
-                            <DownloadForOfflineIcon />
-                          </IconButton>
+                          <Tooltip title="View">
+                            <IconButton
+                              aria-label="view"
+                              onClick={(e) =>
+                                showFilteredUser(e, data.id, "batch")
+                              }
+                            >
+                              <VisibilityIcon />
+                            </IconButton>
+                          </Tooltip>
+                          <Tooltip title="Download">
+                            <IconButton
+                              aria-label="download"
+                              onClick={(e) =>
+                                exportFilteredUser(e, data.id, "batch")
+                              }
+                            >
+                              <DownloadForOfflineIcon />
+                            </IconButton>
+                          </Tooltip>
                         </Stack>
                       </TableCell>
                     </TableRow>
