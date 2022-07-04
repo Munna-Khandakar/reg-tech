@@ -289,18 +289,18 @@ function StepTwo({
             if (bloodGroup === "SELECT YOUR BLOOD GROUP") {
               return swal("", "Please select blood group ", "error");
             }
-            if (streetAddress === "") {
-              return swal("", "Street Address can't be empty ", "error");
-            }
+            // if (streetAddress === "") {
+            //   return swal("", "Street Address can't be empty ", "error");
+            // }
             if (city === "") {
               return swal("", "City/Upzilla can't be empty ", "error");
             }
             if (state === "") {
               return swal("", "STATE/PROVINCE/ZILLA can't be empty ", "error");
             }
-            if (zipCode === "") {
-              return swal("", "Zip Code can't be empty ", "error");
-            }
+            // if (zipCode === "") {
+            //   return swal("", "Zip Code can't be empty ", "error");
+            // }
             if (country === "") {
               return swal("", "Country con't be empty ", "error");
             }
