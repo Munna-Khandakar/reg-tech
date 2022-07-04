@@ -1,6 +1,7 @@
 import React from "react";
 import Axios from "axios";
 import FileDownload from "js-file-download";
+import UserCountTable from "../components/MultiStepForm/UserCountTable";
 
 function ExportUsers() {
   const download = (e) => {

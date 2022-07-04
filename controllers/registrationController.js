@@ -163,6 +163,7 @@ module.exports.getUserCount = async (req, res, next) => {
         department: department[i]._id,
       }).count();
       data.department.push({
+        id: department[i]._id,
         department: department[i].label,
         count: departmentCount,
       });
@@ -175,6 +176,7 @@ module.exports.getUserCount = async (req, res, next) => {
         batch: batch[i]._id,
       }).count();
       data.batch.push({
+        id: batch[i]._id,
         batch: batch[i].label,
         count: batchCount,
       });
@@ -186,6 +188,69 @@ module.exports.getUserCount = async (req, res, next) => {
 
     res.status(200).json(data);
   } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
+module.exports.exportFilteredUser = async (req, res, next) => {
+  const exportedData = [];
+  const { filter, id } = req.params;
+  let query = {};
+  if (filter === "department") {
+    query = { department: id };
+  } else {
+    query = { batch: id };
+  }
+
+  try {
+    const data = await UserModel.find(query)
+      .sort({ updatedAt: -1 })
+      .populate("batch", { label: 1, _id: 0 })
+      .populate("department", { label: 1, _id: 0 })
+      .populate("faculty", { label: 1, _id: 0 });
+
+    //console.log(data);
+    data.forEach((user) => {
+      exportedData.push({
+        fullName: user.fullName,
+        nickName: user.nickName,
+        department: user.department && user.department.label,
+        batch: user.batch && user.batch.label,
+        faculty: user.faculty && user.faculty.label,
+        mobile: user.mobile && user.mobile,
+        whatsapp: user.secondaryMobile && user.secondaryMobile,
+        email: user.email,
+        fatherName: user.fatherName,
+        motherName: user.motherName,
+        streetAddress: user.streetAddress,
+        streetAddressLine2: user.streetAddressLine2,
+        city: user.city,
+        zipCode: user.zipCode,
+        state: user.state,
+        country: user.country,
+        emergencyContact: user.emergencyContact,
+        fbId: user.fbId,
+        dob: user.dob,
+        nationality: user.nationality,
+        bloodGroup: user.bloodGroup,
+        religion: user.religion,
+        occupation: user.occupation,
+        designation: user.designation,
+        companyName: user.companyName,
+        maritalStatus: user.maritalStatus,
+        hallRoomNumber: user.hallRoomNumber,
+        wishBox: user.wishBox,
+        photo: user.photo,
+      });
+    });
+
+    //exportToExcel(JSON.stringify(exportedData));
+    exportToExcel(exportedData);
+    // console.log(JSON.stringify(exportedData));
+    // res.status(200).json(data);
+    res.download("./users.xlsx");
+  } catch (error) {
+    console.log(error);
     res.status(500).json(error);
   }
 };

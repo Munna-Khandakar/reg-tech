@@ -267,7 +267,7 @@ const HomePage = () => {
             </CardActionArea>
           </Card>
         </Stack>
-        <UserCountTable />
+
         <Stack
           sx={{
             width: "100%",
