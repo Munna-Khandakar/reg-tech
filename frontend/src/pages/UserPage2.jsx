@@ -9,6 +9,7 @@ import ListItemText from "@mui/material/ListItemText";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
+
 import { useNavigate } from "react-router-dom";
 function UserPage2() {
   const [plateData, setPlateData] = useState([]);
@@ -59,104 +60,106 @@ function UserPage2() {
   }
 
   return (
-    <List sx={{ width: "100%" }}>
-      <InfiniteScroll
-        dataLength={plateData.length} //This is important field to render the next data
-        next={fetchData}
-        hasMore={hasMore}
-        loader={"loading..."}
-        endMessage={"no posts..."}
-      >
-        {plateData.map((row) => (
-          <>
-            <ListItem alignItems="flex-start" key={row._id}>
-              <ListItemAvatar
-                onClick={() => showProfile(row._id)}
-                sx={{ cursor: "pointer" }}
-              >
-                <Avatar alt={row.fullName} src={row.photo} />
-              </ListItemAvatar>
-              <ListItemText
-                primary={
-                  <>
-                    <span
-                      className="cursorPointer"
-                      onClick={() => showProfile(row._id)}
-                    >
-                      {row.fullName}
-                    </span>
+    <>
+      <List sx={{ width: "100%" }}>
+        <InfiniteScroll
+          dataLength={plateData.length} //This is important field to render the next data
+          next={fetchData}
+          hasMore={hasMore}
+          loader={"loading..."}
+          endMessage={"no posts..."}
+        >
+          {plateData.map((row) => (
+            <>
+              <ListItem alignItems="flex-start" key={row._id}>
+                <ListItemAvatar
+                  onClick={() => showProfile(row._id)}
+                  sx={{ cursor: "pointer" }}
+                >
+                  <Avatar alt={row.fullName} src={row.photo} />
+                </ListItemAvatar>
+                <ListItemText
+                  primary={
+                    <>
+                      <span
+                        className="cursorPointer"
+                        onClick={() => showProfile(row._id)}
+                      >
+                        {row.fullName}
+                      </span>
 
-                    <Typography
-                      sx={{ display: "inline" }}
-                      component="span"
-                      variant="body2"
-                      color="text.primary"
-                    >
-                      {`(${row.nickName}),`}
-                    </Typography>
-                    <Typography
-                      sx={{ display: "inline" }}
-                      component="span"
-                      variant="body2"
-                      color="text.primary"
-                    >
-                      {row.batch && `${row.batch.label},`}
-                    </Typography>
-                    <Typography
-                      sx={{ display: "inline" }}
-                      component="span"
-                      variant="body2"
-                      color="text.primary"
-                    >
-                      {row.department && ` Dept. of ${row.department.label}`}
-                    </Typography>
-                  </>
-                }
-                secondary={
-                  <React.Fragment>
-                    <Typography
-                      sx={{ display: "inline" }}
-                      component="span"
-                      variant="body2"
-                      color="text.primary"
-                    >
-                      {`${row.mobile}, `}
-                    </Typography>
+                      <Typography
+                        sx={{ display: "inline" }}
+                        component="span"
+                        variant="body2"
+                        color="text.primary"
+                      >
+                        {`(${row.nickName}),`}
+                      </Typography>
+                      <Typography
+                        sx={{ display: "inline" }}
+                        component="span"
+                        variant="body2"
+                        color="text.primary"
+                      >
+                        {row.batch && `${row.batch.label},`}
+                      </Typography>
+                      <Typography
+                        sx={{ display: "inline" }}
+                        component="span"
+                        variant="body2"
+                        color="text.primary"
+                      >
+                        {row.department && ` Dept. of ${row.department.label}`}
+                      </Typography>
+                    </>
+                  }
+                  secondary={
+                    <React.Fragment>
+                      <Typography
+                        sx={{ display: "inline" }}
+                        component="span"
+                        variant="body2"
+                        color="text.primary"
+                      >
+                        {`${row.mobile}, `}
+                      </Typography>
 
-                    <Typography
-                      sx={{ display: "inline" }}
-                      component="span"
-                      variant="body2"
-                      color="text.primary"
-                    >
-                      {`${row.email}, `}
-                    </Typography>
-                    <Typography
-                      sx={{ display: "inline" }}
-                      component="span"
-                      variant="body2"
-                      color="text.primary"
-                    >
-                      {row.hallRoomNumber && `${row.hallRoomNumber}, `}
-                    </Typography>
+                      <Typography
+                        sx={{ display: "inline" }}
+                        component="span"
+                        variant="body2"
+                        color="text.primary"
+                      >
+                        {`${row.email}, `}
+                      </Typography>
+                      <Typography
+                        sx={{ display: "inline" }}
+                        component="span"
+                        variant="body2"
+                        color="text.primary"
+                      >
+                        {row.hallRoomNumber && `${row.hallRoomNumber}, `}
+                      </Typography>
 
-                    <Typography
-                      sx={{ display: "inline" }}
-                      component="span"
-                      variant="body2"
-                      color="text.primary"
-                    >
-                      {row.wishBox && `${row.wishBox}`}
-                    </Typography>
-                  </React.Fragment>
-                }
-              />
-            </ListItem>
-            <Divider variant="inset" component="li" />
-          </>
-        ))}
-      </InfiniteScroll>
-    </List>
+                      <Typography
+                        sx={{ display: "inline" }}
+                        component="span"
+                        variant="body2"
+                        color="text.primary"
+                      >
+                        {row.wishBox && `${row.wishBox}`}
+                      </Typography>
+                    </React.Fragment>
+                  }
+                />
+              </ListItem>
+              <Divider variant="inset" component="li" />
+            </>
+          ))}
+        </InfiniteScroll>
+      </List>
+    </>
   );
 }
 
