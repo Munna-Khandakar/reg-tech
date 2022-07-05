@@ -3,6 +3,8 @@ const DepartmentModel = require("../models/DepartmentModel");
 const BatchModel = require("../models/BatchModel");
 const cloudinary = require("../middleware/cloudinary");
 const { exportToExcel } = require("../config/exportToExcel");
+const { exportToExcelByBatch } = require("../config/exportToExcelByBatch");
+const { exportToExcelByDept } = require("../config/exportToExcelByDept");
 const { db } = require("../models/UserModel");
 // POST: api/registration
 // CREATE department
@@ -195,63 +197,86 @@ module.exports.getUserCount = async (req, res, next) => {
 module.exports.exportFilteredUser = async (req, res, next) => {
   const exportedData = [];
   const { filter, id } = req.params;
-  let query = {};
+  // let query = {};
+  // if (filter === "department") {
+  //   query = { department: id };
+  // } else {
+  //   query = { batch: id };
+  // }
+
   if (filter === "department") {
-    query = { department: id };
-  } else {
-    query = { batch: id };
-  }
+    try {
+      const fileName = await DepartmentModel.findOne({ _id: id });
+      const data = await UserModel.find({ department: id })
+        .populate("batch")
+        .populate("department")
+        .populate("faculty")
+        .sort({ "department.label": 1, fullName: 1 });
 
-  try {
-    const data = await UserModel.find(query)
-      .sort({ updatedAt: -1 })
-      .populate("batch", { label: 1, _id: 0 })
-      .populate("department", { label: 1, _id: 0 })
-      .populate("faculty", { label: 1, _id: 0 });
-
-    //console.log(data);
-    data.forEach((user) => {
-      exportedData.push({
-        fullName: user.fullName,
-        nickName: user.nickName,
-        department: user.department && user.department.label,
-        batch: user.batch && user.batch.label,
-        faculty: user.faculty && user.faculty.label,
-        mobile: user.mobile && user.mobile,
-        whatsapp: user.secondaryMobile && user.secondaryMobile,
-        email: user.email,
-        fatherName: user.fatherName,
-        motherName: user.motherName,
-        streetAddress: user.streetAddress,
-        streetAddressLine2: user.streetAddressLine2,
-        city: user.city,
-        zipCode: user.zipCode,
-        state: user.state,
-        country: user.country,
-        emergencyContact: user.emergencyContact,
-        fbId: user.fbId,
-        dob: user.dob,
-        nationality: user.nationality,
-        bloodGroup: user.bloodGroup,
-        religion: user.religion,
-        occupation: user.occupation,
-        designation: user.designation,
-        companyName: user.companyName,
-        maritalStatus: user.maritalStatus,
-        hallRoomNumber: user.hallRoomNumber,
-        wishBox: user.wishBox,
-        photo: user.photo,
+      //console.log(data);
+      data.forEach((user) => {
+        exportedData.push({
+          fullName: user.fullName,
+          nickName: user.nickName,
+          batch: user.batch && user.batch.label,
+          zilla: user.state,
+          country: user.country,
+          profession: `${user.occupation},${user.designation},${user.companyName}`,
+          hallRoomNumber: user.hallRoomNumber,
+          wishBox: user.wishBox,
+        });
       });
-    });
 
-    //exportToExcel(JSON.stringify(exportedData));
-    exportToExcel(exportedData);
-    // console.log(JSON.stringify(exportedData));
-    // res.status(200).json(data);
-    res.download("./users.xlsx");
-  } catch (error) {
-    console.log(error);
-    res.status(500).json(error);
+      //exportToExcel(JSON.stringify(exportedData));
+      exportToExcelByDept(
+        exportedData,
+        `${fileName.code} registered user list`
+      );
+      // console.log(JSON.stringify(exportedData));
+      // res.status(200).json(data);
+      res.download("./users.xlsx");
+    } catch (error) {
+      console.log(error);
+      res.status(500).json(error);
+    }
+  } else if (filter === "batch") {
+    try {
+      const deptFullName = await BatchModel.findOne({ _id: id });
+      const deptSplit = deptFullName.label.split(" ");
+      const fileName = deptSplit[0];
+      console.log(fileName);
+      const data = await UserModel.find({ batch: id })
+        .populate("batch")
+        .populate("department")
+        .populate("faculty")
+        .sort({ "batch.label": 1, fullName: 1 });
+
+      //console.log(data);
+      data.forEach((user) => {
+        exportedData.push({
+          fullName: user.fullName,
+          nickName: user.nickName,
+          department: user.department && user.department.label,
+          zilla: user.state,
+          country: user.country,
+          profession: `${user.occupation},${user.designation},${user.companyName}`,
+          hallRoomNumber: user.hallRoomNumber,
+          wishBox: user.wishBox,
+        });
+      });
+
+      //exportToExcel(JSON.stringify(exportedData));
+      exportToExcelByBatch(
+        exportedData,
+        `${fileName} batch registered user list`
+      );
+      // console.log(JSON.stringify(exportedData));
+      // res.status(200).json(data);
+      res.download("./users.xlsx");
+    } catch (error) {
+      console.log(error);
+      res.status(500).json(error);
+    }
   }
 };
 
