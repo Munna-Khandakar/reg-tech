@@ -12,12 +12,18 @@ import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import moment from "moment";
+import Paper from "@mui/material/Paper";
+import InputBase from "@mui/material/InputBase";
+import IconButton from "@mui/material/IconButton";
+import SearchIcon from "@mui/icons-material/Search";
+import ReplayIcon from "@mui/icons-material/Replay";
 function ViewFilteredUser() {
   let { id, filter } = useParams();
   const [plateData, setPlateData] = useState([]);
   const [page, setPage] = useState(2);
   const [hasMore, setHasMore] = useState(true);
   const [dept, setDept] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
   let navigate = useNavigate();
 
   // department name
@@ -33,7 +39,7 @@ function ViewFilteredUser() {
       }
       const res = await fetch(API);
       const data = await res.json();
-      console.log(data);
+      //console.log(data);
       setDept(data);
     };
     getDept();
@@ -55,7 +61,7 @@ function ViewFilteredUser() {
     console.log("fetching again...");
     const res = await fetch(`/api/view/${filter}/${id}/${page}`);
     const data = await res.json();
-    console.log(data);
+    // console.log(data);
     return data;
   };
 
@@ -82,6 +88,16 @@ function ViewFilteredUser() {
     );
   }
 
+  const searchQueryHandler = async () => {
+    if (searchQuery === "") {
+      return;
+    }
+    const res = await fetch(`/api/find/${filter}/${id}/${searchQuery}`);
+    const data = await res.json();
+    setPlateData(data);
+    setHasMore(false);
+    setSearchQuery("");
+  };
   return (
     <>
       <Box
@@ -194,6 +210,39 @@ function ViewFilteredUser() {
         >
           তাং : {moment(Date.now()).format("DD/MM/YYYY")}
         </Typography>
+        <Paper
+          sx={{
+            m: "2rem",
+            p: "2px 4px",
+            display: "flex",
+            alignItems: "center",
+            width: { xs: "90%", sm: "90%", lg: "50%" },
+          }}
+        >
+          <InputBase
+            sx={{ ml: 1, flex: 1 }}
+            placeholder={`Search Student in ${filter}`}
+            inputProps={{ "aria-label": "search student" }}
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+          <IconButton
+            sx={{ p: "10px" }}
+            aria-label="search"
+            onClick={searchQueryHandler}
+          >
+            <SearchIcon />
+          </IconButton>
+          <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
+          <IconButton
+            color="primary"
+            sx={{ p: "10px" }}
+            aria-label="directions"
+            onClick={() => window.location.reload()}
+          >
+            <ReplayIcon />
+          </IconButton>
+        </Paper>
       </Box>
       <List sx={{ width: "100%" }}>
         <InfiniteScroll

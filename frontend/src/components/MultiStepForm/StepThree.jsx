@@ -81,7 +81,7 @@ function StepThree({
               label="MARITAL STATUS"
               value={maritalStatus}
               onChange={(e) => setMaritalStatus(e.target.value)}
-              helperText="Please select your blood group"
+              helperText="Please select your marital status"
             >
               {marital.map((option) => (
                 <MenuItem key={option.value} value={option.value}>

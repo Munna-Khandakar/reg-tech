@@ -197,12 +197,6 @@ module.exports.getUserCount = async (req, res, next) => {
 module.exports.exportFilteredUser = async (req, res, next) => {
   const exportedData = [];
   const { filter, id } = req.params;
-  // let query = {};
-  // if (filter === "department") {
-  //   query = { department: id };
-  // } else {
-  //   query = { batch: id };
-  // }
 
   if (filter === "department") {
     try {
@@ -228,10 +222,7 @@ module.exports.exportFilteredUser = async (req, res, next) => {
       });
 
       //exportToExcel(JSON.stringify(exportedData));
-      exportToExcelByDept(
-        exportedData,
-        `${fileName.code} registered user list`
-      );
+      exportToExcelByDept(exportedData, `${fileName.code} dept student list`);
       // console.log(JSON.stringify(exportedData));
       // res.status(200).json(data);
       res.download("./users.xlsx");
@@ -266,10 +257,7 @@ module.exports.exportFilteredUser = async (req, res, next) => {
       });
 
       //exportToExcel(JSON.stringify(exportedData));
-      exportToExcelByBatch(
-        exportedData,
-        `${fileName} batch registered user list`
-      );
+      exportToExcelByBatch(exportedData, `${fileName} batch student list`);
       // console.log(JSON.stringify(exportedData));
       // res.status(200).json(data);
       res.download("./users.xlsx");
@@ -297,6 +285,70 @@ module.exports.getFilteredUsers = async (req, res, next) => {
       .populate("faculty", { label: 1, _id: 0 })
       .limit(limit * 1)
       .skip((page - 1) * limit);
+
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
+module.exports.getSearchUser = async (req, res, next) => {
+  const { search } = req.params;
+
+  try {
+    const data = await UserModel.find({
+      $or: [
+        { fullName: { $regex: search, $options: "i" } },
+        { nickName: { $regex: search, $options: "i" } },
+        { mobile: { $regex: search, $options: "i" } },
+      ],
+    })
+      .populate("batch", { label: 1, _id: 0 })
+      .populate("department", { label: 1, _id: 0 })
+      .populate("faculty", { label: 1, _id: 0 });
+
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
+module.exports.getFilteredSearchUser = async (req, res, next) => {
+  let query = {};
+  const { id, filter, search } = req.params;
+  if (filter === "department") {
+    query = {
+      $and: [
+        { department: id },
+        {
+          $or: [
+            { fullName: { $regex: search, $options: "i" } },
+            { nickName: { $regex: search, $options: "i" } },
+            { mobile: { $regex: search, $options: "i" } },
+          ],
+        },
+      ],
+    };
+  }
+  if (filter === "batch") {
+    query = {
+      $and: [
+        { batch: id },
+        {
+          $or: [
+            { fullName: { $regex: search, $options: "i" } },
+            { nickName: { $regex: search, $options: "i" } },
+            { mobile: { $regex: search, $options: "i" } },
+          ],
+        },
+      ],
+    };
+  }
+  try {
+    const data = await UserModel.find(query)
+      .populate("batch", { label: 1, _id: 0 })
+      .populate("department", { label: 1, _id: 0 })
+      .populate("faculty", { label: 1, _id: 0 });
 
     res.status(200).json(data);
   } catch (error) {
