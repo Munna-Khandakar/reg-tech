@@ -11,6 +11,7 @@ const {
   getFilteredUsers,
   getSearchUser,
   getFilteredSearchUser,
+  getUserByMobile,
 } = require("../controllers/registrationController");
 const upload = require("../middleware/multer");
 router.post("/registration", upload.single("photo"), createUser);
@@ -23,5 +24,7 @@ router.get("/export/:filter/:id", exportFilteredUser);
 router.get("/view/:filter/:id/:page", getFilteredUsers);
 router.get("/find/all/:search", getSearchUser);
 router.get("/find/:filter/:id/:search", getFilteredSearchUser);
+
+router.get("/user/mobile/:mobile", getUserByMobile);
 
 module.exports = router;

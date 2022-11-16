@@ -1,0 +1,41 @@
+* {
+  margin: 0;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+  width: 100%;
+  gap: 1rem;
+}
+
+.photoBox {
+  padding: 1em;
+  color: #2a3439;
+  border: 1px solid #848482;
+  border-radius: 5px;
+  width: 95%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.photoBox:focus {
+  border: 1px solid blue;
+}
+
+.navlink {
+  color: white;
+  text-decoration: none;
+}
+
+@media only screen and (max-width: 600px) {
+  .row {
+    flex-direction: column;
+    gap: 0;
+    width: 95%;
+  }
+  .photoBox {
+    width: 85%;
+  }
+}

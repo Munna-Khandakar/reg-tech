@@ -7,10 +7,29 @@ import UserPage2 from "./pages/UserPage2";
 import PrintForm from "./pages/PrintForm";
 import ExportUserPage from "./pages/ExportUserPage";
 import ViewFilteredUser from "./pages/ViewFilteredUser";
+import LoginPage from "./pages/LoginPage";
+import ReunionRegistrationPage from "./pages/ReunionRegistrationPage";
+import Navbar from "./components/Navbar/Navbar";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import PageTwo from "./components/ReunionForm/PageTwo";
+import { useEffect } from "react";
+import PageThree from "./components/ReunionForm/PageThree";
+import PageFour from "./components/ReunionForm/PageFour";
+import HelpPage from "./pages/HelpPage";
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#497174",
+    },
+  },
+});
+
 function App() {
   return (
-    <>
-      <ScrollTop>
+    <ThemeProvider theme={theme}>
+      <>
+        <Navbar />
+
         <Routes>
           <Route exact path="/" element={<HomePage />} />
           <Route exact path="/form" element={<MultiStepForm />} />
@@ -18,13 +37,22 @@ function App() {
           <Route exact path="/users" element={<UserPage2 />} />
           <Route exact path="/print/:id" element={<PrintForm />} />
           <Route
+            path="/registration/reunion"
+            element={<ReunionRegistrationPage />}
+          />
+          <Route path="/registration/reunion/:mobile" element={<PageTwo />} />
+          <Route path="/reunion/confirm/:id" element={<PageThree />} />
+          <Route path="/reunion/payment/:id" element={<PageFour />} />
+          <Route
             exact
             path="/view/:filter/:id"
             element={<ViewFilteredUser />}
           />
+          <Route exact path="/login" element={<LoginPage />} />
+          <Route path="/help" element={<HelpPage />} />
         </Routes>
-      </ScrollTop>
-    </>
+      </>
+    </ThemeProvider>
   );
 }
 

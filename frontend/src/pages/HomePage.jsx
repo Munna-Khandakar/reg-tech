@@ -31,6 +31,7 @@ import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
 import { margin } from "@mui/system";
 import { color } from "@cloudinary/url-gen/qualifiers/background";
 import UserCountTable from "../components/MultiStepForm/UserCountTable";
+import { COLORS } from "../utils/Colors";
 const HomePage = () => {
   let navigate = useNavigate();
   const [check1, setCheck1] = useState(true);
@@ -122,6 +123,16 @@ const HomePage = () => {
           >
             <b>কারিগরি সহযোগিতা</b> : TechSimple ICT
           </Typography>
+          <Button
+            onClick={() => navigate("/registration/reunion")}
+            sx={{
+              background: COLORS.orange,
+              color: "white",
+              fontWeight: "bold",
+            }}
+          >
+            Reunion Registration
+          </Button>
         </Box>
       </motion.div>
 

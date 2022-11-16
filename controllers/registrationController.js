@@ -355,3 +355,19 @@ module.exports.getFilteredSearchUser = async (req, res, next) => {
     res.status(500).json(error);
   }
 };
+
+module.exports.getUserByMobile = async (req, res, next) => {
+  const { mobile } = req.params;
+  try {
+    const data = await UserModel.findOne({
+      mobile: mobile,
+    })
+      .populate("batch", { label: 1, _id: 1 })
+      .populate("department", { label: 1, _id: 1 })
+      .populate("faculty", { label: 1, _id: 1 });
+
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};

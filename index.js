@@ -7,15 +7,14 @@ const bodyParser = require("body-parser");
 require("dotenv").config();
 const { MONGO_URI } = require("./config/keys");
 const { api } = require("./middleware/cloudinary");
-//const requestIp = require("request-ip");
 
-//TODO: MIDDLEWARE
+// MIDDLEWARE
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// TODO: Routes
+//  Routes
 
 app.use("/api", require("./routes/batchRoutes"));
 app.use("/api", require("./routes/departmentRoutes"));
@@ -23,25 +22,7 @@ app.use("/api", require("./routes/sessionRoutes"));
 app.use("/api", require("./routes/registrationRoute"));
 app.use("/api", require("./routes/verificationRoutes"));
 app.use("/api", require("./routes/facultyRoutes"));
-// app.use("/api", require("./routes/myPlatesRoutes"));
-// app.use("/api", require("./routes/deliveryManRoutes"));
-// app.use("/admin/api", require("./routes/adminRoutes"));
-// app.use("/api", require("./routes/tutorialRoutes"));
-// app.use("/api", require("./routes/deliveryChargeRoutes"));
-
-// TODO: SERVER AND DATABASE
-
-// app.use(express.static(path.join(__dirname, "./frontend/build")));
-// app.get("*", function (_, res) {
-//   res.sendFile(
-//     path.join(__dirname, "./frontend/build/index.html"),
-//     function (err) {
-//       if (err) {
-//         res.status(500).send(err);
-//       }
-//     }
-//   );
-// });
+app.use("/api", require("./routes/reunionRoutes"));
 
 const root = require("path").join(__dirname, "frontend", "build");
 app.use(express.static(root));
