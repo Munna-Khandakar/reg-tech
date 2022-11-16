@@ -28,6 +28,8 @@ function PageThree() {
   const [submitButtonDisable, setSubmitButtonDisable] = useState(false);
   const [inputFields, setInputFields] = useState([]);
   const [wantsToEdit, setWantsToEdit] = useState(false);
+  const [image, setImage] = useState("");
+  const [url, setUrl] = useState("");
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, []);
@@ -82,6 +84,7 @@ function PageThree() {
     { value: "Kids", cost: 700 },
     { value: "Guest", cost: 700 },
   ];
+
   const handleFormChange = (index, event) => {
     let data = [...inputFields];
     data[index][event.target.name] = event.target.value;
@@ -243,7 +246,7 @@ function PageThree() {
             ))}
           </TextField>
         </div>
-        <div className="row">
+        {/* <div className="row">
           <div className="photoBox">
             PHOTO *
             <img
@@ -280,7 +283,7 @@ function PageThree() {
               // required={newPhotoUpload}
             />
           </div>
-        </div>
+        </div> */}
         <div className="row">
           <TextField
             style={{ width: "100%", margin: "1rem 0" }}

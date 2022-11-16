@@ -157,7 +157,7 @@ function PageFour() {
         <p style={{ margin: "2rem 0", fontSize: "2rem", textAlign: "center" }}>
           Congratulations..! Your form is submitted.
         </p>
-        <div
+        {/* <div
           style={{
             border: `1px solid ${COLORS.lightGreen}`,
             width: "100%",
@@ -169,7 +169,7 @@ function PageFour() {
           <RowForBatch batch={"Batch 20 - Batch 35"} cost={"2000"} />
           <RowForBatch batch={"Batch 36 - Batch 40"} cost={"1500"} />
           <RowForBatch batch={"Batch 41 - Present"} cost={"500"} />
-        </div>
+        </div> */}
 
         <div
           style={{
@@ -242,13 +242,18 @@ function PageFour() {
           </div>
         </div>
 
-        <div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+          }}
+        >
           <Button
             // onClick={procedeToPayment}
             type="button"
             variant="outlined"
             endIcon={<NavigateNextIcon />}
-            sx={{ margin: "5rem" }}
+            // sx={{ margin: "1rem" }}
           >
             Cancel
           </Button>
@@ -260,7 +265,7 @@ function PageFour() {
             loadingPosition="end"
             variant="contained"
             endIcon={<NavigateNextIcon />}
-            sx={{ margin: "5rem" }}
+            // sx={{ margin: "5rem" }}
           >
             Proced To Pay
           </LoadingButton>

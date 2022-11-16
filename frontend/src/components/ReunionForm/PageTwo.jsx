@@ -16,11 +16,11 @@ function PageTwo() {
   const [batches, setBatches] = useState([]);
   const [departments, setDepartments] = useState([]);
   const [faculties, setfaculties] = useState([]);
-  const [batch, setBatch] = useState("SELECT YOUR BATCH");
-  const [department, setDepartment] = useState("SELECT YOUR DEPARTMENT");
   const [faculty, setFaculty] = useState("SELECT YOUR FACULTY");
   const [newPhotoUpload, setNewPhotoUpload] = useState(false);
   const [photo, setPhoto] = useState("");
+  const [image, setImage] = useState("");
+  const [url, setUrl] = useState("");
   // confirm step
   const [submitButtonLoading, setSubmitButtonLoading] = useState(false);
   const [submitButtonDisable, setSubmitButtonDisable] = useState(false);
@@ -105,15 +105,32 @@ function PageTwo() {
     setSubmitButtonDisable(false);
     return swal("", msg, "error");
   };
+
+  useEffect(() => {
+    console.log("first");
+    uploadImage();
+  }, [image]);
+  const uploadImage = () => {
+    const data = new FormData();
+    data.append("file", image);
+    data.append("upload_preset", "ukilbabu");
+    data.append("cloud_name", "dxism6mwy");
+    fetch("https://api.cloudinary.com/v1_1/dxism6mwy/image/upload", {
+      method: "post",
+      body: data,
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        console.log(data.url);
+        setUrl(data.url);
+        setStoredValue({ ...storedValue, photo: data.url });
+      })
+      .catch((err) => console.log(err));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setSubmitButtonLoading(true);
-    // if (inputFields.length > 0) {
-    //   storedValue.guest = inputFields;
-    //   setStoredValue({ ...storedValue });
-    // }
-
-    // setStoredValue({ ...storedValue, guest: inputFields, mobile: mobile });
 
     storedValue.guest = inputFields;
     storedValue.mobile = mobile;
@@ -257,7 +274,8 @@ function PageTwo() {
               onChange={(e) => {
                 setNewPhotoUpload(true);
                 setPhoto(URL.createObjectURL(e.target.files[0]));
-                setStoredValue({ ...storedValue, photo: e.target.files[0] });
+                setImage(e.target.files[0]);
+                // setStoredValue({ ...storedValue, photo: e.target.files[0] });
               }}
               variant="outlined"
               accept="image/*"
