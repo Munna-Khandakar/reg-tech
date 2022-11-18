@@ -79,7 +79,6 @@ const HomePage = () => {
           <Typography
             variant="h3"
             textAlign={"center"}
-            bold
             sx={{
               fontSize: {
                 lg: 50,

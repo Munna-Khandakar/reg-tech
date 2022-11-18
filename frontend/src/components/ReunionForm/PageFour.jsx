@@ -57,28 +57,18 @@ function PageFour() {
   };
 
   const determineAlumniCost = (batch) => {
-    if (batch > 20 && batch < 36) setOwnCost(2000);
-    if (batch > 35 && batch < 41) setOwnCost(1500);
-    if (batch > 40) setOwnCost(500);
+    if (typeof batch !== "number") {
+      if (batch.split(" ")[1] > 20 && batch.split(" ")[1] < 36)
+        setOwnCost(2000);
+      if (batch.split(" ")[1] > 35 && batch.split(" ")[1] < 41)
+        setOwnCost(1500);
+      if (batch.split(" ")[1] > 40) setOwnCost(500);
+    } else {
+      if (batch > 20 && batch < 36) setOwnCost(2000);
+      if (batch > 35 && batch < 41) setOwnCost(1500);
+      if (batch > 40) setOwnCost(500);
+    }
   };
-
-  // const determineTotalCost = async () => {
-  //   let t = 0;
-  //   storedValue.guest.map((item) => {
-  //     if (item.guestType == "Wife") {
-  //       t = t + 1000;
-  //       setTotalCost(t);
-  //     }
-  //     if (item.guestType == "Children") {
-  //       t = t + 500;
-  //       setTotalCost(t);
-  //     }
-  //     if (item.guestType == "Driver") {
-  //       t = t + 800;
-  //       setTotalCost(t);
-  //     }
-  //   });
-  // };
 
   const guestType = [
     { value: "Wife", cost: 1000 },
@@ -157,19 +147,6 @@ function PageFour() {
         <p style={{ margin: "2rem 0", fontSize: "2rem", textAlign: "center" }}>
           Congratulations..! Your form is submitted.
         </p>
-        {/* <div
-          style={{
-            border: `1px solid ${COLORS.lightGreen}`,
-            width: "100%",
-            borderRadius: "5px",
-            padding: "5px",
-          }}
-        >
-          <p style={{ marginBottom: "10px" }}>Alumni Cost Details</p>
-          <RowForBatch batch={"Batch 20 - Batch 35"} cost={"2000"} />
-          <RowForBatch batch={"Batch 36 - Batch 40"} cost={"1500"} />
-          <RowForBatch batch={"Batch 41 - Present"} cost={"500"} />
-        </div> */}
 
         <div
           style={{
@@ -246,6 +223,7 @@ function PageFour() {
           style={{
             display: "flex",
             flexDirection: "row",
+            marginTop: "2rem",
           }}
         >
           <Button
@@ -253,7 +231,7 @@ function PageFour() {
             type="button"
             variant="outlined"
             endIcon={<NavigateNextIcon />}
-            // sx={{ margin: "1rem" }}
+            sx={{ marginRight: "1rem" }}
           >
             Cancel
           </Button>

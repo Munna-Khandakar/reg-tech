@@ -1,5 +1,6 @@
 const ReunionModel = require("../models/ReunionModel");
-const cloudinary = require("../middleware/cloudinary");
+const DepartmentModel = require("../models/DepartmentModel");
+const BatchModel = require("../models/BatchModel");
 
 module.exports.createUser = async (req, res, next) => {
   try {
@@ -66,6 +67,113 @@ module.exports.updateUser = async (req, res, next) => {
     res.status(200).json({
       ok: `${data._id}`,
     });
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
+module.exports.getUserCount = async (req, res, next) => {
+  let data = {
+    total: "",
+    department: [],
+    batch: [],
+  };
+  try {
+    //departmentwise data
+    const department = await DepartmentModel.find();
+    for (let i = 0; i < department.length; i++) {
+      const departmentCount = await ReunionModel.find({
+        department: department[i]._id,
+      }).count();
+      data.department.push({
+        id: department[i]._id,
+        department: department[i].label,
+        count: departmentCount,
+      });
+    }
+
+    //batchwise data
+    const batch = await BatchModel.find();
+    for (let i = 0; i < batch.length; i++) {
+      const batchCount = await ReunionModel.find({
+        batch: batch[i]._id,
+      }).count();
+      data.batch.push({
+        id: batch[i]._id,
+        batch: batch[i].label,
+        count: batchCount,
+      });
+    }
+
+    // total count
+    const totalCount = await ReunionModel.find().count();
+    data.total = totalCount;
+
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
+module.exports.getFilteredUsersForReunion = async (req, res, next) => {
+  const { id, filter, page } = req.params;
+  const limit = process.env.PAGE_LIMIT;
+  let query = {};
+  if (filter === "department") {
+    query = { department: id };
+  } else {
+    query = { batch: id };
+  }
+  try {
+    const data = await ReunionModel.find(query)
+      .sort({ updatedAt: -1 })
+      .populate("batch", { label: 1, _id: 0 })
+      .populate("department", { label: 1, _id: 0 })
+      .populate("faculty", { label: 1, _id: 0 })
+      .limit(limit * 1)
+      .skip((page - 1) * limit);
+
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
+module.exports.getUsers = async (req, res, next) => {
+  const { page } = req.params;
+  const limit = process.env.PAGE_LIMIT;
+  // const page = 1;
+  try {
+    const data = await ReunionModel.find()
+      .sort({ updatedAt: -1 })
+      .populate("batch", { label: 1, _id: 0 })
+      .populate("department", { label: 1, _id: 0 })
+      .populate("faculty", { label: 1, _id: 0 })
+      .limit(limit * 1)
+      .skip((page - 1) * limit);
+
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
+module.exports.getSearchUser = async (req, res, next) => {
+  const { search } = req.params;
+
+  try {
+    const data = await ReunionModel.find({
+      $or: [
+        { fullName: { $regex: search, $options: "i" } },
+        { nickName: { $regex: search, $options: "i" } },
+        { mobile: { $regex: search, $options: "i" } },
+      ],
+    })
+      .populate("batch", { label: 1, _id: 0 })
+      .populate("department", { label: 1, _id: 0 })
+      .populate("faculty", { label: 1, _id: 0 });
+
+    res.status(200).json(data);
   } catch (error) {
     res.status(500).json(error);
   }

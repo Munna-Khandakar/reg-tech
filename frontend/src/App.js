@@ -16,6 +16,9 @@ import { useEffect } from "react";
 import PageThree from "./components/ReunionForm/PageThree";
 import PageFour from "./components/ReunionForm/PageFour";
 import HelpPage from "./pages/HelpPage";
+import ReunionUsersPage from "./pages/ReunionUsersPage";
+import ReunionFilterUserviewPage from "./pages/ReunionFilterUserviewPage";
+import ReunionAllUsers from "./pages/ReunionAllUsers";
 const theme = createTheme({
   palette: {
     primary: {
@@ -40,9 +43,20 @@ function App() {
             path="/registration/reunion"
             element={<ReunionRegistrationPage />}
           />
+          <Route exact path="/reunion/users" element={<ReunionAllUsers />} />
           <Route path="/registration/reunion/:mobile" element={<PageTwo />} />
           <Route path="/reunion/confirm/:id" element={<PageThree />} />
           <Route path="/reunion/payment/:id" element={<PageFour />} />
+          <Route
+            exact
+            path="/reunion/view/:filter/:id"
+            element={<ReunionFilterUserviewPage />}
+          />
+          <Route
+            exact
+            path="/reunion/export-users"
+            element={<ReunionUsersPage />}
+          />
           <Route
             exact
             path="/view/:filter/:id"

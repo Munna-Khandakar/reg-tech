@@ -33,6 +33,9 @@ function Navbar() {
           <Link to={"/registration/reunion"} className="navlink">
             <div>Reunion Registration</div>
           </Link>
+          {/* <Link to={"/registration/reunion"} className="navlink">
+            <div>Reunion Update</div>
+          </Link> */}
           <Link to={"/help"} className="navlink">
             <div
               style={{
