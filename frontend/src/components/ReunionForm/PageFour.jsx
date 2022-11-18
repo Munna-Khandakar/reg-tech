@@ -53,7 +53,7 @@ function PageFour() {
   const getBatchName = async (id) => {
     const res = await fetch(`/api/batchValue/${id}`);
     const data = await res.json();
-    return parseInt(data.label);
+    return data.label;
   };
 
   const determineAlumniCost = (batch) => {
