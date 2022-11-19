@@ -6,6 +6,7 @@ const {
   getFilteredUsersForReunion,
   getUsers,
   getSearchUser,
+  checkMobileNumbar,
 } = require("../controllers/reunionController");
 const upload = require("../middleware/multer");
 const router = require("express").Router();
@@ -17,4 +18,5 @@ router.get("/reunion/count/user", getUserCount);
 router.get("/view/reunion/:filter/:id/:page", getFilteredUsersForReunion);
 router.get("/reunion/users/:page", getUsers);
 router.get("/find/reunion/:search", getSearchUser);
+router.get("/check/reunion/:mobile", checkMobileNumbar);
 module.exports = router;

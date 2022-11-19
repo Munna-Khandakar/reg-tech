@@ -4,7 +4,6 @@ const BatchModel = require("../models/BatchModel");
 
 module.exports.createUser = async (req, res, next) => {
   try {
-    console.log(req.body);
     const existMobile = await ReunionModel.findOne({ mobile: req.body.mobile });
     if (existMobile) {
       console.log("User found in User Model by Phone");
@@ -177,4 +176,32 @@ module.exports.getSearchUser = async (req, res, next) => {
   } catch (error) {
     res.status(500).json(error);
   }
+};
+
+module.exports.checkMobileNumbar = async (req, res, next) => {
+  try {
+    const existMobile = await ReunionModel.findOne({
+      mobile: req.params.mobile,
+    });
+    if (existMobile) {
+      console.log("User found in User Model by Phone");
+      return res.status(201).json({ exists: `You can not submit form twice` });
+    } else {
+      return res.status(201).json({ ok: `You can submit another form` });
+    }
+  } catch (error) {
+    res.status(500).json(error);
+  }
+
+  // try {
+  //   const newData = new ReunionModel(req.body);
+  //   const savedData = await newData.save();
+  //   // console.log(savedData._id);
+  //   res.status(200).json({
+  //     success: `${savedData._id}`,
+  //   });
+  // } catch (error) {
+  //   console.log(error);
+  //   res.status(500).json(error);
+  // }
 };

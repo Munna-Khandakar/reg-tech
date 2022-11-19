@@ -57,7 +57,7 @@ function PageFour() {
   };
 
   const determineAlumniCost = (batch) => {
-    if (typeof batch !== "number") {
+    if (batch.length > 2) {
       if (batch.split(" ")[1] > 20 && batch.split(" ")[1] < 36)
         setOwnCost(2000);
       if (batch.split(" ")[1] > 35 && batch.split(" ")[1] < 41)
@@ -91,15 +91,16 @@ function PageFour() {
     e.preventDefault();
     // setSubmitButtonLoading(true);
 
-    // axios
-    //   .put("/api/reunion/registration", storedValue)
-    //   .then((res) => {
-    //     window.location.reload(false);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //     errorMessageHandle(err);
-    //   });
+    axios
+      .get("/api/ssl-request")
+      .then((res) => {
+        console.log(res);
+        // window.location.reload(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        errorMessageHandle(err);
+      });
   };
 
   const procedeToPayment = () => {
@@ -236,7 +237,7 @@ function PageFour() {
             Cancel
           </Button>
           <LoadingButton
-            // onClick={handleClick}
+            onClick={handleSubmit}
             // type="submit"
             loading={submitButtonLoading}
             disabled={submitButtonDisable}
